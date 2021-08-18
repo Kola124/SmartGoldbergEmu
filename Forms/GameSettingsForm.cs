@@ -776,13 +776,13 @@ namespace SmartGoldbergEmu
         private void Mods_Click(object sender, EventArgs e)
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            new FileInfo(Path.Combine(game_emu_folder, "steam_settings", "mods")).Directory.Create();
+            DirectoryInfo di = Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings", "mods"));
         }
 
         private void DLLfold_Click(object sender, EventArgs e)
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            new FileInfo(Path.Combine(game_emu_folder, "steam_settings", "load_dlls")).Directory.Create();
+            DirectoryInfo di = Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings", "load_dlls"));
         }
     }
 }
