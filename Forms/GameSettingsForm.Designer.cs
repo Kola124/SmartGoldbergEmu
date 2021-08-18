@@ -75,6 +75,8 @@ namespace SmartGoldbergEmu
             this.DLC_save = new System.Windows.Forms.Button();
             this.DLC_add = new System.Windows.Forms.TextBox();
             this.broadcast_tab = new System.Windows.Forms.TabPage();
+            this.DLLfold = new System.Windows.Forms.Button();
+            this.Mods = new System.Windows.Forms.Button();
             this.button_clear_env_var = new System.Windows.Forms.Button();
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
@@ -405,6 +407,8 @@ namespace SmartGoldbergEmu
             // 
             // broadcast_tab
             // 
+            this.broadcast_tab.Controls.Add(this.DLLfold);
+            this.broadcast_tab.Controls.Add(this.Mods);
             this.broadcast_tab.Controls.Add(this.button_clear_env_var);
             this.broadcast_tab.Controls.Add(this.button_remove_env_var);
             this.broadcast_tab.Controls.Add(this.button_add_env_var);
@@ -427,9 +431,29 @@ namespace SmartGoldbergEmu
             this.broadcast_tab.Text = "Custom";
             this.broadcast_tab.UseVisualStyleBackColor = true;
             // 
+            // DLLfold
+            // 
+            this.DLLfold.Location = new System.Drawing.Point(456, 42);
+            this.DLLfold.Name = "DLLfold";
+            this.DLLfold.Size = new System.Drawing.Size(141, 23);
+            this.DLLfold.TabIndex = 37;
+            this.DLLfold.Text = "Create DLL Folder";
+            this.DLLfold.UseVisualStyleBackColor = true;
+            this.DLLfold.Click += new System.EventHandler(this.DLLfold_Click);
+            // 
+            // Mods
+            // 
+            this.Mods.Location = new System.Drawing.Point(457, 13);
+            this.Mods.Name = "Mods";
+            this.Mods.Size = new System.Drawing.Size(141, 23);
+            this.Mods.TabIndex = 36;
+            this.Mods.Text = "Create Mods Folder";
+            this.Mods.UseVisualStyleBackColor = true;
+            this.Mods.Click += new System.EventHandler(this.Mods_Click);
+            // 
             // button_clear_env_var
             // 
-            this.button_clear_env_var.Location = new System.Drawing.Point(499, 211);
+            this.button_clear_env_var.Location = new System.Drawing.Point(500, 215);
             this.button_clear_env_var.Name = "button_clear_env_var";
             this.button_clear_env_var.Size = new System.Drawing.Size(98, 23);
             this.button_clear_env_var.TabIndex = 35;
@@ -439,7 +463,7 @@ namespace SmartGoldbergEmu
             // 
             // button_remove_env_var
             // 
-            this.button_remove_env_var.Location = new System.Drawing.Point(500, 182);
+            this.button_remove_env_var.Location = new System.Drawing.Point(500, 186);
             this.button_remove_env_var.Name = "button_remove_env_var";
             this.button_remove_env_var.Size = new System.Drawing.Size(98, 23);
             this.button_remove_env_var.TabIndex = 34;
@@ -449,7 +473,7 @@ namespace SmartGoldbergEmu
             // 
             // button_add_env_var
             // 
-            this.button_add_env_var.Location = new System.Drawing.Point(500, 153);
+            this.button_add_env_var.Location = new System.Drawing.Point(500, 157);
             this.button_add_env_var.Name = "button_add_env_var";
             this.button_add_env_var.Size = new System.Drawing.Size(98, 23);
             this.button_add_env_var.TabIndex = 33;
@@ -460,7 +484,7 @@ namespace SmartGoldbergEmu
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(177, 134);
+            this.label9.Location = new System.Drawing.Point(177, 138);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(111, 13);
             this.label9.TabIndex = 32;
@@ -469,7 +493,7 @@ namespace SmartGoldbergEmu
             // textBox_env_var_value
             // 
             this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 153);
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
             this.textBox_env_var_value.Name = "textBox_env_var_value";
             this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
             this.textBox_env_var_value.TabIndex = 31;
@@ -477,7 +501,7 @@ namespace SmartGoldbergEmu
             // textBox_env_var_key
             // 
             this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 153);
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
             this.textBox_env_var_key.Name = "textBox_env_var_key";
             this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
             this.textBox_env_var_key.TabIndex = 30;
@@ -485,15 +509,15 @@ namespace SmartGoldbergEmu
             // listBox_env_var
             // 
             this.listBox_env_var.FormattingEnabled = true;
-            this.listBox_env_var.Location = new System.Drawing.Point(30, 182);
+            this.listBox_env_var.Location = new System.Drawing.Point(30, 186);
             this.listBox_env_var.Name = "listBox_env_var";
-            this.listBox_env_var.Size = new System.Drawing.Size(463, 134);
+            this.listBox_env_var.Size = new System.Drawing.Size(463, 121);
             this.listBox_env_var.TabIndex = 29;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 134);
+            this.label6.Location = new System.Drawing.Point(27, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 13);
             this.label6.TabIndex = 28;
@@ -501,9 +525,9 @@ namespace SmartGoldbergEmu
             // 
             // clear_broadcast_button
             // 
-            this.clear_broadcast_button.Location = new System.Drawing.Point(226, 72);
+            this.clear_broadcast_button.Location = new System.Drawing.Point(225, 72);
             this.clear_broadcast_button.Name = "clear_broadcast_button";
-            this.clear_broadcast_button.Size = new System.Drawing.Size(92, 23);
+            this.clear_broadcast_button.Size = new System.Drawing.Size(93, 23);
             this.clear_broadcast_button.TabIndex = 27;
             this.clear_broadcast_button.Text = "Clear";
             this.clear_broadcast_button.UseVisualStyleBackColor = true;
@@ -869,5 +893,7 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Label depots_desc;
         private System.Windows.Forms.Button depots_save;
         private System.Windows.Forms.TextBox depots_add;
+        private System.Windows.Forms.Button Mods;
+        private System.Windows.Forms.Button DLLfold;
     }
 }
