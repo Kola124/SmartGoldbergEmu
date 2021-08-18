@@ -1,0 +1,40 @@
+stages:
+  - build
+  - pages
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+build:
+  stage: build
+  image: mono:latest
+
+  script:
+    - nuget restore -PackagesDirectory packages
+    - msbuild -p:Configuration=Release
+    - mkdir release
+    - mv bin/Release/SmartGoldbergEmu.exe bin/Release/*.dll release/
+    - exit 0
+
+  artifacts:
+    paths:
+      - release
+    expire_in: 1 day
+
+pages:
+  image: alpine
+  stage: pages
+  dependencies:
+    - build
+
+  script:
+    - sed -i "s|X_LATEST_BUILD_URL_X|https://gitlab.com/Nemirtingas/SmartGoldbergEmu/-/jobs/$CI_JOB_ID/artifacts/download|g" public/index.html
+    - sed -i "s|X_LATEST_BUILD_COMMIT_HASH_X|$CI_COMMIT_SHA|g" public/index.html
+
+  artifacts:
+    paths:
+      - release/
+      - public/
+  only:
+    - master
+
