@@ -140,9 +140,13 @@ namespace SmartGoldbergEmu
 
                 if (!string.IsNullOrWhiteSpace(SteamEmulator.Config.webapi_key))
                 {
-                    this.Enabled = false;
-                    SteamEmulator.GenerateGameAchievements(app);
-                    this.Enabled = true;
+                    string game_emu_folder = app.GetGameEmuFolder();
+                    if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "achievements.json")))
+                    {
+                        this.Enabled = false;
+                        SteamEmulator.GenerateGameAchievements(app);
+                        this.Enabled = true;
+                    }
                 }
             }
         }
@@ -170,9 +174,13 @@ namespace SmartGoldbergEmu
 
                 if (!string.IsNullOrWhiteSpace(SteamEmulator.Config.webapi_key))
                 {
-                    this.Enabled = false;
-                    SteamEmulator.GenerateGameAchievements(app);
-                    this.Enabled = true;
+                    string game_emu_folder = app.GetGameEmuFolder();
+                    if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "achievements.json")))
+                    {
+                        this.Enabled = false;
+                        SteamEmulator.GenerateGameAchievements(app);
+                        this.Enabled = true;
+                    }
                 }
             }
         }
