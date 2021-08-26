@@ -232,6 +232,7 @@ namespace SmartGoldbergEmu
         {
             InitializeComponent();
         }
+
         public void SetApp(GameConfig app)
         {
             game_name_edit.Text = app.AppName;
@@ -282,6 +283,50 @@ namespace SmartGoldbergEmu
             checkbox_offline.Checked = app.Offline;
 
             modified_app = app.Clone();
+
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    DLC_add.Text = streamReader.ReadToEnd();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    DLC_add.Text = streamReader.ReadToEnd();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    sg_add.Text = streamReader.ReadToEnd();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "stats.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "stats.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    stat_add.Text = streamReader.ReadToEnd();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    Apppt_add.Text = streamReader.ReadToEnd();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "depots.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "depots.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    depots_add.Text = streamReader.ReadToEnd();
+                }
+            }
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -645,19 +690,6 @@ namespace SmartGoldbergEmu
             }
         }
 
-        private void Load_Click(object sender, EventArgs e)
-        {
-            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt")))
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    DLC_add.Text = streamReader.ReadToEnd();
-                }
-            }
-            else;
-        }
-
         private void sg_save_Click(object sender, EventArgs e)
         {
             //Read write Subscribed Groups
@@ -672,32 +704,6 @@ namespace SmartGoldbergEmu
                 using (StreamWriter sw = File.CreateText(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups.txt"))) ;
                 pisanjesg();
             }
-        }
-
-        private void sg_load_Click(object sender, EventArgs e)
-        {
-            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups.txt")))
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    sg_add.Text = streamReader.ReadToEnd();
-                }
-            }
-            else;
-        }
-
-        private void stat_load_Click(object sender, EventArgs e)
-        {
-            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "stats.txt")))
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "stats.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    stat_add.Text = streamReader.ReadToEnd();
-                }
-            }
-            else;
         }
 
         private void stat_save_Click(object sender, EventArgs e)
@@ -715,19 +721,6 @@ namespace SmartGoldbergEmu
             }
         }
 
-        private void Apppt_load_Click(object sender, EventArgs e)
-        {
-            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt")))
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    Apppt_add.Text = streamReader.ReadToEnd();
-                }
-            }
-            else;
-        }
-
         private void Apppt_save_Click(object sender, EventArgs e)
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
@@ -742,19 +735,6 @@ namespace SmartGoldbergEmu
                 using (StreamWriter sw = File.CreateText(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt"))) ;
                 pisanjeappt();
             }
-        }
-
-        private void depots_load_Click(object sender, EventArgs e)
-        {
-            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "depots.txt")))
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "depots.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    depots_add.Text = streamReader.ReadToEnd();
-                }
-            }
-            else;
         }
 
         private void depots_save_Click(object sender, EventArgs e)

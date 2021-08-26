@@ -70,7 +70,6 @@ namespace SmartGoldbergEmu
             this.label1 = new System.Windows.Forms.Label();
             this.game_setting_tab_ctrl = new System.Windows.Forms.TabControl();
             this.DLC_tab = new System.Windows.Forms.TabPage();
-            this.DLC_load = new System.Windows.Forms.Button();
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_save = new System.Windows.Forms.Button();
             this.DLC_add = new System.Windows.Forms.TextBox();
@@ -92,22 +91,18 @@ namespace SmartGoldbergEmu
             this.ip_textBox = new CueTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.Stats_tab = new System.Windows.Forms.TabPage();
-            this.stat_load = new System.Windows.Forms.Button();
             this.stat_desc = new System.Windows.Forms.Label();
             this.stat_save = new System.Windows.Forms.Button();
             this.stat_add = new System.Windows.Forms.TextBox();
             this.Apppaths_tab = new System.Windows.Forms.TabPage();
-            this.Apppt_load = new System.Windows.Forms.Button();
             this.Apppt_desc = new System.Windows.Forms.Label();
             this.Apppt_save = new System.Windows.Forms.Button();
             this.Apppt_add = new System.Windows.Forms.TextBox();
             this.Subgroups_tab = new System.Windows.Forms.TabPage();
-            this.sg_load = new System.Windows.Forms.Button();
             this.sg_desc = new System.Windows.Forms.Label();
             this.sg_save = new System.Windows.Forms.Button();
             this.sg_add = new System.Windows.Forms.TextBox();
             this.Depots_tab = new System.Windows.Forms.TabPage();
-            this.depots_load = new System.Windows.Forms.Button();
             this.depots_desc = new System.Windows.Forms.Label();
             this.depots_save = new System.Windows.Forms.Button();
             this.depots_add = new System.Windows.Forms.TextBox();
@@ -353,7 +348,6 @@ namespace SmartGoldbergEmu
             // 
             // DLC_tab
             // 
-            this.DLC_tab.Controls.Add(this.DLC_load);
             this.DLC_tab.Controls.Add(this.DLC_desc);
             this.DLC_tab.Controls.Add(this.DLC_save);
             this.DLC_tab.Controls.Add(this.DLC_add);
@@ -364,16 +358,6 @@ namespace SmartGoldbergEmu
             this.DLC_tab.TabIndex = 2;
             this.DLC_tab.Text = "DLC";
             this.DLC_tab.UseVisualStyleBackColor = true;
-            // 
-            // DLC_load
-            // 
-            this.DLC_load.Location = new System.Drawing.Point(287, 13);
-            this.DLC_load.Name = "DLC_load";
-            this.DLC_load.Size = new System.Drawing.Size(139, 23);
-            this.DLC_load.TabIndex = 3;
-            this.DLC_load.Text = "Load";
-            this.DLC_load.UseVisualStyleBackColor = true;
-            this.DLC_load.Click += new System.EventHandler(this.Load_Click);
             // 
             // DLC_desc
             // 
@@ -582,7 +566,6 @@ namespace SmartGoldbergEmu
             // 
             // Stats_tab
             // 
-            this.Stats_tab.Controls.Add(this.stat_load);
             this.Stats_tab.Controls.Add(this.stat_desc);
             this.Stats_tab.Controls.Add(this.stat_save);
             this.Stats_tab.Controls.Add(this.stat_add);
@@ -593,16 +576,6 @@ namespace SmartGoldbergEmu
             this.Stats_tab.TabIndex = 3;
             this.Stats_tab.Text = "Stats";
             this.Stats_tab.UseVisualStyleBackColor = true;
-            // 
-            // stat_load
-            // 
-            this.stat_load.Location = new System.Drawing.Point(287, 13);
-            this.stat_load.Name = "stat_load";
-            this.stat_load.Size = new System.Drawing.Size(139, 23);
-            this.stat_load.TabIndex = 11;
-            this.stat_load.Text = "Load";
-            this.stat_load.UseVisualStyleBackColor = true;
-            this.stat_load.Click += new System.EventHandler(this.stat_load_Click);
             // 
             // stat_desc
             // 
@@ -636,7 +609,6 @@ namespace SmartGoldbergEmu
             // 
             // Apppaths_tab
             // 
-            this.Apppaths_tab.Controls.Add(this.Apppt_load);
             this.Apppaths_tab.Controls.Add(this.Apppt_desc);
             this.Apppaths_tab.Controls.Add(this.Apppt_save);
             this.Apppaths_tab.Controls.Add(this.Apppt_add);
@@ -647,16 +619,6 @@ namespace SmartGoldbergEmu
             this.Apppaths_tab.TabIndex = 6;
             this.Apppaths_tab.Text = "App Paths";
             this.Apppaths_tab.UseVisualStyleBackColor = true;
-            // 
-            // Apppt_load
-            // 
-            this.Apppt_load.Location = new System.Drawing.Point(287, 13);
-            this.Apppt_load.Name = "Apppt_load";
-            this.Apppt_load.Size = new System.Drawing.Size(139, 23);
-            this.Apppt_load.TabIndex = 11;
-            this.Apppt_load.Text = "Load";
-            this.Apppt_load.UseVisualStyleBackColor = true;
-            this.Apppt_load.Click += new System.EventHandler(this.Apppt_load_Click);
             // 
             // Apppt_desc
             // 
@@ -690,7 +652,6 @@ namespace SmartGoldbergEmu
             // 
             // Subgroups_tab
             // 
-            this.Subgroups_tab.Controls.Add(this.sg_load);
             this.Subgroups_tab.Controls.Add(this.sg_desc);
             this.Subgroups_tab.Controls.Add(this.sg_save);
             this.Subgroups_tab.Controls.Add(this.sg_add);
@@ -701,16 +662,6 @@ namespace SmartGoldbergEmu
             this.Subgroups_tab.TabIndex = 4;
             this.Subgroups_tab.Text = "Subscribed Groups";
             this.Subgroups_tab.UseVisualStyleBackColor = true;
-            // 
-            // sg_load
-            // 
-            this.sg_load.Location = new System.Drawing.Point(287, 13);
-            this.sg_load.Name = "sg_load";
-            this.sg_load.Size = new System.Drawing.Size(139, 23);
-            this.sg_load.TabIndex = 7;
-            this.sg_load.Text = "Load";
-            this.sg_load.UseVisualStyleBackColor = true;
-            this.sg_load.Click += new System.EventHandler(this.sg_load_Click);
             // 
             // sg_desc
             // 
@@ -744,7 +695,6 @@ namespace SmartGoldbergEmu
             // 
             // Depots_tab
             // 
-            this.Depots_tab.Controls.Add(this.depots_load);
             this.Depots_tab.Controls.Add(this.depots_desc);
             this.Depots_tab.Controls.Add(this.depots_save);
             this.Depots_tab.Controls.Add(this.depots_add);
@@ -755,16 +705,6 @@ namespace SmartGoldbergEmu
             this.Depots_tab.TabIndex = 5;
             this.Depots_tab.Text = "Depots";
             this.Depots_tab.UseVisualStyleBackColor = true;
-            // 
-            // depots_load
-            // 
-            this.depots_load.Location = new System.Drawing.Point(287, 13);
-            this.depots_load.Name = "depots_load";
-            this.depots_load.Size = new System.Drawing.Size(139, 23);
-            this.depots_load.TabIndex = 11;
-            this.depots_load.Text = "Load";
-            this.depots_load.UseVisualStyleBackColor = true;
-            this.depots_load.Click += new System.EventHandler(this.depots_load_Click);
             // 
             // depots_desc
             // 
@@ -872,24 +812,19 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.TextBox DLC_add;
         private System.Windows.Forms.Button DLC_save;
         private System.Windows.Forms.Label DLC_desc;
-        private System.Windows.Forms.Button DLC_load;
         private System.Windows.Forms.TabPage Stats_tab;
         private System.Windows.Forms.TabPage Subgroups_tab;
         private System.Windows.Forms.TabPage Depots_tab;
         private System.Windows.Forms.TabPage Apppaths_tab;
-        private System.Windows.Forms.Button sg_load;
         private System.Windows.Forms.Label sg_desc;
         private System.Windows.Forms.Button sg_save;
         private System.Windows.Forms.TextBox sg_add;
-        private System.Windows.Forms.Button stat_load;
         private System.Windows.Forms.Label stat_desc;
         private System.Windows.Forms.Button stat_save;
         private System.Windows.Forms.TextBox stat_add;
-        private System.Windows.Forms.Button Apppt_load;
         private System.Windows.Forms.Label Apppt_desc;
         private System.Windows.Forms.Button Apppt_save;
         private System.Windows.Forms.TextBox Apppt_add;
-        private System.Windows.Forms.Button depots_load;
         private System.Windows.Forms.Label depots_desc;
         private System.Windows.Forms.Button depots_save;
         private System.Windows.Forms.TextBox depots_add;
