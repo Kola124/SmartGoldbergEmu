@@ -327,6 +327,34 @@ namespace SmartGoldbergEmu
                     depots_add.Text = streamReader.ReadToEnd();
                 }
             }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_account_name.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_account_name.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    force_account_name_add.Text = streamReader.ReadLine();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_language.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_language.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    force_langugae_add.Text = streamReader.ReadLine();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    force_listen_port_add.Text = streamReader.ReadLine();
+                }
+            }
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_steamid.txt")))
+            {
+                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_steamid.txt"), FileMode.Open), Encoding.ASCII))
+                {
+                    force_steamidpoigri_add.Text = streamReader.ReadLine();
+                }
+            }
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -673,6 +701,35 @@ namespace SmartGoldbergEmu
             tw.Close();
         }
 
+        void pisanje_force_account_name_add()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_account_name.txt"), FileMode.Create), Encoding.ASCII);
+            tw.WriteLine(force_account_name_add.Text);
+            tw.Close();
+        }
+        void pisanje_force_language()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_language.txt"), FileMode.Create), Encoding.ASCII);
+            tw.WriteLine(force_langugae_add.Text);
+            tw.Close();
+        }
+        void pisanje_force_listen_port()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt"), FileMode.Create), Encoding.ASCII);
+            tw.WriteLine(force_listen_port_add.Text);
+            tw.Close();
+        }
+        void pisanje_force_steamid()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_steamid.txt"), FileMode.Create), Encoding.ASCII);
+            tw.WriteLine(force_steamidpoigri_add.Text);
+            tw.Close();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             //Read write DLC sry for noob code
@@ -763,6 +820,65 @@ namespace SmartGoldbergEmu
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             DirectoryInfo di = Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings", "load_dlls"));
+        }
+        private void force_account_name_save_Click(object sender, EventArgs e)
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_account_name.txt")))
+            {
+                pisanje_force_account_name_add();
+            }
+            else if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_account_name.txt")))
+            {
+                new FileInfo(Path.Combine(game_emu_folder, "steam_settings", "force_account_name.txt")).Directory.Create();
+                using (StreamWriter sw = File.CreateText(Path.Combine(game_emu_folder, "steam_settings", "force_account_name.txt"))) ;
+                pisanje_force_account_name_add();
+            }
+        }
+
+        private void force_langugae_save_Click(object sender, EventArgs e)
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_language.txt")))
+            {
+                pisanje_force_language();
+            }
+            else if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_language.txt")))
+            {
+                new FileInfo(Path.Combine(game_emu_folder, "steam_settings", "force_language.txt")).Directory.Create();
+                using (StreamWriter sw = File.CreateText(Path.Combine(game_emu_folder, "steam_settings", "force_language.txt"))) ;
+                pisanje_force_language();
+            }
+        }
+
+        private void force_listen_port_save_Click(object sender, EventArgs e)
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt")))
+            {
+                pisanje_force_listen_port();
+            }
+            else if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt")))
+            {
+                new FileInfo(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt")).Directory.Create();
+                using (StreamWriter sw = File.CreateText(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt"))) ;
+                pisanje_force_listen_port();
+            }
+        }
+
+        private void force_steamid_save_Click(object sender, EventArgs e)
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_steamid.txt")))
+            {
+                pisanje_force_steamid();
+            }
+            else if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_steamid.txt")))
+            {
+                new FileInfo(Path.Combine(game_emu_folder, "steam_settings", "force_listen_port.txt")).Directory.Create();
+                using (StreamWriter sw = File.CreateText(Path.Combine(game_emu_folder, "steam_settings", "force_steamid.txt"))) ;
+                pisanje_force_steamid();
+            }
         }
     }
 }

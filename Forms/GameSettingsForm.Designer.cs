@@ -90,6 +90,16 @@ namespace SmartGoldbergEmu
             this.ip_listBox = new System.Windows.Forms.ListBox();
             this.ip_textBox = new CueTextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.force_tab = new System.Windows.Forms.TabPage();
+            this.force_account_name_save = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.force_steamidpoigri_add = new System.Windows.Forms.TextBox();
+            this.force_listen_port_add = new System.Windows.Forms.TextBox();
+            this.force_langugae_add = new System.Windows.Forms.TextBox();
+            this.force_account_name_add = new System.Windows.Forms.TextBox();
             this.Stats_tab = new System.Windows.Forms.TabPage();
             this.stat_desc = new System.Windows.Forms.Label();
             this.stat_save = new System.Windows.Forms.Button();
@@ -106,10 +116,14 @@ namespace SmartGoldbergEmu
             this.depots_desc = new System.Windows.Forms.Label();
             this.depots_save = new System.Windows.Forms.Button();
             this.depots_add = new System.Windows.Forms.TextBox();
+            this.force_langugae_save = new System.Windows.Forms.Button();
+            this.force_listen_port_save = new System.Windows.Forms.Button();
+            this.force_steamid_save = new System.Windows.Forms.Button();
             this.game_setting_tab.SuspendLayout();
             this.game_setting_tab_ctrl.SuspendLayout();
             this.DLC_tab.SuspendLayout();
             this.broadcast_tab.SuspendLayout();
+            this.force_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Subgroups_tab.SuspendLayout();
@@ -336,6 +350,7 @@ namespace SmartGoldbergEmu
             this.game_setting_tab_ctrl.Controls.Add(this.game_setting_tab);
             this.game_setting_tab_ctrl.Controls.Add(this.DLC_tab);
             this.game_setting_tab_ctrl.Controls.Add(this.broadcast_tab);
+            this.game_setting_tab_ctrl.Controls.Add(this.force_tab);
             this.game_setting_tab_ctrl.Controls.Add(this.Stats_tab);
             this.game_setting_tab_ctrl.Controls.Add(this.Apppaths_tab);
             this.game_setting_tab_ctrl.Controls.Add(this.Subgroups_tab);
@@ -417,7 +432,7 @@ namespace SmartGoldbergEmu
             // 
             // DLLfold
             // 
-            this.DLLfold.Location = new System.Drawing.Point(456, 42);
+            this.DLLfold.Location = new System.Drawing.Point(457, 41);
             this.DLLfold.Name = "DLLfold";
             this.DLLfold.Size = new System.Drawing.Size(141, 23);
             this.DLLfold.TabIndex = 37;
@@ -563,6 +578,102 @@ namespace SmartGoldbergEmu
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 0;
             this.label8.Text = "Custom Broadcast:";
+            // 
+            // force_tab
+            // 
+            this.force_tab.Controls.Add(this.force_steamid_save);
+            this.force_tab.Controls.Add(this.force_listen_port_save);
+            this.force_tab.Controls.Add(this.force_langugae_save);
+            this.force_tab.Controls.Add(this.force_account_name_save);
+            this.force_tab.Controls.Add(this.label13);
+            this.force_tab.Controls.Add(this.label12);
+            this.force_tab.Controls.Add(this.label11);
+            this.force_tab.Controls.Add(this.label10);
+            this.force_tab.Controls.Add(this.force_steamidpoigri_add);
+            this.force_tab.Controls.Add(this.force_listen_port_add);
+            this.force_tab.Controls.Add(this.force_langugae_add);
+            this.force_tab.Controls.Add(this.force_account_name_add);
+            this.force_tab.Location = new System.Drawing.Point(4, 22);
+            this.force_tab.Name = "force_tab";
+            this.force_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.force_tab.Size = new System.Drawing.Size(604, 371);
+            this.force_tab.TabIndex = 7;
+            this.force_tab.Text = "Force";
+            this.force_tab.UseVisualStyleBackColor = true;
+            // 
+            // force_account_name_save
+            // 
+            this.force_account_name_save.Location = new System.Drawing.Point(175, 141);
+            this.force_account_name_save.Name = "force_account_name_save";
+            this.force_account_name_save.Size = new System.Drawing.Size(120, 25);
+            this.force_account_name_save.TabIndex = 8;
+            this.force_account_name_save.Text = "Save Name";
+            this.force_account_name_save.UseVisualStyleBackColor = true;
+            this.force_account_name_save.Click += new System.EventHandler(this.force_account_name_save_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(30, 103);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 13);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Force SteamID:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(30, 77);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(90, 13);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Force Listen Port:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(30, 51);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Force Language:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(30, 25);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(111, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Force Account Name:";
+            // 
+            // force_steamidpoigri_add
+            // 
+            this.force_steamidpoigri_add.Location = new System.Drawing.Point(175, 100);
+            this.force_steamidpoigri_add.Name = "force_steamidpoigri_add";
+            this.force_steamidpoigri_add.Size = new System.Drawing.Size(260, 20);
+            this.force_steamidpoigri_add.TabIndex = 3;
+            // 
+            // force_listen_port_add
+            // 
+            this.force_listen_port_add.Location = new System.Drawing.Point(175, 74);
+            this.force_listen_port_add.Name = "force_listen_port_add";
+            this.force_listen_port_add.Size = new System.Drawing.Size(260, 20);
+            this.force_listen_port_add.TabIndex = 2;
+            // 
+            // force_langugae_add
+            // 
+            this.force_langugae_add.Location = new System.Drawing.Point(175, 48);
+            this.force_langugae_add.Name = "force_langugae_add";
+            this.force_langugae_add.Size = new System.Drawing.Size(260, 20);
+            this.force_langugae_add.TabIndex = 1;
+            // 
+            // force_account_name_add
+            // 
+            this.force_account_name_add.Location = new System.Drawing.Point(175, 22);
+            this.force_account_name_add.Name = "force_account_name_add";
+            this.force_account_name_add.Size = new System.Drawing.Size(260, 20);
+            this.force_account_name_add.TabIndex = 0;
             // 
             // Stats_tab
             // 
@@ -736,6 +847,36 @@ namespace SmartGoldbergEmu
             this.depots_add.Size = new System.Drawing.Size(541, 287);
             this.depots_add.TabIndex = 8;
             // 
+            // force_langugae_save
+            // 
+            this.force_langugae_save.Location = new System.Drawing.Point(315, 141);
+            this.force_langugae_save.Name = "force_langugae_save";
+            this.force_langugae_save.Size = new System.Drawing.Size(120, 25);
+            this.force_langugae_save.TabIndex = 9;
+            this.force_langugae_save.Text = "Save Language";
+            this.force_langugae_save.UseVisualStyleBackColor = true;
+            this.force_langugae_save.Click += new System.EventHandler(this.force_langugae_save_Click);
+            // 
+            // force_listen_port_save
+            // 
+            this.force_listen_port_save.Location = new System.Drawing.Point(175, 172);
+            this.force_listen_port_save.Name = "force_listen_port_save";
+            this.force_listen_port_save.Size = new System.Drawing.Size(120, 25);
+            this.force_listen_port_save.TabIndex = 10;
+            this.force_listen_port_save.Text = "Save Port";
+            this.force_listen_port_save.UseVisualStyleBackColor = true;
+            this.force_listen_port_save.Click += new System.EventHandler(this.force_listen_port_save_Click);
+            // 
+            // force_steamid_save
+            // 
+            this.force_steamid_save.Location = new System.Drawing.Point(315, 172);
+            this.force_steamid_save.Name = "force_steamid_save";
+            this.force_steamid_save.Size = new System.Drawing.Size(120, 25);
+            this.force_steamid_save.TabIndex = 11;
+            this.force_steamid_save.Text = "Save SteamID";
+            this.force_steamid_save.UseVisualStyleBackColor = true;
+            this.force_steamid_save.Click += new System.EventHandler(this.force_steamid_save_Click);
+            // 
             // GameSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -758,6 +899,8 @@ namespace SmartGoldbergEmu
             this.DLC_tab.PerformLayout();
             this.broadcast_tab.ResumeLayout(false);
             this.broadcast_tab.PerformLayout();
+            this.force_tab.ResumeLayout(false);
+            this.force_tab.PerformLayout();
             this.Stats_tab.ResumeLayout(false);
             this.Stats_tab.PerformLayout();
             this.Apppaths_tab.ResumeLayout(false);
@@ -830,5 +973,18 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.TextBox depots_add;
         private System.Windows.Forms.Button Mods;
         private System.Windows.Forms.Button DLLfold;
+        private System.Windows.Forms.TabPage force_tab;
+        private System.Windows.Forms.TextBox force_steamidpoigri_add;
+        private System.Windows.Forms.TextBox force_listen_port_add;
+        private System.Windows.Forms.TextBox force_langugae_add;
+        private System.Windows.Forms.TextBox force_account_name_add;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button force_account_name_save;
+        private System.Windows.Forms.Button force_langugae_save;
+        private System.Windows.Forms.Button force_steamid_save;
+        private System.Windows.Forms.Button force_listen_port_save;
     }
 }
