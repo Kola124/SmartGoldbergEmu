@@ -64,10 +64,11 @@ namespace SmartGoldbergEmu
                 try
                 {
                     string path = System.IO.Path.GetFullPath(value);
-                    if (File.Exists(path))
+                    /*if (File.Exists(path))
                     {
                         this.path = path;
-                    }
+                    }*/
+                    this.path = path;
                 }
                 catch(Exception e)
                 {

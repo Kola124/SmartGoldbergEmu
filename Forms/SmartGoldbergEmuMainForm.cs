@@ -326,5 +326,36 @@ namespace SmartGoldbergEmu
 
             SteamEmulator.CreateShortcut(SteamEmulator.Apps[index]);
         }
+
+        private void Zatvaranje(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.F1State = this.WindowState;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                Properties.Settings.Default.F1Location = this.Location;
+                Properties.Settings.Default.F1Size = this.Size;
+            }
+            else
+            {
+                Properties.Settings.Default.F1Location = this.RestoreBounds.Location;
+                Properties.Settings.Default.F1Size = this.RestoreBounds.Size;
+            }
+            Properties.Settings.Default.Save();
+        }
+
+        private void Otvaranje(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.F1Size.Width == 0) Properties.Settings.Default.Upgrade();
+            if (Properties.Settings.Default.F1Size.Width == 0 || Properties.Settings.Default.F1Size.Height == 0)
+            {
+            }
+            else
+            {
+                this.WindowState = Properties.Settings.Default.F1State;
+                if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
+                this.Location = Properties.Settings.Default.F1Location;
+                this.Size = Properties.Settings.Default.F1Size;
+            }
+        }
     }
 }
