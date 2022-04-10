@@ -70,6 +70,7 @@ namespace SmartGoldbergEmu
             this.label1 = new System.Windows.Forms.Label();
             this.game_setting_tab_ctrl = new System.Windows.Forms.TabControl();
             this.DLC_tab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.BrisanjeDLC = new System.Windows.Forms.Button();
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_save = new System.Windows.Forms.Button();
@@ -81,8 +82,6 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox_env_var_value = new CueTextBox();
-            this.textBox_env_var_key = new CueTextBox();
             this.listBox_env_var = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clear_broadcast_button = new System.Windows.Forms.Button();
@@ -90,8 +89,11 @@ namespace SmartGoldbergEmu
             this.add_broadcast_button = new System.Windows.Forms.Button();
             this.ip_listBox = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.ip_textBox = new CueTextBox();
             this.force_tab = new System.Windows.Forms.TabPage();
+            this.delete_force_steamid = new System.Windows.Forms.Button();
+            this.Delete_Port = new System.Windows.Forms.Button();
+            this.Delete_Language = new System.Windows.Forms.Button();
+            this.Delete_Name = new System.Windows.Forms.Button();
             this.force_steamid_save = new System.Windows.Forms.Button();
             this.force_listen_port_save = new System.Windows.Forms.Button();
             this.force_langugae_save = new System.Windows.Forms.Button();
@@ -124,10 +126,9 @@ namespace SmartGoldbergEmu
             this.depots_desc = new System.Windows.Forms.Label();
             this.depots_save = new System.Windows.Forms.Button();
             this.depots_add = new System.Windows.Forms.TextBox();
-            this.Delete_Name = new System.Windows.Forms.Button();
-            this.Delete_Language = new System.Windows.Forms.Button();
-            this.Delete_Port = new System.Windows.Forms.Button();
-            this.delete_force_steamid = new System.Windows.Forms.Button();
+            this.textBox_env_var_value = new CueTextBox();
+            this.textBox_env_var_key = new CueTextBox();
+            this.ip_textBox = new CueTextBox();
             this.game_setting_tab.SuspendLayout();
             this.game_setting_tab_ctrl.SuspendLayout();
             this.DLC_tab.SuspendLayout();
@@ -372,6 +373,7 @@ namespace SmartGoldbergEmu
             // 
             // DLC_tab
             // 
+            this.DLC_tab.Controls.Add(this.button1);
             this.DLC_tab.Controls.Add(this.BrisanjeDLC);
             this.DLC_tab.Controls.Add(this.DLC_desc);
             this.DLC_tab.Controls.Add(this.DLC_save);
@@ -383,6 +385,16 @@ namespace SmartGoldbergEmu
             this.DLC_tab.TabIndex = 2;
             this.DLC_tab.Text = "DLC";
             this.DLC_tab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(142, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(139, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Get DLC info";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // BrisanjeDLC
             // 
@@ -509,22 +521,6 @@ namespace SmartGoldbergEmu
             this.label9.TabIndex = 32;
             this.label9.Text = "Custom Env var value";
             // 
-            // textBox_env_var_value
-            // 
-            this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
-            this.textBox_env_var_value.Name = "textBox_env_var_value";
-            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
-            this.textBox_env_var_value.TabIndex = 31;
-            // 
-            // textBox_env_var_key
-            // 
-            this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
-            this.textBox_env_var_key.Name = "textBox_env_var_key";
-            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
-            this.textBox_env_var_key.TabIndex = 30;
-            // 
             // listBox_env_var
             // 
             this.listBox_env_var.FormattingEnabled = true;
@@ -590,15 +586,6 @@ namespace SmartGoldbergEmu
             this.label8.TabIndex = 0;
             this.label8.Text = "Custom Broadcast:";
             // 
-            // ip_textBox
-            // 
-            this.ip_textBox.Cue = "127.0.0.1";
-            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
-            this.ip_textBox.Name = "ip_textBox";
-            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
-            this.ip_textBox.TabIndex = 1;
-            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ip_textBox_KeyDown);
-            // 
             // force_tab
             // 
             this.force_tab.Controls.Add(this.delete_force_steamid);
@@ -624,6 +611,46 @@ namespace SmartGoldbergEmu
             this.force_tab.TabIndex = 7;
             this.force_tab.Text = "Force";
             this.force_tab.UseVisualStyleBackColor = true;
+            // 
+            // delete_force_steamid
+            // 
+            this.delete_force_steamid.Location = new System.Drawing.Point(315, 219);
+            this.delete_force_steamid.Name = "delete_force_steamid";
+            this.delete_force_steamid.Size = new System.Drawing.Size(120, 25);
+            this.delete_force_steamid.TabIndex = 15;
+            this.delete_force_steamid.Text = "Delete SteamID";
+            this.delete_force_steamid.UseVisualStyleBackColor = true;
+            this.delete_force_steamid.Click += new System.EventHandler(this.delete_force_steamid_Click);
+            // 
+            // Delete_Port
+            // 
+            this.Delete_Port.Location = new System.Drawing.Point(315, 162);
+            this.Delete_Port.Name = "Delete_Port";
+            this.Delete_Port.Size = new System.Drawing.Size(120, 25);
+            this.Delete_Port.TabIndex = 14;
+            this.Delete_Port.Text = "Delete Port";
+            this.Delete_Port.UseVisualStyleBackColor = true;
+            this.Delete_Port.Click += new System.EventHandler(this.Delete_Port_Click);
+            // 
+            // Delete_Language
+            // 
+            this.Delete_Language.Location = new System.Drawing.Point(315, 105);
+            this.Delete_Language.Name = "Delete_Language";
+            this.Delete_Language.Size = new System.Drawing.Size(120, 25);
+            this.Delete_Language.TabIndex = 13;
+            this.Delete_Language.Text = "Delete Language";
+            this.Delete_Language.UseVisualStyleBackColor = true;
+            this.Delete_Language.Click += new System.EventHandler(this.Delete_Language_Click);
+            // 
+            // Delete_Name
+            // 
+            this.Delete_Name.Location = new System.Drawing.Point(315, 48);
+            this.Delete_Name.Name = "Delete_Name";
+            this.Delete_Name.Size = new System.Drawing.Size(120, 25);
+            this.Delete_Name.TabIndex = 12;
+            this.Delete_Name.Text = "Delete Name";
+            this.Delete_Name.UseVisualStyleBackColor = true;
+            this.Delete_Name.Click += new System.EventHandler(this.Delete_Name_Click);
             // 
             // force_steamid_save
             // 
@@ -945,45 +972,30 @@ namespace SmartGoldbergEmu
             this.depots_add.Size = new System.Drawing.Size(541, 287);
             this.depots_add.TabIndex = 8;
             // 
-            // Delete_Name
+            // textBox_env_var_value
             // 
-            this.Delete_Name.Location = new System.Drawing.Point(315, 48);
-            this.Delete_Name.Name = "Delete_Name";
-            this.Delete_Name.Size = new System.Drawing.Size(120, 25);
-            this.Delete_Name.TabIndex = 12;
-            this.Delete_Name.Text = "Delete Name";
-            this.Delete_Name.UseVisualStyleBackColor = true;
-            this.Delete_Name.Click += new System.EventHandler(this.Delete_Name_Click);
+            this.textBox_env_var_value.Cue = null;
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
+            this.textBox_env_var_value.Name = "textBox_env_var_value";
+            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
+            this.textBox_env_var_value.TabIndex = 31;
             // 
-            // Delete_Language
+            // textBox_env_var_key
             // 
-            this.Delete_Language.Location = new System.Drawing.Point(315, 105);
-            this.Delete_Language.Name = "Delete_Language";
-            this.Delete_Language.Size = new System.Drawing.Size(120, 25);
-            this.Delete_Language.TabIndex = 13;
-            this.Delete_Language.Text = "Delete Language";
-            this.Delete_Language.UseVisualStyleBackColor = true;
-            this.Delete_Language.Click += new System.EventHandler(this.Delete_Language_Click);
+            this.textBox_env_var_key.Cue = null;
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
+            this.textBox_env_var_key.Name = "textBox_env_var_key";
+            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
+            this.textBox_env_var_key.TabIndex = 30;
             // 
-            // Delete_Port
+            // ip_textBox
             // 
-            this.Delete_Port.Location = new System.Drawing.Point(315, 162);
-            this.Delete_Port.Name = "Delete_Port";
-            this.Delete_Port.Size = new System.Drawing.Size(120, 25);
-            this.Delete_Port.TabIndex = 14;
-            this.Delete_Port.Text = "Delete Port";
-            this.Delete_Port.UseVisualStyleBackColor = true;
-            this.Delete_Port.Click += new System.EventHandler(this.Delete_Port_Click);
-            // 
-            // delete_force_steamid
-            // 
-            this.delete_force_steamid.Location = new System.Drawing.Point(315, 219);
-            this.delete_force_steamid.Name = "delete_force_steamid";
-            this.delete_force_steamid.Size = new System.Drawing.Size(120, 25);
-            this.delete_force_steamid.TabIndex = 15;
-            this.delete_force_steamid.Text = "Delete SteamID";
-            this.delete_force_steamid.UseVisualStyleBackColor = true;
-            this.delete_force_steamid.Click += new System.EventHandler(this.delete_force_steamid_Click);
+            this.ip_textBox.Cue = "127.0.0.1";
+            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
+            this.ip_textBox.Name = "ip_textBox";
+            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
+            this.ip_textBox.TabIndex = 1;
+            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ip_textBox_KeyDown);
             // 
             // GameSettingsForm
             // 
@@ -1103,5 +1115,6 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Button delete_force_steamid;
         private System.Windows.Forms.Button Delete_Port;
         private System.Windows.Forms.Button Delete_Language;
+        private System.Windows.Forms.Button button1;
     }
 }

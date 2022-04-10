@@ -25,6 +25,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace SmartGoldbergEmu
 {
@@ -228,6 +230,8 @@ namespace SmartGoldbergEmu
             }
         };
         public GameConfig modified_app { get; private set; }
+
+
         public GameSettingsForm()
         {
             InitializeComponent();
@@ -968,5 +972,45 @@ namespace SmartGoldbergEmu
                     File.Delete(Path.Combine(game_emu_folder, "steam_settings", "force_steamid.txt"));
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            WebClient web = new WebClient();
+            string manipulirano;
+            System.IO.Stream stream = web.OpenRead("https://store.steampowered.com/api/appdetails?appids=107410&filters=basic");
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
+            {
+                manipulirano = reader.ReadToEnd();
+                List<PrviLayer> PrviLayers= JsonConvert.DeserializeObject<List<PrviLayer>>(manipulirano);
+                foreach (PrviLayer nesto in PrviLayers)
+                {
+                    foreach (DrugiLayer nesto2 in nesto.DrugiLayers)
+                    {
+                        foreach (TreciLayer nesto3 in nesto2.TreciLayers) {
+                            Console.WriteLine(nesto3.dlc);
+                            DLC_add.Text = nesto3.dlc;
+                        }
+                    }
+                    
+                }
+            }
+        }
     }
+
+    public class PrviLayer{
+        public string brojid1 { get; set; }
+        public List<DrugiLayer> DrugiLayers { get; set; }
+    }
+    public class DrugiLayer { 
+        [JsonProperty("success")]
+        public string success { get; set; }
+        [JsonProperty("data")]
+        public string data { get; set; }
+        public List<TreciLayer> TreciLayers { get; set; }
+    }
+    public class TreciLayer {
+        [JsonProperty("dlc")]
+        public string dlc { get; set; } 
+    }
+    
 }
