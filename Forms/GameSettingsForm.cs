@@ -977,17 +977,31 @@ namespace SmartGoldbergEmu
         {
             WebClient web = new WebClient();
             string manipulirano,webadresa;
-            //webadresa = "https://store.steampowered.com/api/appdetails?appids="+game_appid_edit.Text+"&filters=basic";
-            System.IO.Stream stream = web.OpenRead("https://store.steampowered.com/api/appdetails?appids=251060&filters=basic");
-            //System.IO.Stream stream = web.OpenRead(webadresa);
+            webadresa = "https://store.steampowered.com/api/appdetails?appids="+game_appid_edit.Text+"&filters=basic";
+            //System.IO.Stream stream = web.OpenRead("https://store.steampowered.com/api/appdetails?appids=251160&filters=basic");
+            System.IO.Stream stream = web.OpenRead(webadresa);
             using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
             {
                 manipulirano = reader.ReadToEnd();
-                dynamic myDeserializedClass = JsonConvert.DeserializeObject<Glavna>(manipulirano);
-                int brojac = 0;
-                DLC_add.Text = string.Join(" = "+brojac+System.Environment.NewLine, myDeserializedClass.Drugi.Data.Dlc)+" = 0";
+                var rjecnik = JsonConvert.DeserializeObject<Dictionary<string, Drugi>>(manipulirano);
+                DLC_add.Text = string.Join(" = 0"+System.Environment.NewLine, rjecnik[game_appid_edit.Text].Data.Dlc) + " = 0";
             }
         }
+
+        private void getgamenameBUT_Click(object sender, EventArgs e)
+        {
+            WebClient web = new WebClient();
+            string manipulirano, webadresa;
+            webadresa = "https://store.steampowered.com/api/appdetails?appids=" + game_appid_edit.Text + "&filters=basic";
+            System.IO.Stream stream = web.OpenRead(webadresa);
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
+            {
+                manipulirano = reader.ReadToEnd();
+                var rjecnik = JsonConvert.DeserializeObject<Dictionary<string, Drugi>>(manipulirano);
+                game_name_edit.Text = rjecnik[game_appid_edit.Text].Data.Name;
+            }
+        }
+
         public class Drugi
         {
             [JsonProperty("success")]
@@ -1038,14 +1052,14 @@ namespace SmartGoldbergEmu
             [JsonProperty("website")]
             public string Website { get; set; }
 
-            [JsonProperty("pc_requirements")]
-            public PcRequirements PcRequirements { get; set; }
+            //[JsonProperty("pc_requirements")]
+            //public PcRequirements PcRequirements { get; set; }
 
-            [JsonProperty("mac_requirements")]
-            public MacRequirements MacRequirements { get; set; }
+            //[JsonProperty("mac_requirements")]
+            //public MacRequirements MacRequirements { get; set; }
 
-            [JsonProperty("linux_requirements")]
-            public LinuxRequirements LinuxRequirements { get; set; }
+            //JsonProperty("linux_requirements")]
+            //public LinuxRequirements LinuxRequirements { get; set; }
 
             [JsonProperty("legal_notice")]
             public string LegalNotice { get; set; }
@@ -1075,12 +1089,6 @@ namespace SmartGoldbergEmu
 
             [JsonProperty("recommended")]
             public string Recommended { get; set; }
-        }
-
-        public class Glavna
-        {
-            [JsonProperty]
-            public Drugi Drugi { get; set; }
         }
     }
 }

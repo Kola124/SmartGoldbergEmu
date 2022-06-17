@@ -126,6 +126,7 @@ namespace SmartGoldbergEmu
             this.depots_desc = new System.Windows.Forms.Label();
             this.depots_save = new System.Windows.Forms.Button();
             this.depots_add = new System.Windows.Forms.TextBox();
+            this.getgamenameBUT = new System.Windows.Forms.Button();
             this.textBox_env_var_value = new CueTextBox();
             this.textBox_env_var_key = new CueTextBox();
             this.ip_textBox = new CueTextBox();
@@ -162,6 +163,7 @@ namespace SmartGoldbergEmu
             // 
             // game_setting_tab
             // 
+            this.game_setting_tab.Controls.Add(this.getgamenameBUT);
             this.game_setting_tab.Controls.Add(this.checkbox_offline);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableNetworking);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableLANOnly);
@@ -972,6 +974,17 @@ namespace SmartGoldbergEmu
             this.depots_add.Size = new System.Drawing.Size(541, 287);
             this.depots_add.TabIndex = 8;
             // 
+            // getgamenameBUT
+            // 
+            this.getgamenameBUT.Font = new System.Drawing.Font("Wingdings 3", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.getgamenameBUT.Location = new System.Drawing.Point(534, 22);
+            this.getgamenameBUT.Name = "getgamenameBUT";
+            this.getgamenameBUT.Size = new System.Drawing.Size(44, 20);
+            this.getgamenameBUT.TabIndex = 27;
+            this.getgamenameBUT.Text = "Q";
+            this.getgamenameBUT.UseVisualStyleBackColor = true;
+            this.getgamenameBUT.Click += new System.EventHandler(this.getgamenameBUT_Click);
+            // 
             // textBox_env_var_value
             // 
             this.textBox_env_var_value.Cue = null;
@@ -1116,5 +1129,6 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Button Delete_Port;
         private System.Windows.Forms.Button Delete_Language;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button getgamenameBUT;
     }
 }
