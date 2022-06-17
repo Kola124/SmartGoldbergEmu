@@ -976,41 +976,111 @@ namespace SmartGoldbergEmu
         private void button1_Click_1(object sender, EventArgs e)
         {
             WebClient web = new WebClient();
-            string manipulirano;
-            System.IO.Stream stream = web.OpenRead("https://store.steampowered.com/api/appdetails?appids=107410&filters=basic");
+            string manipulirano,webadresa;
+            //webadresa = "https://store.steampowered.com/api/appdetails?appids="+game_appid_edit.Text+"&filters=basic";
+            System.IO.Stream stream = web.OpenRead("https://store.steampowered.com/api/appdetails?appids=251060&filters=basic");
+            //System.IO.Stream stream = web.OpenRead(webadresa);
             using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
             {
                 manipulirano = reader.ReadToEnd();
-                List<PrviLayer> PrviLayers= JsonConvert.DeserializeObject<List<PrviLayer>>(manipulirano);
-                foreach (PrviLayer nesto in PrviLayers)
-                {
-                    foreach (DrugiLayer nesto2 in nesto.DrugiLayers)
-                    {
-                        foreach (TreciLayer nesto3 in nesto2.TreciLayers) {
-                            Console.WriteLine(nesto3.dlc);
-                            DLC_add.Text = nesto3.dlc;
-                        }
-                    }
-                    
-                }
+                dynamic myDeserializedClass = JsonConvert.DeserializeObject<Glavna>(manipulirano);
+                int brojac = 0;
+                DLC_add.Text = string.Join(" = "+brojac+System.Environment.NewLine, myDeserializedClass.Drugi.Data.Dlc)+" = 0";
             }
         }
-    }
+        public class Drugi
+        {
+            [JsonProperty("success")]
+            public bool Success { get; set; }
 
-    public class PrviLayer{
-        public string brojid1 { get; set; }
-        public List<DrugiLayer> DrugiLayers { get; set; }
+            [JsonProperty("data")]
+            public Data Data { get; set; }
+        }
+
+        public class Data
+        {
+            [JsonProperty("type")]
+            public string Type { get; set; }
+
+            [JsonProperty("name")]
+            public string Name { get; set; }
+
+            [JsonProperty("steam_appid")]
+            public int SteamAppid { get; set; }
+
+            [JsonProperty("required_age")]
+            public int RequiredAge { get; set; }
+
+            [JsonProperty("is_free")]
+            public bool IsFree { get; set; }
+
+            [JsonProperty("dlc")]
+            public List<int> Dlc { get; set; }
+
+            [JsonProperty("detailed_description")]
+            public string DetailedDescription { get; set; }
+
+            [JsonProperty("about_the_game")]
+            public string AboutTheGame { get; set; }
+
+            [JsonProperty("short_description")]
+            public string ShortDescription { get; set; }
+
+            [JsonProperty("supported_languages")]
+            public string SupportedLanguages { get; set; }
+
+            [JsonProperty("reviews")]
+            public string Reviews { get; set; }
+
+            [JsonProperty("header_image")]
+            public string HeaderImage { get; set; }
+
+            [JsonProperty("website")]
+            public string Website { get; set; }
+
+            [JsonProperty("pc_requirements")]
+            public PcRequirements PcRequirements { get; set; }
+
+            [JsonProperty("mac_requirements")]
+            public MacRequirements MacRequirements { get; set; }
+
+            [JsonProperty("linux_requirements")]
+            public LinuxRequirements LinuxRequirements { get; set; }
+
+            [JsonProperty("legal_notice")]
+            public string LegalNotice { get; set; }
+        }
+
+        public class PcRequirements
+        {
+            [JsonProperty("minimum")]
+            public string Minimum { get; set; }
+
+            [JsonProperty("recommended")]
+            public string Recommended { get; set; }
+        }
+        public class LinuxRequirements
+        {
+            [JsonProperty("minimum")]
+            public string Minimum { get; set; }
+
+            [JsonProperty("recommended")]
+            public string Recommended { get; set; }
+        }
+
+        public class MacRequirements
+        {
+            [JsonProperty("minimum")]
+            public string Minimum { get; set; }
+
+            [JsonProperty("recommended")]
+            public string Recommended { get; set; }
+        }
+
+        public class Glavna
+        {
+            [JsonProperty]
+            public Drugi Drugi { get; set; }
+        }
     }
-    public class DrugiLayer { 
-        [JsonProperty("success")]
-        public string success { get; set; }
-        [JsonProperty("data")]
-        public string data { get; set; }
-        public List<TreciLayer> TreciLayers { get; set; }
-    }
-    public class TreciLayer {
-        [JsonProperty("dlc")]
-        public string dlc { get; set; } 
-    }
-    
 }
