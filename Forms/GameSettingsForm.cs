@@ -975,16 +975,31 @@ namespace SmartGoldbergEmu
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            bool uspio = false;
             WebClient web = new WebClient();
             string manipulirano,webadresa;
-            webadresa = "https://store.steampowered.com/api/appdetails?appids="+game_appid_edit.Text+"&filters=basic";
+            webadresa = "https://store.steampowered.com/api/appdetails?appids="+game_appid_edit.Text+"&filters=basic";  
             //System.IO.Stream stream = web.OpenRead("https://store.steampowered.com/api/appdetails?appids=251160&filters=basic");
             System.IO.Stream stream = web.OpenRead(webadresa);
             using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
             {
                 manipulirano = reader.ReadToEnd();
                 var rjecnik = JsonConvert.DeserializeObject<Dictionary<string, Drugi>>(manipulirano);
-                DLC_add.Text = string.Join(" = 0"+System.Environment.NewLine, rjecnik[game_appid_edit.Text].Data.Dlc) + " = 0";
+                if (rjecnik[game_appid_edit.Text].Data != null)
+                {
+                    if (rjecnik[game_appid_edit.Text].Data.Dlc != null)
+                    {
+                        DLC_add.Text = string.Join(" = 0" + System.Environment.NewLine, rjecnik[game_appid_edit.Text].Data.Dlc) + " = 0";
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("Appid has no DLC", "No DLC", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    DialogResult res = MessageBox.Show("Appid is not valid?", "Not valid Appid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -998,7 +1013,14 @@ namespace SmartGoldbergEmu
             {
                 manipulirano = reader.ReadToEnd();
                 var rjecnik = JsonConvert.DeserializeObject<Dictionary<string, Drugi>>(manipulirano);
-                game_name_edit.Text = rjecnik[game_appid_edit.Text].Data.Name;
+                if (rjecnik[game_appid_edit.Text].Data != null)
+                {
+                    game_name_edit.Text = rjecnik[game_appid_edit.Text].Data.Name;
+                }
+                else
+                {
+                    DialogResult res = MessageBox.Show("Appid is not valid?", "Not valid Appid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
