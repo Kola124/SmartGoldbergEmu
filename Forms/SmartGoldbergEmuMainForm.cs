@@ -227,7 +227,10 @@ namespace SmartGoldbergEmu
 
         private void RemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteGame();
+            if (MessageBox.Show("Are you sure you want to delete this appid?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DeleteGame();
+            }     
         }
 
         private void GenerateAchievementsToolStripMenuItem_Click(object sender, EventArgs e)

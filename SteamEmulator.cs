@@ -432,7 +432,7 @@ namespace SmartGoldbergEmu
 
                     string img_folder = Path.Combine(app.GetGameEmuFolder(), "steam_settings", "images");
 
-                    foreach (CAchievement ach in schema.game.availableGameStats.achievements)
+                    /*foreach (CAchievement ach in schema.game.availableGameStats.achievements)
                     {
                         Directory.CreateDirectory(img_folder);
                         // download icon
@@ -447,7 +447,7 @@ namespace SmartGoldbergEmu
                             wc.DownloadFile(ach.icongray, Path.Combine(img_folder, ach.name + "_gray.jpg"));
                         }
                         ach.icongray = Path.Combine("images", ach.name + "_gray.jpg");
-                    }
+                    }*/
 
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(achievements_file, FileMode.Create), Encoding.UTF8))
                     {
