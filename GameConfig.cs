@@ -38,6 +38,7 @@ namespace SmartGoldbergEmu
         public List<string> CustomBroadcasts { get; set; }
         public List<string> EnvVars { get; set; }
 
+
         public Guid GameGuid { get; set; }
         public GameConfig()
         {
