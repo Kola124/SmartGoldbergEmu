@@ -28,6 +28,7 @@ namespace SmartGoldbergEmu
     public partial class SmartGoldbergEmuMainForm : Form
     {
         private ImageList _image_list = new ImageList();
+        SavedConf crnilo = new SavedConf();
         private string[] dragndrop_files;
 
         public SmartGoldbergEmuMainForm()
@@ -35,6 +36,8 @@ namespace SmartGoldbergEmu
             InitializeComponent();
 
             _image_list.ImageSize = new Size(32, 32);
+
+            darkmode.Text = crnilo.zatamljenje;
 
             if (darkmode.Text == "Light Mode")
             {
@@ -46,8 +49,11 @@ namespace SmartGoldbergEmu
                 this.ForeColor = SystemColors.ControlText;
                 darkmode.BackColor = SystemColors.Control;
                 darkmode.ForeColor = SystemColors.ControlText;
-                
                 darkmode.Text = "Dark Mode";
+                crnilo.zatamljenje = darkmode.Text;
+                SteamEmulator.Save();
+
+
             }
             else
             {
@@ -60,6 +66,9 @@ namespace SmartGoldbergEmu
                 darkmode.BackColor = Color.FromArgb(62, 62, 66);
                 darkmode.ForeColor = Color.FromArgb(255, 241, 241);
                 darkmode.Text = "Light Mode";
+                crnilo.zatamljenje = darkmode.Text;
+                SteamEmulator.Save();
+
             }
 
             app_list_view.LargeImageList = _image_list;
@@ -400,6 +409,8 @@ namespace SmartGoldbergEmu
                 darkmode.BackColor = Color.FromArgb(62, 62, 66);
                 darkmode.ForeColor = Color.FromArgb(255, 241, 241);
                 darkmode.Text = "Light Mode";
+                crnilo.zatamljenje = darkmode.Text;
+                SteamEmulator.Save();                
             }
             else
             {
@@ -412,6 +423,8 @@ namespace SmartGoldbergEmu
                 darkmode.BackColor = SystemColors.Control;
                 darkmode.ForeColor = SystemColors.ControlText;
                 darkmode.Text = "Dark Mode";
+                crnilo.zatamljenje = darkmode.Text;
+                SteamEmulator.Save();
             }
         }
     }
