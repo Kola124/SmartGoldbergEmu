@@ -49,19 +49,15 @@ namespace SmartGoldbergEmu
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.Depots_tab = new System.Windows.Forms.TabPage();
-            this.Depots_Delete = new System.Windows.Forms.Button();
             this.depots_desc = new System.Windows.Forms.Label();
             this.depots_add = new System.Windows.Forms.TextBox();
             this.Subgroups_tab = new System.Windows.Forms.TabPage();
-            this.Sg_Delete = new System.Windows.Forms.Button();
             this.sg_desc = new System.Windows.Forms.Label();
             this.sg_add = new System.Windows.Forms.TextBox();
             this.Apppaths_tab = new System.Windows.Forms.TabPage();
-            this.Apppt_Delete = new System.Windows.Forms.Button();
             this.Apppt_desc = new System.Windows.Forms.Label();
             this.Apppt_add = new System.Windows.Forms.TextBox();
             this.Stats_tab = new System.Windows.Forms.TabPage();
-            this.DeleteStats = new System.Windows.Forms.Button();
             this.stat_desc = new System.Windows.Forms.Label();
             this.stat_add = new System.Windows.Forms.TextBox();
             this.broadcast_tab = new System.Windows.Forms.TabPage();
@@ -83,7 +79,6 @@ namespace SmartGoldbergEmu
             this.label8 = new System.Windows.Forms.Label();
             this.DLC_tab = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.BrisanjeDLC = new System.Windows.Forms.Button();
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_add = new System.Windows.Forms.TextBox();
             this.game_setting_tab = new System.Windows.Forms.TabPage();
@@ -148,7 +143,6 @@ namespace SmartGoldbergEmu
             // 
             // Depots_tab
             // 
-            this.Depots_tab.Controls.Add(this.Depots_Delete);
             this.Depots_tab.Controls.Add(this.depots_desc);
             this.Depots_tab.Controls.Add(this.depots_add);
             this.Depots_tab.Location = new System.Drawing.Point(4, 22);
@@ -158,16 +152,6 @@ namespace SmartGoldbergEmu
             this.Depots_tab.TabIndex = 5;
             this.Depots_tab.Text = "Depots";
             this.Depots_tab.UseVisualStyleBackColor = true;
-            // 
-            // Depots_Delete
-            // 
-            this.Depots_Delete.Location = new System.Drawing.Point(432, 13);
-            this.Depots_Delete.Name = "Depots_Delete";
-            this.Depots_Delete.Size = new System.Drawing.Size(139, 23);
-            this.Depots_Delete.TabIndex = 14;
-            this.Depots_Delete.Text = "Delete";
-            this.Depots_Delete.UseVisualStyleBackColor = true;
-            this.Depots_Delete.Click += new System.EventHandler(this.depots_brisanje_Click);
             // 
             // depots_desc
             // 
@@ -191,7 +175,6 @@ namespace SmartGoldbergEmu
             // 
             // Subgroups_tab
             // 
-            this.Subgroups_tab.Controls.Add(this.Sg_Delete);
             this.Subgroups_tab.Controls.Add(this.sg_desc);
             this.Subgroups_tab.Controls.Add(this.sg_add);
             this.Subgroups_tab.Location = new System.Drawing.Point(4, 22);
@@ -201,16 +184,6 @@ namespace SmartGoldbergEmu
             this.Subgroups_tab.TabIndex = 4;
             this.Subgroups_tab.Text = "Subscribed Groups";
             this.Subgroups_tab.UseVisualStyleBackColor = true;
-            // 
-            // Sg_Delete
-            // 
-            this.Sg_Delete.Location = new System.Drawing.Point(432, 13);
-            this.Sg_Delete.Name = "Sg_Delete";
-            this.Sg_Delete.Size = new System.Drawing.Size(139, 23);
-            this.Sg_Delete.TabIndex = 13;
-            this.Sg_Delete.Text = "Delete";
-            this.Sg_Delete.UseVisualStyleBackColor = true;
-            this.Sg_Delete.Click += new System.EventHandler(this.Sg_Delete_Click);
             // 
             // sg_desc
             // 
@@ -234,7 +207,6 @@ namespace SmartGoldbergEmu
             // 
             // Apppaths_tab
             // 
-            this.Apppaths_tab.Controls.Add(this.Apppt_Delete);
             this.Apppaths_tab.Controls.Add(this.Apppt_desc);
             this.Apppaths_tab.Controls.Add(this.Apppt_add);
             this.Apppaths_tab.Location = new System.Drawing.Point(4, 22);
@@ -244,16 +216,6 @@ namespace SmartGoldbergEmu
             this.Apppaths_tab.TabIndex = 6;
             this.Apppaths_tab.Text = "App Paths";
             this.Apppaths_tab.UseVisualStyleBackColor = true;
-            // 
-            // Apppt_Delete
-            // 
-            this.Apppt_Delete.Location = new System.Drawing.Point(432, 13);
-            this.Apppt_Delete.Name = "Apppt_Delete";
-            this.Apppt_Delete.Size = new System.Drawing.Size(139, 23);
-            this.Apppt_Delete.TabIndex = 12;
-            this.Apppt_Delete.Text = "Delete";
-            this.Apppt_Delete.UseVisualStyleBackColor = true;
-            this.Apppt_Delete.Click += new System.EventHandler(this.Apppt_Delete_Click);
             // 
             // Apppt_desc
             // 
@@ -277,7 +239,6 @@ namespace SmartGoldbergEmu
             // 
             // Stats_tab
             // 
-            this.Stats_tab.Controls.Add(this.DeleteStats);
             this.Stats_tab.Controls.Add(this.stat_desc);
             this.Stats_tab.Controls.Add(this.stat_add);
             this.Stats_tab.Location = new System.Drawing.Point(4, 22);
@@ -287,16 +248,6 @@ namespace SmartGoldbergEmu
             this.Stats_tab.TabIndex = 3;
             this.Stats_tab.Text = "Stats";
             this.Stats_tab.UseVisualStyleBackColor = true;
-            // 
-            // DeleteStats
-            // 
-            this.DeleteStats.Location = new System.Drawing.Point(432, 13);
-            this.DeleteStats.Name = "DeleteStats";
-            this.DeleteStats.Size = new System.Drawing.Size(139, 23);
-            this.DeleteStats.TabIndex = 11;
-            this.DeleteStats.Text = "Delete";
-            this.DeleteStats.UseVisualStyleBackColor = true;
-            this.DeleteStats.Click += new System.EventHandler(this.DeleteStats_Click);
             // 
             // stat_desc
             // 
@@ -496,7 +447,6 @@ namespace SmartGoldbergEmu
             // DLC_tab
             // 
             this.DLC_tab.Controls.Add(this.button1);
-            this.DLC_tab.Controls.Add(this.BrisanjeDLC);
             this.DLC_tab.Controls.Add(this.DLC_desc);
             this.DLC_tab.Controls.Add(this.DLC_add);
             this.DLC_tab.Location = new System.Drawing.Point(4, 22);
@@ -509,23 +459,13 @@ namespace SmartGoldbergEmu
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(287, 13);
+            this.button1.Location = new System.Drawing.Point(432, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 23);
             this.button1.TabIndex = 5;
             this.button1.Text = "Get DLC info";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // BrisanjeDLC
-            // 
-            this.BrisanjeDLC.Location = new System.Drawing.Point(432, 13);
-            this.BrisanjeDLC.Name = "BrisanjeDLC";
-            this.BrisanjeDLC.Size = new System.Drawing.Size(139, 23);
-            this.BrisanjeDLC.TabIndex = 3;
-            this.BrisanjeDLC.Text = "Delete";
-            this.BrisanjeDLC.UseVisualStyleBackColor = true;
-            this.BrisanjeDLC.Click += new System.EventHandler(this.BrisanjeDLC_Click);
             // 
             // DLC_desc
             // 
@@ -878,19 +818,15 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.TabPage Depots_tab;
-        private System.Windows.Forms.Button Depots_Delete;
         private System.Windows.Forms.Label depots_desc;
         private System.Windows.Forms.TextBox depots_add;
         private System.Windows.Forms.TabPage Subgroups_tab;
-        private System.Windows.Forms.Button Sg_Delete;
         private System.Windows.Forms.Label sg_desc;
         private System.Windows.Forms.TextBox sg_add;
         private System.Windows.Forms.TabPage Apppaths_tab;
-        private System.Windows.Forms.Button Apppt_Delete;
         private System.Windows.Forms.Label Apppt_desc;
         private System.Windows.Forms.TextBox Apppt_add;
         private System.Windows.Forms.TabPage Stats_tab;
-        private System.Windows.Forms.Button DeleteStats;
         private System.Windows.Forms.Label stat_desc;
         private System.Windows.Forms.TextBox stat_add;
         private System.Windows.Forms.TabPage broadcast_tab;
@@ -912,7 +848,6 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabPage DLC_tab;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button BrisanjeDLC;
         private System.Windows.Forms.Label DLC_desc;
         private System.Windows.Forms.TextBox DLC_add;
         private System.Windows.Forms.TabPage game_setting_tab;
