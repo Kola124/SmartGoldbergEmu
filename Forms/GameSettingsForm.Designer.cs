@@ -67,9 +67,6 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox_env_var_value = new CueTextBox();
-            this.textBox_env_var_key = new CueTextBox();
-            this.ip_textBox = new CueTextBox();
             this.listBox_env_var = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clear_broadcast_button = new System.Windows.Forms.Button();
@@ -82,6 +79,7 @@ namespace SmartGoldbergEmu
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_add = new System.Windows.Forms.TextBox();
             this.game_setting_tab = new System.Windows.Forms.TabPage();
+            this.checkBox_EnableHTTP = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.force_steamidpoigri_add = new System.Windows.Forms.TextBox();
             this.force_listen_port_add = new System.Windows.Forms.TextBox();
@@ -111,6 +109,11 @@ namespace SmartGoldbergEmu
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.game_setting_tab_ctrl = new System.Windows.Forms.TabControl();
+            this.Clantag = new System.Windows.Forms.Label();
+            this.clan_tag_add = new System.Windows.Forms.TextBox();
+            this.textBox_env_var_value = new CueTextBox();
+            this.textBox_env_var_key = new CueTextBox();
+            this.ip_textBox = new CueTextBox();
             this.Depots_tab.SuspendLayout();
             this.Subgroups_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
@@ -323,7 +326,7 @@ namespace SmartGoldbergEmu
             this.button_clear_env_var.TabIndex = 35;
             this.button_clear_env_var.Text = "Clear";
             this.button_clear_env_var.UseVisualStyleBackColor = true;
-            this.button_clear_env_var.Click += new System.EventHandler(this.button_clear_env_var_Click);
+            this.button_clear_env_var.Click += new System.EventHandler(this.Button_clear_env_var_Click);
             // 
             // button_remove_env_var
             // 
@@ -333,7 +336,7 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var.TabIndex = 34;
             this.button_remove_env_var.Text = "Remove";
             this.button_remove_env_var.UseVisualStyleBackColor = true;
-            this.button_remove_env_var.Click += new System.EventHandler(this.button_remove_env_var_Click);
+            this.button_remove_env_var.Click += new System.EventHandler(this.Button_remove_env_var_Click);
             // 
             // button_add_env_var
             // 
@@ -343,7 +346,7 @@ namespace SmartGoldbergEmu
             this.button_add_env_var.TabIndex = 33;
             this.button_add_env_var.Text = "Add";
             this.button_add_env_var.UseVisualStyleBackColor = true;
-            this.button_add_env_var.Click += new System.EventHandler(this.button_add_env_var_Click);
+            this.button_add_env_var.Click += new System.EventHandler(this.Button_add_env_var_Click);
             // 
             // label9
             // 
@@ -353,31 +356,6 @@ namespace SmartGoldbergEmu
             this.label9.Size = new System.Drawing.Size(111, 13);
             this.label9.TabIndex = 32;
             this.label9.Text = "Custom Env var value";
-            // 
-            // textBox_env_var_value
-            // 
-            this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
-            this.textBox_env_var_value.Name = "textBox_env_var_value";
-            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
-            this.textBox_env_var_value.TabIndex = 31;
-            // 
-            // textBox_env_var_key
-            // 
-            this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
-            this.textBox_env_var_key.Name = "textBox_env_var_key";
-            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
-            this.textBox_env_var_key.TabIndex = 30;
-            // 
-            // ip_textBox
-            // 
-            this.ip_textBox.Cue = "127.0.0.1";
-            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
-            this.ip_textBox.Name = "ip_textBox";
-            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
-            this.ip_textBox.TabIndex = 1;
-            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ip_textBox_KeyDown);
             // 
             // listBox_env_var
             // 
@@ -404,7 +382,7 @@ namespace SmartGoldbergEmu
             this.clear_broadcast_button.TabIndex = 27;
             this.clear_broadcast_button.Text = "Clear";
             this.clear_broadcast_button.UseVisualStyleBackColor = true;
-            this.clear_broadcast_button.Click += new System.EventHandler(this.clear_broadcast_button_Click);
+            this.clear_broadcast_button.Click += new System.EventHandler(this.Clear_broadcast_button_Click);
             // 
             // remove_broadcast_button
             // 
@@ -414,7 +392,7 @@ namespace SmartGoldbergEmu
             this.remove_broadcast_button.TabIndex = 4;
             this.remove_broadcast_button.Text = "Remove";
             this.remove_broadcast_button.UseVisualStyleBackColor = true;
-            this.remove_broadcast_button.Click += new System.EventHandler(this.remove_broadcast_button_Click);
+            this.remove_broadcast_button.Click += new System.EventHandler(this.Remove_broadcast_button_Click);
             // 
             // add_broadcast_button
             // 
@@ -424,7 +402,7 @@ namespace SmartGoldbergEmu
             this.add_broadcast_button.TabIndex = 3;
             this.add_broadcast_button.Text = "Add";
             this.add_broadcast_button.UseVisualStyleBackColor = true;
-            this.add_broadcast_button.Click += new System.EventHandler(this.add_broadcast_button_Click);
+            this.add_broadcast_button.Click += new System.EventHandler(this.Add_broadcast_button_Click);
             // 
             // ip_listBox
             // 
@@ -433,7 +411,7 @@ namespace SmartGoldbergEmu
             this.ip_listBox.Name = "ip_listBox";
             this.ip_listBox.Size = new System.Drawing.Size(89, 82);
             this.ip_listBox.TabIndex = 2;
-            this.ip_listBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ip_listBox_KeyDown);
+            this.ip_listBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_listBox_KeyDown);
             // 
             // label8
             // 
@@ -465,7 +443,7 @@ namespace SmartGoldbergEmu
             this.button1.TabIndex = 5;
             this.button1.Text = "Get DLC info";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // DLC_desc
             // 
@@ -489,6 +467,9 @@ namespace SmartGoldbergEmu
             // 
             // game_setting_tab
             // 
+            this.game_setting_tab.Controls.Add(this.clan_tag_add);
+            this.game_setting_tab.Controls.Add(this.Clantag);
+            this.game_setting_tab.Controls.Add(this.checkBox_EnableHTTP);
             this.game_setting_tab.Controls.Add(this.label13);
             this.game_setting_tab.Controls.Add(this.force_steamidpoigri_add);
             this.game_setting_tab.Controls.Add(this.force_listen_port_add);
@@ -525,6 +506,16 @@ namespace SmartGoldbergEmu
             this.game_setting_tab.Text = "Game Settings";
             this.game_setting_tab.UseVisualStyleBackColor = true;
             // 
+            // checkBox_EnableHTTP
+            // 
+            this.checkBox_EnableHTTP.AutoSize = true;
+            this.checkBox_EnableHTTP.Location = new System.Drawing.Point(359, 172);
+            this.checkBox_EnableHTTP.Name = "checkBox_EnableHTTP";
+            this.checkBox_EnableHTTP.Size = new System.Drawing.Size(236, 17);
+            this.checkBox_EnableHTTP.TabIndex = 36;
+            this.checkBox_EnableHTTP.Text = "Enable HTTP (Disable lan only has to be on)";
+            this.checkBox_EnableHTTP.UseVisualStyleBackColor = true;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -545,7 +536,7 @@ namespace SmartGoldbergEmu
             // 
             this.force_listen_port_add.Location = new System.Drawing.Point(170, 273);
             this.force_listen_port_add.Name = "force_listen_port_add";
-            this.force_listen_port_add.Size = new System.Drawing.Size(357, 20);
+            this.force_listen_port_add.Size = new System.Drawing.Size(144, 20);
             this.force_listen_port_add.TabIndex = 32;
             // 
             // force_langugae_add
@@ -640,7 +631,7 @@ namespace SmartGoldbergEmu
             this.getgamenameBUT.TabIndex = 27;
             this.getgamenameBUT.Text = "Q";
             this.getgamenameBUT.UseVisualStyleBackColor = true;
-            this.getgamenameBUT.Click += new System.EventHandler(this.getgamenameBUT_Click);
+            this.getgamenameBUT.Click += new System.EventHandler(this.GetgamenameBUT_Click);
             // 
             // checkbox_offline
             // 
@@ -781,6 +772,47 @@ namespace SmartGoldbergEmu
             this.game_setting_tab_ctrl.Size = new System.Drawing.Size(612, 397);
             this.game_setting_tab_ctrl.TabIndex = 3;
             // 
+            // Clantag
+            // 
+            this.Clantag.AutoSize = true;
+            this.Clantag.Location = new System.Drawing.Point(320, 276);
+            this.Clantag.Name = "Clantag";
+            this.Clantag.Size = new System.Drawing.Size(53, 13);
+            this.Clantag.TabIndex = 37;
+            this.Clantag.Text = "Clan Tag:";
+            // 
+            // clan_tag_add
+            // 
+            this.clan_tag_add.Location = new System.Drawing.Point(379, 273);
+            this.clan_tag_add.Name = "clan_tag_add";
+            this.clan_tag_add.Size = new System.Drawing.Size(148, 20);
+            this.clan_tag_add.TabIndex = 38;
+            // 
+            // textBox_env_var_value
+            // 
+            this.textBox_env_var_value.Cue = null;
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
+            this.textBox_env_var_value.Name = "textBox_env_var_value";
+            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
+            this.textBox_env_var_value.TabIndex = 31;
+            // 
+            // textBox_env_var_key
+            // 
+            this.textBox_env_var_key.Cue = null;
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
+            this.textBox_env_var_key.Name = "textBox_env_var_key";
+            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
+            this.textBox_env_var_key.TabIndex = 30;
+            // 
+            // ip_textBox
+            // 
+            this.ip_textBox.Cue = "127.0.0.1";
+            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
+            this.ip_textBox.Name = "ip_textBox";
+            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
+            this.ip_textBox.TabIndex = 1;
+            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
+            // 
             // GameSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -880,5 +912,8 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl game_setting_tab_ctrl;
+        private System.Windows.Forms.CheckBox checkBox_EnableHTTP;
+        private System.Windows.Forms.TextBox clan_tag_add;
+        private System.Windows.Forms.Label Clantag;
     }
 }

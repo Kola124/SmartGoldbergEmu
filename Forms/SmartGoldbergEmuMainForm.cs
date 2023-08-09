@@ -94,9 +94,11 @@ namespace SmartGoldbergEmu
 
         private void AddAppToList(GameConfig app)
         {
-            ListViewItem item = new ListViewItem();
-            item.Text = app.AppName;
-            item.ImageKey = app.Path;
+            ListViewItem item = new ListViewItem
+            {
+                Text = app.AppName,
+                ImageKey = app.Path
+            };
 
             if (app_list_view.InvokeRequired)
                 app_list_view.Invoke(new AddAppToListDelegate(AddAppToList), new object[] { app });
@@ -106,11 +108,13 @@ namespace SmartGoldbergEmu
 
         private void AskGamePath()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = (OSDetector.IsWindows() ? "Game executables (*.exe)|*.exe;|All Files|*.*" : "All Files|*.*");
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.Multiselect = false;
-            openFileDialog.CheckFileExists = true;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = (OSDetector.IsWindows() ? "Game executables (*.exe)|*.exe;|All Files|*.*" : "All Files|*.*"),
+                FilterIndex = 1,
+                Multiselect = false,
+                CheckFileExists = true
+            };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 AddGame(openFileDialog.FileName);
@@ -119,9 +123,10 @@ namespace SmartGoldbergEmu
 
         private void AddGame(string game_path)
         {
-            GameConfig app = new GameConfig();
-
-            app.Path = game_path;
+            GameConfig app = new GameConfig
+            {
+                Path = game_path
+            };
             app.AppName = Path.GetFileNameWithoutExtension(app.Path);
             app.StartFolder = Path.GetDirectoryName(game_path);
 
@@ -132,7 +137,7 @@ namespace SmartGoldbergEmu
                 if (res != DialogResult.OK)
                     return;
 
-                app = gsform.modified_app;
+                app = gsform.Modified_app;
                 SteamEmulator.AddGame(app);
 
                 LoadImage(app);
@@ -166,7 +171,7 @@ namespace SmartGoldbergEmu
                 if (res != DialogResult.OK)
                     return;
 
-                SteamEmulator.SetGame(index, gsform.modified_app);
+                SteamEmulator.SetGame(index, gsform.Modified_app);
 
                 ListViewItem item = app_list_view.Items[index];
                 item.Text = SteamEmulator.Apps[index].AppName;
@@ -196,8 +201,10 @@ namespace SmartGoldbergEmu
 
         private void EditSettings()
         {
-            SettingsForm sform = new SettingsForm();
-            sform.config = SteamEmulator.Config;
+            SettingsForm sform = new SettingsForm
+            {
+                config = SteamEmulator.Config
+            };
             sform.ShowDialog();
 
             if (sform.DialogResult == DialogResult.OK)
@@ -255,7 +262,7 @@ namespace SmartGoldbergEmu
             this.Enabled = true;
         }
 
-        private void openGameEmuFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenGameEmuFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int index = app_list_view.Items.IndexOf(app_list_view.FocusedItem);
             if (index == -1)
@@ -299,7 +306,7 @@ namespace SmartGoldbergEmu
                 e.Effect = DragDropEffects.None;
         }
 
-        private void app_list_view_KeyUp(object sender, KeyEventArgs e)
+        private void App_list_view_KeyUp(object sender, KeyEventArgs e)
         {
             if( e.KeyCode == Keys.Delete )
                 DeleteGame();
@@ -321,7 +328,7 @@ namespace SmartGoldbergEmu
             SteamEmulator.RestoreSteam();
         }
 
-        private void createShortcutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CreateShortcutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int index = app_list_view.Items.IndexOf(app_list_view.FocusedItem);
             if (index == -1)

@@ -162,7 +162,7 @@ namespace SmartGoldbergEmu
             this.app_list_view.DragDrop += new System.Windows.Forms.DragEventHandler(this.App_list_view_DragDrop);
             this.app_list_view.DragEnter += new System.Windows.Forms.DragEventHandler(this.App_list_view_DragEnter);
             this.app_list_view.DoubleClick += new System.EventHandler(this.App_list_view_MouseDoubleClick);
-            this.app_list_view.KeyUp += new System.Windows.Forms.KeyEventHandler(this.app_list_view_KeyUp);
+            this.app_list_view.KeyUp += new System.Windows.Forms.KeyEventHandler(this.App_list_view_KeyUp);
             this.app_list_view.MouseClick += new System.Windows.Forms.MouseEventHandler(this.App_list_view_Click);
             // 
             // capp_contextMenuStrip
@@ -203,14 +203,14 @@ namespace SmartGoldbergEmu
             this.createShortcutToolStripMenuItem.Name = "createShortcutToolStripMenuItem";
             this.createShortcutToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.createShortcutToolStripMenuItem.Text = "Create Shortcut";
-            this.createShortcutToolStripMenuItem.Click += new System.EventHandler(this.createShortcutToolStripMenuItem_Click);
+            this.createShortcutToolStripMenuItem.Click += new System.EventHandler(this.CreateShortcutToolStripMenuItem_Click);
             // 
             // openGameEmuFolderToolStripMenuItem
             // 
             this.openGameEmuFolderToolStripMenuItem.Name = "openGameEmuFolderToolStripMenuItem";
             this.openGameEmuFolderToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.openGameEmuFolderToolStripMenuItem.Text = "Open Game Emu Folder";
-            this.openGameEmuFolderToolStripMenuItem.Click += new System.EventHandler(this.openGameEmuFolderToolStripMenuItem_Click);
+            this.openGameEmuFolderToolStripMenuItem.Click += new System.EventHandler(this.OpenGameEmuFolderToolStripMenuItem_Click);
             // 
             // propertiesToolStripMenuItem
             // 

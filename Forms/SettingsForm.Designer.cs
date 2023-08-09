@@ -57,12 +57,15 @@ namespace SmartGoldbergEmu
             this.language_combo = new System.Windows.Forms.ComboBox();
             this.save_button = new System.Windows.Forms.Button();
             this.cancel_button = new System.Windows.Forms.Button();
+            this.avatarchng = new System.Windows.Forms.Button();
+            this.avatar = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.avatar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 25);
+            this.label1.Location = new System.Drawing.Point(112, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 0;
@@ -71,7 +74,7 @@ namespace SmartGoldbergEmu
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 50);
+            this.label2.Location = new System.Drawing.Point(112, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 1;
@@ -80,7 +83,7 @@ namespace SmartGoldbergEmu
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 75);
+            this.label3.Location = new System.Drawing.Point(112, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 2;
@@ -89,7 +92,7 @@ namespace SmartGoldbergEmu
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 100);
+            this.label4.Location = new System.Drawing.Point(112, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 3;
@@ -98,7 +101,7 @@ namespace SmartGoldbergEmu
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 125);
+            this.label5.Location = new System.Drawing.Point(112, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 4;
@@ -106,41 +109,41 @@ namespace SmartGoldbergEmu
             // 
             // username_edit
             // 
-            this.username_edit.Location = new System.Drawing.Point(90, 22);
+            this.username_edit.Location = new System.Drawing.Point(187, 22);
             this.username_edit.MaxLength = 32;
             this.username_edit.Name = "username_edit";
-            this.username_edit.Size = new System.Drawing.Size(370, 20);
+            this.username_edit.Size = new System.Drawing.Size(273, 20);
             this.username_edit.TabIndex = 5;
             // 
             // steam_id_edit
             // 
-            this.steam_id_edit.Location = new System.Drawing.Point(90, 47);
+            this.steam_id_edit.Location = new System.Drawing.Point(187, 47);
             this.steam_id_edit.Name = "steam_id_edit";
-            this.steam_id_edit.Size = new System.Drawing.Size(370, 20);
+            this.steam_id_edit.Size = new System.Drawing.Size(273, 20);
             this.steam_id_edit.TabIndex = 6;
             // 
             // port_edit
             // 
-            this.port_edit.Location = new System.Drawing.Point(90, 97);
+            this.port_edit.Location = new System.Drawing.Point(187, 97);
             this.port_edit.MaxLength = 5;
             this.port_edit.Name = "port_edit";
-            this.port_edit.Size = new System.Drawing.Size(100, 20);
+            this.port_edit.Size = new System.Drawing.Size(114, 20);
             this.port_edit.TabIndex = 8;
             // 
             // webapi_key_edit
             // 
-            this.webapi_key_edit.Location = new System.Drawing.Point(90, 122);
+            this.webapi_key_edit.Location = new System.Drawing.Point(187, 122);
             this.webapi_key_edit.MaxLength = 32;
             this.webapi_key_edit.Name = "webapi_key_edit";
-            this.webapi_key_edit.Size = new System.Drawing.Size(370, 20);
+            this.webapi_key_edit.Size = new System.Drawing.Size(273, 20);
             this.webapi_key_edit.TabIndex = 9;
             // 
             // language_combo
             // 
             this.language_combo.FormattingEnabled = true;
-            this.language_combo.Location = new System.Drawing.Point(90, 72);
+            this.language_combo.Location = new System.Drawing.Point(187, 72);
             this.language_combo.Name = "language_combo";
-            this.language_combo.Size = new System.Drawing.Size(170, 21);
+            this.language_combo.Size = new System.Drawing.Size(273, 21);
             this.language_combo.TabIndex = 10;
             // 
             // save_button
@@ -163,11 +166,34 @@ namespace SmartGoldbergEmu
             this.cancel_button.UseVisualStyleBackColor = true;
             this.cancel_button.Click += new System.EventHandler(this.Cancel_button_Click);
             // 
+            // avatarchng
+            // 
+            this.avatarchng.Location = new System.Drawing.Point(12, 121);
+            this.avatarchng.Name = "avatarchng";
+            this.avatarchng.Size = new System.Drawing.Size(94, 20);
+            this.avatarchng.TabIndex = 13;
+            this.avatarchng.Text = "Change Avatar";
+            this.avatarchng.UseVisualStyleBackColor = true;
+            this.avatarchng.Click += new System.EventHandler(this.avatarchng_Click);
+            // 
+            // avatar
+            // 
+            this.avatar.ErrorImage = null;
+            this.avatar.ImageLocation = "";
+            this.avatar.Location = new System.Drawing.Point(12, 22);
+            this.avatar.Name = "avatar";
+            this.avatar.Size = new System.Drawing.Size(94, 94);
+            this.avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.avatar.TabIndex = 14;
+            this.avatar.TabStop = false;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 182);
+            this.Controls.Add(this.avatar);
+            this.Controls.Add(this.avatarchng);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.save_button);
             this.Controls.Add(this.language_combo);
@@ -187,6 +213,7 @@ namespace SmartGoldbergEmu
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Settings";
+            ((System.ComponentModel.ISupportInitialize)(this.avatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,5 +233,7 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.ComboBox language_combo;
         private System.Windows.Forms.Button save_button;
         private System.Windows.Forms.Button cancel_button;
+        private System.Windows.Forms.Button avatarchng;
+        private System.Windows.Forms.PictureBox avatar;
     }
 }

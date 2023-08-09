@@ -156,10 +156,12 @@ namespace SmartGoldbergEmu
                 var xmlserializer = new XmlSerializer(save.GetType());
                 var stringWriter = new StringWriter();
 
-                XmlWriterSettings settings = new XmlWriterSettings();
-                settings.Indent = true;
-                settings.IndentChars = ("  ");
-                settings.OmitXmlDeclaration = true;
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    Indent = true,
+                    IndentChars = ("  "),
+                    OmitXmlDeclaration = true
+                };
 
                 save.apps = Apps;
                 save.webapi_key = Config.webapi_key;
@@ -198,7 +200,7 @@ namespace SmartGoldbergEmu
             Save();
         }
 
-        private static void create_steam_settings_folder(GameConfig app)
+        private static void Create_steam_settings_folder(GameConfig app)
         {
             string game_emu_folder = app.GetGameEmuFolder();
             if (!Directory.Exists(Path.Combine(game_emu_folder, "steam_settings") + Path.DirectorySeparatorChar))
@@ -240,7 +242,7 @@ namespace SmartGoldbergEmu
         {
             string emu_folder = app.GetGameEmuFolder();
 
-            SteamEmulator.create_steam_settings_folder(app);
+            SteamEmulator.Create_steam_settings_folder(app);
 
             try
             {
@@ -320,7 +322,7 @@ namespace SmartGoldbergEmu
             {
                 string game_emu_folder = app.GetGameEmuFolder();
 
-                create_steam_settings_folder(app);
+                Create_steam_settings_folder(app);
 
                 if (app.LocalSave.Equals(""))
                 {
@@ -377,13 +379,23 @@ namespace SmartGoldbergEmu
                 }
                 if (app.DisableLANOnly)
                 {
-                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "disable_lan_only.txt"), FileMode.Create), Encoding.ASCII))
-                    { }
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder,"steam_settings", "disable_lan_only.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+                        
+                    }
                 }
-                if(app.DisableLANOnly == false)
+                if (app.EnableHTTP && app.DisableLANOnly)
                 {
-                    if (File.Exists(Path.Combine(game_emu_folder, "disable_lan_only.txt")))
-                        File.Delete(Path.Combine(game_emu_folder, "disable_lan_only.txt"));
+                    File.WriteAllText(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt"), "Dinamo Zagreb iznad svih");
+                }
+                if (app.EnableHTTP == false && app.DisableLANOnly)
+                {
+                    File.WriteAllText(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt"), String.Empty);
+                }
+                if (app.DisableLANOnly == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt"));
                 }
 
                 File.Copy(emu_path, Path.Combine(game_emu_folder, OSFuncs.GetSteamAPIName(app.UseX64)), true);
@@ -408,7 +420,7 @@ namespace SmartGoldbergEmu
             string game_emu_folder = app.GetGameEmuFolder();
             string achievements_file = Path.Combine(game_emu_folder, "steam_settings", "achievements.json");
 
-            create_steam_settings_folder(app);
+            Create_steam_settings_folder(app);
 
             string url = "http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?l=" + Config.language + "&key=";
             url += Config.webapi_key + "&appid=" + app.AppId.ToString();
@@ -475,7 +487,7 @@ namespace SmartGoldbergEmu
             string game_emu_folder = app.GetGameEmuFolder();
             string items_file = Path.Combine(game_emu_folder, "steam_settings", "items.json");
 
-            create_steam_settings_folder(app);
+            Create_steam_settings_folder(app);
 
             string buffer;
             string url = "https://api.steampowered.com/IInventoryService/GetItemDefMeta/v1?key=";
@@ -596,14 +608,15 @@ namespace SmartGoldbergEmu
             {
                 try
                 {
-                    ProcessStartInfo psi = new ProcessStartInfo();
-
-                    psi.CreateNoWindow = false;
-                    psi.UseShellExecute = false;
-                    psi.FileName = app.Path;
-                    psi.WindowStyle = ProcessWindowStyle.Normal;
-                    psi.Arguments = app.Parameters;
-                    psi.WorkingDirectory = app.StartFolder;
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        CreateNoWindow = false,
+                        UseShellExecute = false,
+                        FileName = app.Path,
+                        WindowStyle = ProcessWindowStyle.Normal,
+                        Arguments = app.Parameters,
+                        WorkingDirectory = app.StartFolder
+                    };
 
                     foreach (string var in app.EnvVars)
                     {
@@ -618,9 +631,11 @@ namespace SmartGoldbergEmu
 
                     psi.EnvironmentVariables.Add("SteamAppId", app.AppId.ToString());
 
-                    Process p = new Process();
-                    p.EnableRaisingEvents = true;
-                    p.StartInfo = psi;
+                    Process p = new Process
+                    {
+                        EnableRaisingEvents = true,
+                        StartInfo = psi
+                    };
                     p.Exited += OnProcessExited;
                     emuGamesProcess.Add(p);
 

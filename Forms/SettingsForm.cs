@@ -17,13 +17,17 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace SmartGoldbergEmu
 {
     public partial class SettingsForm : Form
     {
-        static public readonly List<string> languages = new List<string>
+    static public readonly List<string> languages = new List<string>
         {
             "arabic",
             "bulgarian",
@@ -102,6 +106,28 @@ namespace SmartGoldbergEmu
         public SettingsForm()
         {
             InitializeComponent();
+            ucitavanje();
+        }
+
+        public void ucitavanje()
+        {
+            Image img=null;
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            if (File.Exists(Path.Combine(save_folder, "account_avatar.png")))
+            {
+                using (var bmpTemp = new Bitmap(Path.Combine(save_folder, "account_avatar.png")))
+                {
+                    img = new Bitmap(bmpTemp);
+                }
+            }
+            if (File.Exists(Path.Combine(save_folder, "account_avatar.jpg")))
+            {
+                using (var bmpTemp = new Bitmap(Path.Combine(save_folder, "account_avatar.jpg")))
+                {
+                    img = new Bitmap(bmpTemp);
+                }
+            };
+            avatar.Image = img;
         }
 
         private void Save_button_Click(object sender, EventArgs e)
@@ -147,6 +173,26 @@ namespace SmartGoldbergEmu
             }
 
             return true;
+        }
+
+        private void avatarchng_Click(object sender, EventArgs e)
+        {
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            OpenFileDialog dijalog= new OpenFileDialog();
+            dijalog.Filter = "PNG|*.png|JPG|*.jpg|All files|*.*";
+            dijalog.FilterIndex = 3;
+            if (dijalog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.Copy(dijalog.FileName, Path.Combine(save_folder, "account_avatar.png"), true);
+                }
+                catch (IOException)
+                {
+                    // File in use and can't be deleted; no permission etc.
+                }
+            }
+            ucitavanje();
         }
     }
 }

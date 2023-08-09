@@ -230,7 +230,7 @@ namespace SmartGoldbergEmu
                 "dd19abd471149617d5b85e390d707806f689b96ee67e014f32769b4cf18e2a1c",//146
             }
         };
-        public GameConfig modified_app { get; private set; }
+        public GameConfig Modified_app { get; private set; }
 
 
         public GameSettingsForm()
@@ -274,7 +274,7 @@ namespace SmartGoldbergEmu
                     break;
             }
 
-            ExecutableHeaderReader reader = null;
+            ExecutableHeaderReader reader;
             if ((reader = new PeHeaderReader(app.Path)).IsValidHeader ||
                 (reader = new ElfHeaderReader(app.Path)).IsValidHeader ||
                 (reader = new MachOHeaderReader(app.Path)).IsValidHeader)
@@ -286,8 +286,9 @@ namespace SmartGoldbergEmu
             checkBox_DisableNetworking.Checked = app.DisableNetworking;
             checkBox_DisableLANOnly.Checked = app.DisableLANOnly;
             checkbox_offline.Checked = app.Offline;
+            checkBox_EnableHTTP.Checked = app.EnableHTTP;
 
-            modified_app = app.Clone();
+            Modified_app = app.Clone();
 
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (game_appid_edit.Text != "0")
@@ -362,6 +363,13 @@ namespace SmartGoldbergEmu
                         force_steamidpoigri_add.Text = streamReader.ReadLine();
                     }
                 }
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt.txt")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt.txt"), FileMode.Open), Encoding.ASCII))
+                    {
+                        clan_tag_add.Text = streamReader.ReadLine();
+                    }
+                }
             }
         }
 
@@ -371,25 +379,27 @@ namespace SmartGoldbergEmu
 
             Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings"));
 
-            pisanjeDLC();
+            PisanjeDLC();
 
-            pisanjesg();
+            Pisanjesg();
 
-            pisanjestat();
+            Pisanjestat();
 
-            pisanjeappt();
+            Pisanjeappt();
 
-            pisanjedepo();
+            Pisanjedepo();
 
-            pisanje_force_language();
+            Pisanje_force_language();
 
-            pisanje_force_listen_port();
+            Pisanje_force_listen_port();
 
-            pisanje_force_steamid();
+            Pisanje_force_steamid();
 
-            pisanje_force_account_name_add();
+            Pisanje_force_account_name_add();
 
-            if (is_app_valid())
+            Pisanje_clan_tag();
+
+            if (Is_app_valid())
             {
                 DialogResult = DialogResult.OK;
                 this.Close();
@@ -404,11 +414,13 @@ namespace SmartGoldbergEmu
 
         private void Browse_game_exe_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Game executables (*.exe)|*.exe;|All Files|*.*";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.Multiselect = false;
-            openFileDialog.CheckFileExists = true;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Game executables (*.exe)|*.exe;|All Files|*.*",
+                FilterIndex = 1,
+                Multiselect = false,
+                CheckFileExists = true
+            };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 game_exe_edit.Text = openFileDialog.FileName;
@@ -417,17 +429,19 @@ namespace SmartGoldbergEmu
 
         private void Browse_start_folder_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog openFolderDialog = new FolderBrowserDialog();
-            openFolderDialog.ShowNewFolderButton = false;
-            openFolderDialog.Description = "Game start folder";
-            openFolderDialog.SelectedPath = game_folder_edit.Text;
+            FolderBrowserDialog openFolderDialog = new FolderBrowserDialog
+            {
+                ShowNewFolderButton = false,
+                Description = "Game start folder",
+                SelectedPath = game_folder_edit.Text
+            };
             if (openFolderDialog.ShowDialog() == DialogResult.OK)
             {
                 game_folder_edit.Text = openFolderDialog.SelectedPath;
             }
         }
 
-        private bool is_app_valid()
+        private bool Is_app_valid()
         {
             if (game_folder_edit.Text.Length == 0 || !Directory.Exists(game_folder_edit.Text))
             {
@@ -443,7 +457,7 @@ namespace SmartGoldbergEmu
             {
                 try
                 {
-                    modified_app.AppId = Convert.ToUInt64(game_appid_edit.Text);
+                    Modified_app.AppId = Convert.ToUInt64(game_appid_edit.Text);
                 }
                 catch (Exception)
                 {
@@ -452,37 +466,38 @@ namespace SmartGoldbergEmu
                 }
             }
 
-            modified_app.UseX64 = x64_checkbox.Checked;
-            modified_app.DisableOverlay = checkBox_disableOverlay.Checked;
-            modified_app.DisableNetworking = checkBox_DisableNetworking.Checked;
-            modified_app.DisableLANOnly = checkBox_DisableLANOnly.Checked;
-            modified_app.Offline = checkbox_offline.Checked;
-            modified_app.AppName = game_name_edit.Text;
-            modified_app.Path = game_exe_edit.Text;
-            modified_app.StartFolder = game_folder_edit.Text;
-            modified_app.LocalSave = local_save_edit.Text;
-            modified_app.Parameters = game_parameters_edit.Text;
-            modified_app.CustomBroadcasts = new List<string>();
-            modified_app.EnvVars = new List<string>();
+            Modified_app.UseX64 = x64_checkbox.Checked;
+            Modified_app.DisableOverlay = checkBox_disableOverlay.Checked;
+            Modified_app.DisableNetworking = checkBox_DisableNetworking.Checked;
+            Modified_app.DisableLANOnly = checkBox_DisableLANOnly.Checked;
+            Modified_app.EnableHTTP = checkBox_EnableHTTP.Checked;
+            Modified_app.Offline = checkbox_offline.Checked;
+            Modified_app.AppName = game_name_edit.Text;
+            Modified_app.Path = game_exe_edit.Text;
+            Modified_app.StartFolder = game_folder_edit.Text;
+            Modified_app.LocalSave = local_save_edit.Text;
+            Modified_app.Parameters = game_parameters_edit.Text;
+            Modified_app.CustomBroadcasts = new List<string>();
+            Modified_app.EnvVars = new List<string>();
 
             foreach (IPAddress ip in ip_listBox.Items)
             {
-                modified_app.CustomBroadcasts.Add(ip.ToString());
+                Modified_app.CustomBroadcasts.Add(ip.ToString());
             }
 
             foreach (string env_var in listBox_env_var.Items)
             {
-                modified_app.EnvVars.Add(env_var);
+                Modified_app.EnvVars.Add(env_var);
             }
 
             return true;
         }
 
-        private void add_broadcast(string text)
+        private void Add_broadcast(string text)
         {
             try
             {
-                add_ip_to_list(text);
+                Add_ip_to_list(text);
             }
             catch
             {
@@ -490,40 +505,40 @@ namespace SmartGoldbergEmu
             }
         }
 
-        private void add_broadcast_button_Click(object sender, EventArgs e)
+        private void Add_broadcast_button_Click(object sender, EventArgs e)
         {
-            add_broadcast(ip_textBox.Text);
+            Add_broadcast(ip_textBox.Text);
             ip_textBox.Text = "";
         }
 
-        private void remove_broadcast_button_Click(object sender, EventArgs e)
+        private void Remove_broadcast_button_Click(object sender, EventArgs e)
         {
-            del_ip_from_list((IPAddress)ip_listBox.SelectedItem);
+            Del_ip_from_list((IPAddress)ip_listBox.SelectedItem);
         }
 
-        private void clear_broadcast_button_Click(object sender, EventArgs e)
+        private void Clear_broadcast_button_Click(object sender, EventArgs e)
         {
             ip_listBox.Items.Clear();
         }
 
-        private void ip_textBox_KeyDown(object sender, KeyEventArgs e)
+        private void Ip_textBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                add_broadcast(ip_textBox.Text);
+                Add_broadcast(ip_textBox.Text);
                 ip_textBox.Text = "";
             }
         }
 
-        private void ip_listBox_KeyDown(object sender, KeyEventArgs e)
+        private void Ip_listBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
-                del_ip_from_list((IPAddress)ip_listBox.SelectedItem);
+                Del_ip_from_list((IPAddress)ip_listBox.SelectedItem);
             }
         }
 
-        static public bool is_original_steam_api(string path)
+        static public bool Is_original_steam_api(string path)
         {
             if (File.Exists(path))
             {
@@ -559,7 +574,7 @@ namespace SmartGoldbergEmu
             return false;
         }
 
-        static public List<string> get_interfaces(string path)
+        static public List<string> Get_interfaces(string path)
         {
             List<string> interfaces = new List<string>();
 
@@ -624,7 +639,7 @@ namespace SmartGoldbergEmu
             return interfaces;
         }
 
-        private void add_ip_to_list(string str_ip)
+        private void Add_ip_to_list(string str_ip)
         {
             if (!str_ip.Equals(""))
             {
@@ -633,7 +648,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        private void del_ip_from_list(IPAddress ip)
+        private void Del_ip_from_list(IPAddress ip)
         {
             if (ip != null)
             {
@@ -641,7 +656,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        private void button_add_env_var_Click(object sender, EventArgs e)
+        private void Button_add_env_var_Click(object sender, EventArgs e)
         {
             if (textBox_env_var_key.Text.Equals(""))
             {
@@ -673,17 +688,17 @@ namespace SmartGoldbergEmu
             textBox_env_var_value.Text = "";
         }
 
-        private void button_remove_env_var_Click(object sender, EventArgs e)
+        private void Button_remove_env_var_Click(object sender, EventArgs e)
         {
-            remove_env_var_value((string)listBox_env_var.SelectedItem);
+            Remove_env_var_value((string)listBox_env_var.SelectedItem);
         }
 
-        private void button_clear_env_var_Click(object sender, EventArgs e)
+        private void Button_clear_env_var_Click(object sender, EventArgs e)
         {
             listBox_env_var.Items.Clear();
         }
 
-        private void remove_env_var_value(string value)
+        private void Remove_env_var_value(string value)
         {
             if (value != null)
             {
@@ -691,7 +706,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        void pisanjeDLC()
+        void PisanjeDLC()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(DLC_add.Text))
@@ -706,7 +721,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        void pisanjesg()
+        void Pisanjesg()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(sg_add.Text))
@@ -721,7 +736,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        void pisanjestat()
+        void Pisanjestat()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(stat_add.Text))
@@ -736,7 +751,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        void pisanjeappt()
+        void Pisanjeappt()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(Apppt_add.Text))
@@ -751,7 +766,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        void pisanjedepo()
+        void Pisanjedepo()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(depots_add.Text))
@@ -765,7 +780,7 @@ namespace SmartGoldbergEmu
                 tw.Close();
             }
         }
-        void pisanje_force_account_name_add()
+        void Pisanje_force_account_name_add()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(force_account_name_add.Text))
@@ -780,7 +795,7 @@ namespace SmartGoldbergEmu
             }
 
         }
-        void pisanje_force_language()
+        void Pisanje_force_language()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(force_langugae_add.Text))
@@ -794,7 +809,7 @@ namespace SmartGoldbergEmu
             }
              
         }
-        void pisanje_force_listen_port()
+        void Pisanje_force_listen_port()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(force_listen_port_add.Text))
@@ -809,7 +824,7 @@ namespace SmartGoldbergEmu
             }
 
         }
-        void pisanje_force_steamid()
+        void Pisanje_force_steamid()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (string.IsNullOrEmpty(force_steamidpoigri_add.Text))
@@ -825,19 +840,35 @@ namespace SmartGoldbergEmu
 
         }
 
+        void Pisanje_clan_tag()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (string.IsNullOrEmpty(clan_tag_add.Text))
+            {
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt"));
+            }
+            else
+            {
+                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt"), FileMode.Create), Encoding.ASCII);
+                tw.WriteLine(clan_tag_add.Text);
+                tw.Close();
+            }
+
+        }
+
         private void Mods_Click(object sender, EventArgs e)
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            DirectoryInfo di = Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings", "mods"));
+            Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings", "mods"));
         }
 
         private void DLLfold_Click(object sender, EventArgs e)
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            DirectoryInfo di = Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings", "load_dlls"));
+            Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings", "load_dlls"));
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void Button1_Click_1(object sender, EventArgs e)
         {
             WebClient web = new WebClient();
             string manipulirano,webadresa;
@@ -866,7 +897,7 @@ namespace SmartGoldbergEmu
             }
         }
 
-        private void getgamenameBUT_Click(object sender, EventArgs e)
+        private void GetgamenameBUT_Click(object sender, EventArgs e)
         {
             WebClient web = new WebClient();
             string manipulirano, webadresa;

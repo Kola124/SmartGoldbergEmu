@@ -19,6 +19,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 
 namespace SmartGoldbergEmu
 {
@@ -33,6 +34,7 @@ namespace SmartGoldbergEmu
         public bool DisableOverlay { get; set; }
         public bool DisableNetworking { get; set; }
         public bool DisableLANOnly { get; set; }
+        public bool EnableHTTP { get; set; }
         public bool Offline { get; set; }
         public string LocalSave { get; set; }
         public List<string> CustomBroadcasts { get; set; }
@@ -50,6 +52,7 @@ namespace SmartGoldbergEmu
             DisableLANOnly = false;
             Offline = false;
             DisableNetworking = false;
+            EnableHTTP = false;
             CustomBroadcasts = new List<string>();
             EnvVars = new List<string>();
         }
@@ -80,19 +83,22 @@ namespace SmartGoldbergEmu
 
         public GameConfig Clone()
         {
-            GameConfig copy = new GameConfig();
-            copy.StartFolder = StartFolder;
-            copy.AppName = AppName;
-            copy.AppId = AppId;
-            copy.Parameters = Parameters;
-            copy.UseX64 = UseX64;
-            copy.DisableOverlay = DisableOverlay;
-            copy.DisableNetworking = DisableNetworking;
-            copy.Offline = Offline;
-            copy.DisableLANOnly = DisableLANOnly;
-            copy.CustomBroadcasts = new List<string>(CustomBroadcasts);
-            copy.EnvVars = new List<string>(EnvVars);
-            copy.GameGuid = GameGuid;
+            GameConfig copy = new GameConfig
+            {
+                StartFolder = StartFolder,
+                AppName = AppName,
+                AppId = AppId,
+                Parameters = Parameters,
+                UseX64 = UseX64,
+                DisableOverlay = DisableOverlay,
+                DisableNetworking = DisableNetworking,
+                Offline = Offline,
+                DisableLANOnly = DisableLANOnly,
+                EnableHTTP = EnableHTTP,
+                CustomBroadcasts = new List<string>(CustomBroadcasts),
+                EnvVars = new List<string>(EnvVars),
+                GameGuid = GameGuid
+            };
             return copy;
         }
 
