@@ -547,7 +547,7 @@ namespace SmartGoldbergEmu
                     try
                     {
                         JArray json = JArray.Parse(buffer);
-                        foreach (JObject item in json)
+                        foreach (JObject item in json.Cast<JObject>())
                         {
                             string itemid = item["itemdefid"].Value<string>();
                             new_json.Add(itemid, new JObject());

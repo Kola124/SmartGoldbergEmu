@@ -60,15 +60,19 @@ namespace SmartGoldbergEmu
 
         private void Steamapi_dll_folder_Click(object sender, EventArgs e)
         {
-            GameConfig app = new GameConfig();
-            app.UseX64 = false;
+            GameConfig app = new GameConfig
+            {
+                UseX64 = false
+            };
             ShowEmuFolder(app);
         }
 
         private void Steamapi64_dll_folder_Click(object sender, EventArgs e)
         {
-            GameConfig app = new GameConfig();
-            app.UseX64 = true;
+            GameConfig app = new GameConfig
+            {
+                UseX64 = true
+            };
             ShowEmuFolder(app);
         }
     }

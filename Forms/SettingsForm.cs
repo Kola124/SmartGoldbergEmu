@@ -62,7 +62,7 @@ namespace SmartGoldbergEmu
 
         private EmuConfig _config = new EmuConfig();
 
-        public EmuConfig config
+        public EmuConfig Config
         {
             set
             {
@@ -106,10 +106,10 @@ namespace SmartGoldbergEmu
         public SettingsForm()
         {
             InitializeComponent();
-            ucitavanje();
+            Ucitavanje();
         }
 
-        public void ucitavanje()
+        public void Ucitavanje()
         {
             Image img=null;
             string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
@@ -132,7 +132,7 @@ namespace SmartGoldbergEmu
 
         private void Save_button_Click(object sender, EventArgs e)
         {
-            if( check_settings() )
+            if( Check_settings() )
             {
                 DialogResult = DialogResult.OK;
                 this.Close();
@@ -145,28 +145,28 @@ namespace SmartGoldbergEmu
             this.Close();
         }
 
-        private bool check_settings()
+        private bool Check_settings()
         {
             try
             {
-                config.port = Convert.ToUInt16(port_edit.Text);
+                Config.port = Convert.ToUInt16(port_edit.Text);
             }
             catch
             {
                 MessageBox.Show("The port must be a number >1024", "Port invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            config.steamid = steam_id_edit.Text;
-            config.username = username_edit.Text;
-            config.webapi_key = webapi_key_edit.Text;
-            config.language = language_combo.SelectedItem.ToString();
+            Config.steamid = steam_id_edit.Text;
+            Config.username = username_edit.Text;
+            Config.webapi_key = webapi_key_edit.Text;
+            Config.language = language_combo.SelectedItem.ToString();
 
-            if (config.webapi_key.Length != 0 && config.webapi_key.Length != 32 )
+            if (Config.webapi_key.Length != 0 && Config.webapi_key.Length != 32 )
             {
                 MessageBox.Show("The webapi key consists of 32 alphanum char in upper case.\n\nMore infos at https://steamcommunity.com/dev/apikey", "Webapi Key invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if(config.port != 0 && config.port < 1024 )
+            if(Config.port != 0 && Config.port < 1024 )
             {
                 MessageBox.Show("The port must be a number >1024", "Port invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -175,12 +175,14 @@ namespace SmartGoldbergEmu
             return true;
         }
 
-        private void avatarchng_Click(object sender, EventArgs e)
+        private void Avatarchng_Click(object sender, EventArgs e)
         {
             string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
-            OpenFileDialog dijalog= new OpenFileDialog();
-            dijalog.Filter = "PNG|*.png|JPG|*.jpg|All files|*.*";
-            dijalog.FilterIndex = 3;
+            OpenFileDialog dijalog = new OpenFileDialog
+            {
+                Filter = "PNG|*.png|JPG|*.jpg|All files|*.*",
+                FilterIndex = 3
+            };
             if (dijalog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -192,7 +194,7 @@ namespace SmartGoldbergEmu
                     // File in use and can't be deleted; no permission etc.
                 }
             }
-            ucitavanje();
+            Ucitavanje();
         }
     }
 }

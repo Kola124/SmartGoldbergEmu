@@ -16,10 +16,10 @@ class CueTextBox : TextBox
     public string Cue
     {
         get { return mCue; }
-        set { mCue = value; updateCue(); }
+        set { mCue = value; UpdateCue(); }
     }
 
-    private void updateCue()
+    private void UpdateCue()
     {
         if (this.IsHandleCreated && mCue != null)
         {
@@ -36,7 +36,7 @@ class CueTextBox : TextBox
     protected override void OnHandleCreated(EventArgs e)
     {
         base.OnHandleCreated(e);
-        updateCue();
+        UpdateCue();
         if(!OSDetector.IsWindows())
         {
             this.GotFocus += (Object sender, EventArgs ev) =>

@@ -203,13 +203,13 @@ namespace SmartGoldbergEmu
         {
             SettingsForm sform = new SettingsForm
             {
-                config = SteamEmulator.Config
+                Config = SteamEmulator.Config
             };
             sform.ShowDialog();
 
             if (sform.DialogResult == DialogResult.OK)
             {
-                SteamEmulator.Config = sform.config;
+                SteamEmulator.Config = sform.Config;
 
                 SteamEmulator.Save();
                 SteamEmulator.SetupEmu(new GameConfig());

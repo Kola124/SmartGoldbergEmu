@@ -174,7 +174,7 @@ namespace SmartGoldbergEmu
             this.avatarchng.TabIndex = 13;
             this.avatarchng.Text = "Change Avatar";
             this.avatarchng.UseVisualStyleBackColor = true;
-            this.avatarchng.Click += new System.EventHandler(this.avatarchng_Click);
+            this.avatarchng.Click += new System.EventHandler(this.Avatarchng_Click);
             // 
             // avatar
             // 
