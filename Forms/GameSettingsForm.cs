@@ -287,6 +287,9 @@ namespace SmartGoldbergEmu
             checkBox_DisableLANOnly.Checked = app.DisableLANOnly;
             checkbox_offline.Checked = app.Offline;
             checkBox_EnableHTTP.Checked = app.EnableHTTP;
+            checkBox_DisableAvatar.Checked = app.DisableAvatar;
+            checkBox_DisableAchNotif.Checked = app.DisableAchNotif;
+            checkBox_DisableSQuery.Checked = app.DisableSQuery;
 
             Modified_app = app.Clone();
 
@@ -363,11 +366,32 @@ namespace SmartGoldbergEmu
                         force_steamidpoigri_add.Text = streamReader.ReadLine();
                     }
                 }
-                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt.txt")))
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt")))
                 {
-                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt.txt"), FileMode.Open), Encoding.ASCII))
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt"), FileMode.Open), Encoding.ASCII))
                     {
                         clan_tag_add.Text = streamReader.ReadLine();
+                    }
+                }
+                if (File.Exists(Path.Combine(game_emu_folder, "remote", "serverbrowser.txt")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser.txt"), FileMode.Open), Encoding.ASCII))
+                    {
+                        Server_add.Text = streamReader.ReadLine();
+                    }
+                }
+                if (File.Exists(Path.Combine(game_emu_folder, "remote", "serverbrowser_favorites.txt")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser_favorites.txt"), FileMode.Open), Encoding.ASCII))
+                    {
+                        FavServ_add.Text = streamReader.ReadLine();
+                    }
+                }
+                if (File.Exists(Path.Combine(game_emu_folder, "remote", "serverbrowser_history.txt")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser_history.txt"), FileMode.Open), Encoding.ASCII))
+                    {
+                        HisServ_add.Text = streamReader.ReadLine();
                     }
                 }
             }
@@ -378,6 +402,7 @@ namespace SmartGoldbergEmu
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
 
             Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings"));
+            Directory.CreateDirectory(Path.Combine(game_emu_folder, "remote"));
 
             PisanjeDLC();
 
@@ -398,6 +423,12 @@ namespace SmartGoldbergEmu
             Pisanje_force_account_name_add();
 
             Pisanje_clan_tag();
+
+            Pisanje_Server();
+
+            Pisanje_FavServ();
+
+            Pisanje_HisServ();
 
             if (Is_app_valid())
             {
@@ -471,6 +502,9 @@ namespace SmartGoldbergEmu
             Modified_app.DisableNetworking = checkBox_DisableNetworking.Checked;
             Modified_app.DisableLANOnly = checkBox_DisableLANOnly.Checked;
             Modified_app.EnableHTTP = checkBox_EnableHTTP.Checked;
+            Modified_app.DisableSQuery = checkBox_DisableSQuery.Checked;
+            Modified_app.DisableAchNotif = checkBox_DisableAchNotif.Checked;
+            Modified_app.DisableAvatar = checkBox_DisableAvatar.Checked;
             Modified_app.Offline = checkbox_offline.Checked;
             Modified_app.AppName = game_name_edit.Text;
             Modified_app.Path = game_exe_edit.Text;
@@ -851,6 +885,51 @@ namespace SmartGoldbergEmu
             {
                 TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "subscribed_groups_clans.txt"), FileMode.Create), Encoding.ASCII);
                 tw.WriteLine(clan_tag_add.Text);
+                tw.Close();
+            }
+
+        }
+        void Pisanje_Server()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (string.IsNullOrEmpty(Server_add.Text))
+            {
+                if (File.Exists(Path.Combine(game_emu_folder, "remote", "serverbrowser.txt"))) File.Delete(Path.Combine(game_emu_folder, "remote", "serverbrowser.txt"));
+            }
+            else
+            {
+                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser.txt"), FileMode.Create), Encoding.ASCII);
+                tw.WriteLine(Server_add.Text);
+                tw.Close();
+            }
+
+        }
+        void Pisanje_FavServ()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (string.IsNullOrEmpty(FavServ_add.Text))
+            {
+                if (File.Exists(Path.Combine(game_emu_folder, "remote", "serverbrowser_favorites.txt"))) File.Delete(Path.Combine(game_emu_folder, "remote", "serverbrowser_favorites.txt"));
+            }
+            else
+            {
+                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser_favorites.txt"), FileMode.Create), Encoding.ASCII);
+                tw.WriteLine(FavServ_add.Text);
+                tw.Close();
+            }
+
+        }
+        void Pisanje_HisServ()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (string.IsNullOrEmpty(HisServ_add.Text))
+            {
+                if (File.Exists(Path.Combine(game_emu_folder, "remote", "serverbrowser_history.txt"))) File.Delete(Path.Combine(game_emu_folder, "remote", "serverbrowser_history.txt"));
+            }
+            else
+            {
+                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser_history.txt"), FileMode.Create), Encoding.ASCII);
+                tw.WriteLine(HisServ_add.Text);
                 tw.Close();
             }
 

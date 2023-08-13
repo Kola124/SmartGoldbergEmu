@@ -48,13 +48,22 @@ namespace SmartGoldbergEmu
         {
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
-            this.Depots_tab = new System.Windows.Forms.TabPage();
-            this.depots_desc = new System.Windows.Forms.Label();
-            this.depots_add = new System.Windows.Forms.TextBox();
-            this.Subgroups_tab = new System.Windows.Forms.TabPage();
-            this.sg_desc = new System.Windows.Forms.Label();
-            this.sg_add = new System.Windows.Forms.TextBox();
+            this.Force_tab = new System.Windows.Forms.TabPage();
+            this.force_steamidpoigri_add = new System.Windows.Forms.TextBox();
+            this.force_listen_port_add = new System.Windows.Forms.TextBox();
+            this.force_langugae_add = new System.Windows.Forms.TextBox();
+            this.force_account_name_add = new System.Windows.Forms.TextBox();
+            this.local_save_edit = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.Apppaths_tab = new System.Windows.Forms.TabPage();
+            this.depots_add = new System.Windows.Forms.TextBox();
+            this.depots_desc = new System.Windows.Forms.Label();
+            this.sg_add = new System.Windows.Forms.TextBox();
+            this.sg_desc = new System.Windows.Forms.Label();
             this.Apppt_desc = new System.Windows.Forms.Label();
             this.Apppt_add = new System.Windows.Forms.TextBox();
             this.Stats_tab = new System.Windows.Forms.TabPage();
@@ -67,6 +76,9 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.textBox_env_var_value = new CueTextBox();
+            this.textBox_env_var_key = new CueTextBox();
+            this.ip_textBox = new CueTextBox();
             this.listBox_env_var = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clear_broadcast_button = new System.Windows.Forms.Button();
@@ -79,27 +91,22 @@ namespace SmartGoldbergEmu
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_add = new System.Windows.Forms.TextBox();
             this.game_setting_tab = new System.Windows.Forms.TabPage();
-            this.checkBox_EnableHTTP = new System.Windows.Forms.CheckBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.force_steamidpoigri_add = new System.Windows.Forms.TextBox();
-            this.force_listen_port_add = new System.Windows.Forms.TextBox();
-            this.force_langugae_add = new System.Windows.Forms.TextBox();
-            this.force_account_name_add = new System.Windows.Forms.TextBox();
-            this.local_save_edit = new System.Windows.Forms.TextBox();
+            this.checkBox_DisableAchNotif = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisableSQuery = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisableAvatar = new System.Windows.Forms.CheckBox();
+            this.clan_tag_add = new System.Windows.Forms.TextBox();
             this.game_appid_edit = new System.Windows.Forms.TextBox();
             this.game_folder_edit = new System.Windows.Forms.TextBox();
             this.game_parameters_edit = new System.Windows.Forms.TextBox();
             this.game_exe_edit = new System.Windows.Forms.TextBox();
             this.game_name_edit = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.Clantag = new System.Windows.Forms.Label();
+            this.checkBox_EnableHTTP = new System.Windows.Forms.CheckBox();
             this.getgamenameBUT = new System.Windows.Forms.Button();
             this.checkbox_offline = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableNetworking = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableLANOnly = new System.Windows.Forms.CheckBox();
             this.checkBox_disableOverlay = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.browse_start_folder = new System.Windows.Forms.Button();
             this.browse_game_exe = new System.Windows.Forms.Button();
             this.x64_checkbox = new System.Windows.Forms.CheckBox();
@@ -109,19 +116,21 @@ namespace SmartGoldbergEmu
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.game_setting_tab_ctrl = new System.Windows.Forms.TabControl();
-            this.Clantag = new System.Windows.Forms.Label();
-            this.clan_tag_add = new System.Windows.Forms.TextBox();
-            this.textBox_env_var_value = new CueTextBox();
-            this.textBox_env_var_key = new CueTextBox();
-            this.ip_textBox = new CueTextBox();
-            this.Depots_tab.SuspendLayout();
-            this.Subgroups_tab.SuspendLayout();
+            this.ServerBrowser = new System.Windows.Forms.TabPage();
+            this.HisServ_add = new System.Windows.Forms.TextBox();
+            this.History_label = new System.Windows.Forms.Label();
+            this.FavServ_add = new System.Windows.Forms.TextBox();
+            this.serfav_label = new System.Windows.Forms.Label();
+            this.serbrow_label = new System.Windows.Forms.Label();
+            this.Server_add = new System.Windows.Forms.TextBox();
+            this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
             this.broadcast_tab.SuspendLayout();
             this.DLC_tab.SuspendLayout();
             this.game_setting_tab.SuspendLayout();
             this.game_setting_tab_ctrl.SuspendLayout();
+            this.ServerBrowser.SuspendLayout();
             this.SuspendLayout();
             // 
             // save
@@ -144,72 +153,112 @@ namespace SmartGoldbergEmu
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // Depots_tab
+            // Force_tab
             // 
-            this.Depots_tab.Controls.Add(this.depots_desc);
-            this.Depots_tab.Controls.Add(this.depots_add);
-            this.Depots_tab.Location = new System.Drawing.Point(4, 22);
-            this.Depots_tab.Name = "Depots_tab";
-            this.Depots_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Depots_tab.Size = new System.Drawing.Size(604, 371);
-            this.Depots_tab.TabIndex = 5;
-            this.Depots_tab.Text = "Depots";
-            this.Depots_tab.UseVisualStyleBackColor = true;
+            this.Force_tab.Controls.Add(this.force_steamidpoigri_add);
+            this.Force_tab.Controls.Add(this.force_listen_port_add);
+            this.Force_tab.Controls.Add(this.force_langugae_add);
+            this.Force_tab.Controls.Add(this.force_account_name_add);
+            this.Force_tab.Controls.Add(this.local_save_edit);
+            this.Force_tab.Controls.Add(this.label13);
+            this.Force_tab.Controls.Add(this.label12);
+            this.Force_tab.Controls.Add(this.label11);
+            this.Force_tab.Controls.Add(this.label10);
+            this.Force_tab.Controls.Add(this.label7);
+            this.Force_tab.Location = new System.Drawing.Point(4, 22);
+            this.Force_tab.Name = "Force_tab";
+            this.Force_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.Force_tab.Size = new System.Drawing.Size(604, 371);
+            this.Force_tab.TabIndex = 7;
+            this.Force_tab.Text = "Force";
+            this.Force_tab.UseVisualStyleBackColor = true;
             // 
-            // depots_desc
+            // force_steamidpoigri_add
             // 
-            this.depots_desc.AutoSize = true;
-            this.depots_desc.Location = new System.Drawing.Point(27, 18);
-            this.depots_desc.Name = "depots_desc";
-            this.depots_desc.Size = new System.Drawing.Size(82, 13);
-            this.depots_desc.TabIndex = 10;
-            this.depots_desc.Text = "Custom Depots:";
+            this.force_steamidpoigri_add.Location = new System.Drawing.Point(170, 122);
+            this.force_steamidpoigri_add.Name = "force_steamidpoigri_add";
+            this.force_steamidpoigri_add.Size = new System.Drawing.Size(357, 20);
+            this.force_steamidpoigri_add.TabIndex = 44;
             // 
-            // depots_add
+            // force_listen_port_add
             // 
-            this.depots_add.AcceptsReturn = true;
-            this.depots_add.AcceptsTab = true;
-            this.depots_add.Location = new System.Drawing.Point(30, 53);
-            this.depots_add.Multiline = true;
-            this.depots_add.Name = "depots_add";
-            this.depots_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.depots_add.Size = new System.Drawing.Size(541, 287);
-            this.depots_add.TabIndex = 8;
+            this.force_listen_port_add.Location = new System.Drawing.Point(170, 97);
+            this.force_listen_port_add.Name = "force_listen_port_add";
+            this.force_listen_port_add.Size = new System.Drawing.Size(144, 20);
+            this.force_listen_port_add.TabIndex = 42;
             // 
-            // Subgroups_tab
+            // force_langugae_add
             // 
-            this.Subgroups_tab.Controls.Add(this.sg_desc);
-            this.Subgroups_tab.Controls.Add(this.sg_add);
-            this.Subgroups_tab.Location = new System.Drawing.Point(4, 22);
-            this.Subgroups_tab.Name = "Subgroups_tab";
-            this.Subgroups_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Subgroups_tab.Size = new System.Drawing.Size(604, 371);
-            this.Subgroups_tab.TabIndex = 4;
-            this.Subgroups_tab.Text = "Subscribed Groups";
-            this.Subgroups_tab.UseVisualStyleBackColor = true;
+            this.force_langugae_add.Location = new System.Drawing.Point(170, 72);
+            this.force_langugae_add.Name = "force_langugae_add";
+            this.force_langugae_add.Size = new System.Drawing.Size(357, 20);
+            this.force_langugae_add.TabIndex = 40;
             // 
-            // sg_desc
+            // force_account_name_add
             // 
-            this.sg_desc.AutoSize = true;
-            this.sg_desc.Location = new System.Drawing.Point(27, 18);
-            this.sg_desc.Name = "sg_desc";
-            this.sg_desc.Size = new System.Drawing.Size(153, 13);
-            this.sg_desc.TabIndex = 6;
-            this.sg_desc.Text = "Custom Subscribed Groups list:";
+            this.force_account_name_add.Location = new System.Drawing.Point(170, 47);
+            this.force_account_name_add.Name = "force_account_name_add";
+            this.force_account_name_add.Size = new System.Drawing.Size(357, 20);
+            this.force_account_name_add.TabIndex = 38;
             // 
-            // sg_add
+            // local_save_edit
             // 
-            this.sg_add.AcceptsReturn = true;
-            this.sg_add.AcceptsTab = true;
-            this.sg_add.Location = new System.Drawing.Point(30, 53);
-            this.sg_add.Multiline = true;
-            this.sg_add.Name = "sg_add";
-            this.sg_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.sg_add.Size = new System.Drawing.Size(541, 287);
-            this.sg_add.TabIndex = 4;
+            this.local_save_edit.Location = new System.Drawing.Point(170, 22);
+            this.local_save_edit.Name = "local_save_edit";
+            this.local_save_edit.Size = new System.Drawing.Size(357, 20);
+            this.local_save_edit.TabIndex = 37;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(49, 125);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 13);
+            this.label13.TabIndex = 45;
+            this.label13.Text = "Force SteamID:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(49, 100);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(90, 13);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "Force Listen Port:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(49, 75);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 13);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "Force Language:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(49, 50);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(111, 13);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Force Account Name:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(49, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "Local Save Name:";
             // 
             // Apppaths_tab
             // 
+            this.Apppaths_tab.Controls.Add(this.depots_add);
+            this.Apppaths_tab.Controls.Add(this.depots_desc);
+            this.Apppaths_tab.Controls.Add(this.sg_add);
+            this.Apppaths_tab.Controls.Add(this.sg_desc);
             this.Apppaths_tab.Controls.Add(this.Apppt_desc);
             this.Apppaths_tab.Controls.Add(this.Apppt_add);
             this.Apppaths_tab.Location = new System.Drawing.Point(4, 22);
@@ -217,8 +266,48 @@ namespace SmartGoldbergEmu
             this.Apppaths_tab.Padding = new System.Windows.Forms.Padding(3);
             this.Apppaths_tab.Size = new System.Drawing.Size(604, 371);
             this.Apppaths_tab.TabIndex = 6;
-            this.Apppaths_tab.Text = "App Paths";
+            this.Apppaths_tab.Text = "Paths, Groups,Depot";
             this.Apppaths_tab.UseVisualStyleBackColor = true;
+            // 
+            // depots_add
+            // 
+            this.depots_add.AcceptsReturn = true;
+            this.depots_add.AcceptsTab = true;
+            this.depots_add.Location = new System.Drawing.Point(30, 262);
+            this.depots_add.Multiline = true;
+            this.depots_add.Name = "depots_add";
+            this.depots_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.depots_add.Size = new System.Drawing.Size(541, 95);
+            this.depots_add.TabIndex = 14;
+            // 
+            // depots_desc
+            // 
+            this.depots_desc.AutoSize = true;
+            this.depots_desc.Location = new System.Drawing.Point(27, 246);
+            this.depots_desc.Name = "depots_desc";
+            this.depots_desc.Size = new System.Drawing.Size(82, 13);
+            this.depots_desc.TabIndex = 13;
+            this.depots_desc.Text = "Custom Depots:";
+            // 
+            // sg_add
+            // 
+            this.sg_add.AcceptsReturn = true;
+            this.sg_add.AcceptsTab = true;
+            this.sg_add.Location = new System.Drawing.Point(30, 148);
+            this.sg_add.Multiline = true;
+            this.sg_add.Name = "sg_add";
+            this.sg_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.sg_add.Size = new System.Drawing.Size(541, 95);
+            this.sg_add.TabIndex = 12;
+            // 
+            // sg_desc
+            // 
+            this.sg_desc.AutoSize = true;
+            this.sg_desc.Location = new System.Drawing.Point(27, 132);
+            this.sg_desc.Name = "sg_desc";
+            this.sg_desc.Size = new System.Drawing.Size(153, 13);
+            this.sg_desc.TabIndex = 11;
+            this.sg_desc.Text = "Custom Subscribed Groups list:";
             // 
             // Apppt_desc
             // 
@@ -233,11 +322,11 @@ namespace SmartGoldbergEmu
             // 
             this.Apppt_add.AcceptsReturn = true;
             this.Apppt_add.AcceptsTab = true;
-            this.Apppt_add.Location = new System.Drawing.Point(30, 53);
+            this.Apppt_add.Location = new System.Drawing.Point(30, 34);
             this.Apppt_add.Multiline = true;
             this.Apppt_add.Name = "Apppt_add";
             this.Apppt_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.Apppt_add.Size = new System.Drawing.Size(541, 287);
+            this.Apppt_add.Size = new System.Drawing.Size(541, 95);
             this.Apppt_add.TabIndex = 8;
             // 
             // Stats_tab
@@ -357,6 +446,31 @@ namespace SmartGoldbergEmu
             this.label9.TabIndex = 32;
             this.label9.Text = "Custom Env var value";
             // 
+            // textBox_env_var_value
+            // 
+            this.textBox_env_var_value.Cue = null;
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
+            this.textBox_env_var_value.Name = "textBox_env_var_value";
+            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
+            this.textBox_env_var_value.TabIndex = 31;
+            // 
+            // textBox_env_var_key
+            // 
+            this.textBox_env_var_key.Cue = null;
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
+            this.textBox_env_var_key.Name = "textBox_env_var_key";
+            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
+            this.textBox_env_var_key.TabIndex = 30;
+            // 
+            // ip_textBox
+            // 
+            this.ip_textBox.Cue = "127.0.0.1";
+            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
+            this.ip_textBox.Name = "ip_textBox";
+            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
+            this.ip_textBox.TabIndex = 1;
+            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
+            // 
             // listBox_env_var
             // 
             this.listBox_env_var.FormattingEnabled = true;
@@ -467,29 +581,22 @@ namespace SmartGoldbergEmu
             // 
             // game_setting_tab
             // 
+            this.game_setting_tab.Controls.Add(this.checkBox_DisableAchNotif);
+            this.game_setting_tab.Controls.Add(this.checkBox_DisableSQuery);
+            this.game_setting_tab.Controls.Add(this.checkBox_DisableAvatar);
             this.game_setting_tab.Controls.Add(this.clan_tag_add);
-            this.game_setting_tab.Controls.Add(this.Clantag);
-            this.game_setting_tab.Controls.Add(this.checkBox_EnableHTTP);
-            this.game_setting_tab.Controls.Add(this.label13);
-            this.game_setting_tab.Controls.Add(this.force_steamidpoigri_add);
-            this.game_setting_tab.Controls.Add(this.force_listen_port_add);
-            this.game_setting_tab.Controls.Add(this.force_langugae_add);
-            this.game_setting_tab.Controls.Add(this.force_account_name_add);
-            this.game_setting_tab.Controls.Add(this.local_save_edit);
             this.game_setting_tab.Controls.Add(this.game_appid_edit);
             this.game_setting_tab.Controls.Add(this.game_folder_edit);
             this.game_setting_tab.Controls.Add(this.game_parameters_edit);
             this.game_setting_tab.Controls.Add(this.game_exe_edit);
             this.game_setting_tab.Controls.Add(this.game_name_edit);
-            this.game_setting_tab.Controls.Add(this.label12);
-            this.game_setting_tab.Controls.Add(this.label11);
-            this.game_setting_tab.Controls.Add(this.label10);
+            this.game_setting_tab.Controls.Add(this.Clantag);
+            this.game_setting_tab.Controls.Add(this.checkBox_EnableHTTP);
             this.game_setting_tab.Controls.Add(this.getgamenameBUT);
             this.game_setting_tab.Controls.Add(this.checkbox_offline);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableNetworking);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableLANOnly);
             this.game_setting_tab.Controls.Add(this.checkBox_disableOverlay);
-            this.game_setting_tab.Controls.Add(this.label7);
             this.game_setting_tab.Controls.Add(this.browse_start_folder);
             this.game_setting_tab.Controls.Add(this.browse_game_exe);
             this.game_setting_tab.Controls.Add(this.x64_checkbox);
@@ -506,59 +613,42 @@ namespace SmartGoldbergEmu
             this.game_setting_tab.Text = "Game Settings";
             this.game_setting_tab.UseVisualStyleBackColor = true;
             // 
-            // checkBox_EnableHTTP
+            // checkBox_DisableAchNotif
             // 
-            this.checkBox_EnableHTTP.AutoSize = true;
-            this.checkBox_EnableHTTP.Location = new System.Drawing.Point(359, 172);
-            this.checkBox_EnableHTTP.Name = "checkBox_EnableHTTP";
-            this.checkBox_EnableHTTP.Size = new System.Drawing.Size(236, 17);
-            this.checkBox_EnableHTTP.TabIndex = 36;
-            this.checkBox_EnableHTTP.Text = "Enable HTTP (Disable lan only has to be on)";
-            this.checkBox_EnableHTTP.UseVisualStyleBackColor = true;
+            this.checkBox_DisableAchNotif.AutoSize = true;
+            this.checkBox_DisableAchNotif.Location = new System.Drawing.Point(359, 195);
+            this.checkBox_DisableAchNotif.Name = "checkBox_DisableAchNotif";
+            this.checkBox_DisableAchNotif.Size = new System.Drawing.Size(182, 17);
+            this.checkBox_DisableAchNotif.TabIndex = 41;
+            this.checkBox_DisableAchNotif.Text = "Disable Achievement Notification";
+            this.checkBox_DisableAchNotif.UseVisualStyleBackColor = true;
             // 
-            // label13
+            // checkBox_DisableSQuery
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(49, 302);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 13);
-            this.label13.TabIndex = 35;
-            this.label13.Text = "Force SteamID:";
+            this.checkBox_DisableSQuery.AutoSize = true;
+            this.checkBox_DisableSQuery.Location = new System.Drawing.Point(170, 195);
+            this.checkBox_DisableSQuery.Name = "checkBox_DisableSQuery";
+            this.checkBox_DisableSQuery.Size = new System.Drawing.Size(129, 17);
+            this.checkBox_DisableSQuery.TabIndex = 40;
+            this.checkBox_DisableSQuery.Text = "Disable Source Query";
+            this.checkBox_DisableSQuery.UseVisualStyleBackColor = true;
             // 
-            // force_steamidpoigri_add
+            // checkBox_DisableAvatar
             // 
-            this.force_steamidpoigri_add.Location = new System.Drawing.Point(170, 299);
-            this.force_steamidpoigri_add.Name = "force_steamidpoigri_add";
-            this.force_steamidpoigri_add.Size = new System.Drawing.Size(357, 20);
-            this.force_steamidpoigri_add.TabIndex = 34;
+            this.checkBox_DisableAvatar.AutoSize = true;
+            this.checkBox_DisableAvatar.Location = new System.Drawing.Point(253, 172);
+            this.checkBox_DisableAvatar.Name = "checkBox_DisableAvatar";
+            this.checkBox_DisableAvatar.Size = new System.Drawing.Size(95, 17);
+            this.checkBox_DisableAvatar.TabIndex = 39;
+            this.checkBox_DisableAvatar.Text = "Disable Avatar";
+            this.checkBox_DisableAvatar.UseVisualStyleBackColor = true;
             // 
-            // force_listen_port_add
+            // clan_tag_add
             // 
-            this.force_listen_port_add.Location = new System.Drawing.Point(170, 273);
-            this.force_listen_port_add.Name = "force_listen_port_add";
-            this.force_listen_port_add.Size = new System.Drawing.Size(144, 20);
-            this.force_listen_port_add.TabIndex = 32;
-            // 
-            // force_langugae_add
-            // 
-            this.force_langugae_add.Location = new System.Drawing.Point(170, 247);
-            this.force_langugae_add.Name = "force_langugae_add";
-            this.force_langugae_add.Size = new System.Drawing.Size(357, 20);
-            this.force_langugae_add.TabIndex = 30;
-            // 
-            // force_account_name_add
-            // 
-            this.force_account_name_add.Location = new System.Drawing.Point(170, 221);
-            this.force_account_name_add.Name = "force_account_name_add";
-            this.force_account_name_add.Size = new System.Drawing.Size(357, 20);
-            this.force_account_name_add.TabIndex = 28;
-            // 
-            // local_save_edit
-            // 
-            this.local_save_edit.Location = new System.Drawing.Point(170, 195);
-            this.local_save_edit.Name = "local_save_edit";
-            this.local_save_edit.Size = new System.Drawing.Size(357, 20);
-            this.local_save_edit.TabIndex = 22;
+            this.clan_tag_add.Location = new System.Drawing.Point(403, 122);
+            this.clan_tag_add.Name = "clan_tag_add";
+            this.clan_tag_add.Size = new System.Drawing.Size(124, 20);
+            this.clan_tag_add.TabIndex = 38;
             // 
             // game_appid_edit
             // 
@@ -595,32 +685,24 @@ namespace SmartGoldbergEmu
             this.game_name_edit.Size = new System.Drawing.Size(357, 20);
             this.game_name_edit.TabIndex = 2;
             // 
-            // label12
+            // Clantag
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(49, 276);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(90, 13);
-            this.label12.TabIndex = 33;
-            this.label12.Text = "Force Listen Port:";
+            this.Clantag.AutoSize = true;
+            this.Clantag.Location = new System.Drawing.Point(344, 125);
+            this.Clantag.Name = "Clantag";
+            this.Clantag.Size = new System.Drawing.Size(53, 13);
+            this.Clantag.TabIndex = 37;
+            this.Clantag.Text = "Clan Tag:";
             // 
-            // label11
+            // checkBox_EnableHTTP
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(49, 250);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 13);
-            this.label11.TabIndex = 31;
-            this.label11.Text = "Force Language:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(49, 224);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(111, 13);
-            this.label10.TabIndex = 29;
-            this.label10.Text = "Force Account Name:";
+            this.checkBox_EnableHTTP.AutoSize = true;
+            this.checkBox_EnableHTTP.Location = new System.Drawing.Point(359, 172);
+            this.checkBox_EnableHTTP.Name = "checkBox_EnableHTTP";
+            this.checkBox_EnableHTTP.Size = new System.Drawing.Size(236, 17);
+            this.checkBox_EnableHTTP.TabIndex = 36;
+            this.checkBox_EnableHTTP.Text = "Enable HTTP (Disable lan only has to be on)";
+            this.checkBox_EnableHTTP.UseVisualStyleBackColor = true;
             // 
             // getgamenameBUT
             // 
@@ -636,7 +718,7 @@ namespace SmartGoldbergEmu
             // checkbox_offline
             // 
             this.checkbox_offline.AutoSize = true;
-            this.checkbox_offline.Location = new System.Drawing.Point(294, 172);
+            this.checkbox_offline.Location = new System.Drawing.Point(170, 172);
             this.checkbox_offline.Name = "checkbox_offline";
             this.checkbox_offline.Size = new System.Drawing.Size(56, 17);
             this.checkbox_offline.TabIndex = 26;
@@ -646,7 +728,7 @@ namespace SmartGoldbergEmu
             // checkBox_DisableNetworking
             // 
             this.checkBox_DisableNetworking.AutoSize = true;
-            this.checkBox_DisableNetworking.Location = new System.Drawing.Point(170, 172);
+            this.checkBox_DisableNetworking.Location = new System.Drawing.Point(170, 218);
             this.checkBox_DisableNetworking.Name = "checkBox_DisableNetworking";
             this.checkBox_DisableNetworking.Size = new System.Drawing.Size(118, 17);
             this.checkBox_DisableNetworking.TabIndex = 25;
@@ -672,15 +754,6 @@ namespace SmartGoldbergEmu
             this.checkBox_disableOverlay.TabIndex = 23;
             this.checkBox_disableOverlay.Text = "Disable Overlay";
             this.checkBox_disableOverlay.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(49, 198);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 13);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Local Save Name:";
             // 
             // browse_start_folder
             // 
@@ -760,58 +833,93 @@ namespace SmartGoldbergEmu
             // game_setting_tab_ctrl
             // 
             this.game_setting_tab_ctrl.Controls.Add(this.game_setting_tab);
+            this.game_setting_tab_ctrl.Controls.Add(this.Force_tab);
             this.game_setting_tab_ctrl.Controls.Add(this.DLC_tab);
-            this.game_setting_tab_ctrl.Controls.Add(this.broadcast_tab);
+            this.game_setting_tab_ctrl.Controls.Add(this.ServerBrowser);
             this.game_setting_tab_ctrl.Controls.Add(this.Stats_tab);
             this.game_setting_tab_ctrl.Controls.Add(this.Apppaths_tab);
-            this.game_setting_tab_ctrl.Controls.Add(this.Subgroups_tab);
-            this.game_setting_tab_ctrl.Controls.Add(this.Depots_tab);
+            this.game_setting_tab_ctrl.Controls.Add(this.broadcast_tab);
             this.game_setting_tab_ctrl.Location = new System.Drawing.Point(12, 12);
             this.game_setting_tab_ctrl.Name = "game_setting_tab_ctrl";
             this.game_setting_tab_ctrl.SelectedIndex = 0;
             this.game_setting_tab_ctrl.Size = new System.Drawing.Size(612, 397);
             this.game_setting_tab_ctrl.TabIndex = 3;
             // 
-            // Clantag
+            // ServerBrowser
             // 
-            this.Clantag.AutoSize = true;
-            this.Clantag.Location = new System.Drawing.Point(320, 276);
-            this.Clantag.Name = "Clantag";
-            this.Clantag.Size = new System.Drawing.Size(53, 13);
-            this.Clantag.TabIndex = 37;
-            this.Clantag.Text = "Clan Tag:";
+            this.ServerBrowser.Controls.Add(this.HisServ_add);
+            this.ServerBrowser.Controls.Add(this.History_label);
+            this.ServerBrowser.Controls.Add(this.FavServ_add);
+            this.ServerBrowser.Controls.Add(this.serfav_label);
+            this.ServerBrowser.Controls.Add(this.serbrow_label);
+            this.ServerBrowser.Controls.Add(this.Server_add);
+            this.ServerBrowser.Location = new System.Drawing.Point(4, 22);
+            this.ServerBrowser.Name = "ServerBrowser";
+            this.ServerBrowser.Padding = new System.Windows.Forms.Padding(3);
+            this.ServerBrowser.Size = new System.Drawing.Size(604, 371);
+            this.ServerBrowser.TabIndex = 8;
+            this.ServerBrowser.Text = "Server Browser";
+            this.ServerBrowser.UseVisualStyleBackColor = true;
             // 
-            // clan_tag_add
+            // HisServ_add
             // 
-            this.clan_tag_add.Location = new System.Drawing.Point(379, 273);
-            this.clan_tag_add.Name = "clan_tag_add";
-            this.clan_tag_add.Size = new System.Drawing.Size(148, 20);
-            this.clan_tag_add.TabIndex = 38;
+            this.HisServ_add.AcceptsReturn = true;
+            this.HisServ_add.AcceptsTab = true;
+            this.HisServ_add.Location = new System.Drawing.Point(30, 262);
+            this.HisServ_add.Multiline = true;
+            this.HisServ_add.Name = "HisServ_add";
+            this.HisServ_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.HisServ_add.Size = new System.Drawing.Size(541, 95);
+            this.HisServ_add.TabIndex = 20;
             // 
-            // textBox_env_var_value
+            // History_label
             // 
-            this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
-            this.textBox_env_var_value.Name = "textBox_env_var_value";
-            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
-            this.textBox_env_var_value.TabIndex = 31;
+            this.History_label.AutoSize = true;
+            this.History_label.Location = new System.Drawing.Point(27, 246);
+            this.History_label.Name = "History_label";
+            this.History_label.Size = new System.Drawing.Size(64, 13);
+            this.History_label.TabIndex = 19;
+            this.History_label.Text = "History Tab:";
             // 
-            // textBox_env_var_key
+            // FavServ_add
             // 
-            this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
-            this.textBox_env_var_key.Name = "textBox_env_var_key";
-            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
-            this.textBox_env_var_key.TabIndex = 30;
+            this.FavServ_add.AcceptsReturn = true;
+            this.FavServ_add.AcceptsTab = true;
+            this.FavServ_add.Location = new System.Drawing.Point(30, 148);
+            this.FavServ_add.Multiline = true;
+            this.FavServ_add.Name = "FavServ_add";
+            this.FavServ_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.FavServ_add.Size = new System.Drawing.Size(541, 95);
+            this.FavServ_add.TabIndex = 18;
             // 
-            // ip_textBox
+            // serfav_label
             // 
-            this.ip_textBox.Cue = "127.0.0.1";
-            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
-            this.ip_textBox.Name = "ip_textBox";
-            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
-            this.ip_textBox.TabIndex = 1;
-            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
+            this.serfav_label.AutoSize = true;
+            this.serfav_label.Location = new System.Drawing.Point(27, 132);
+            this.serfav_label.Name = "serfav_label";
+            this.serfav_label.Size = new System.Drawing.Size(75, 13);
+            this.serfav_label.TabIndex = 17;
+            this.serfav_label.Text = "Favorites Tab:";
+            // 
+            // serbrow_label
+            // 
+            this.serbrow_label.AutoSize = true;
+            this.serbrow_label.Location = new System.Drawing.Point(27, 18);
+            this.serbrow_label.Name = "serbrow_label";
+            this.serbrow_label.Size = new System.Drawing.Size(140, 13);
+            this.serbrow_label.TabIndex = 16;
+            this.serbrow_label.Text = "Internet and Spectate Tabs:";
+            // 
+            // Server_add
+            // 
+            this.Server_add.AcceptsReturn = true;
+            this.Server_add.AcceptsTab = true;
+            this.Server_add.Location = new System.Drawing.Point(30, 34);
+            this.Server_add.Multiline = true;
+            this.Server_add.Name = "Server_add";
+            this.Server_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.Server_add.Size = new System.Drawing.Size(541, 95);
+            this.Server_add.TabIndex = 15;
             // 
             // GameSettingsForm
             // 
@@ -828,10 +936,8 @@ namespace SmartGoldbergEmu
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Game Settings";
-            this.Depots_tab.ResumeLayout(false);
-            this.Depots_tab.PerformLayout();
-            this.Subgroups_tab.ResumeLayout(false);
-            this.Subgroups_tab.PerformLayout();
+            this.Force_tab.ResumeLayout(false);
+            this.Force_tab.PerformLayout();
             this.Apppaths_tab.ResumeLayout(false);
             this.Apppaths_tab.PerformLayout();
             this.Stats_tab.ResumeLayout(false);
@@ -843,18 +949,25 @@ namespace SmartGoldbergEmu
             this.game_setting_tab.ResumeLayout(false);
             this.game_setting_tab.PerformLayout();
             this.game_setting_tab_ctrl.ResumeLayout(false);
+            this.ServerBrowser.ResumeLayout(false);
+            this.ServerBrowser.PerformLayout();
             this.ResumeLayout(false);
 
         }
         #endregion
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
-        private System.Windows.Forms.TabPage Depots_tab;
-        private System.Windows.Forms.Label depots_desc;
-        private System.Windows.Forms.TextBox depots_add;
-        private System.Windows.Forms.TabPage Subgroups_tab;
-        private System.Windows.Forms.Label sg_desc;
-        private System.Windows.Forms.TextBox sg_add;
+        private System.Windows.Forms.TabPage Force_tab;
+        private System.Windows.Forms.TextBox force_steamidpoigri_add;
+        private System.Windows.Forms.TextBox force_listen_port_add;
+        private System.Windows.Forms.TextBox force_langugae_add;
+        private System.Windows.Forms.TextBox force_account_name_add;
+        private System.Windows.Forms.TextBox local_save_edit;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabPage Apppaths_tab;
         private System.Windows.Forms.Label Apppt_desc;
         private System.Windows.Forms.TextBox Apppt_add;
@@ -883,26 +996,19 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Label DLC_desc;
         private System.Windows.Forms.TextBox DLC_add;
         private System.Windows.Forms.TabPage game_setting_tab;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox force_steamidpoigri_add;
-        private System.Windows.Forms.TextBox force_listen_port_add;
-        private System.Windows.Forms.TextBox force_langugae_add;
-        private System.Windows.Forms.TextBox force_account_name_add;
-        private System.Windows.Forms.TextBox local_save_edit;
+        private System.Windows.Forms.TextBox clan_tag_add;
         private System.Windows.Forms.TextBox game_appid_edit;
         private System.Windows.Forms.TextBox game_folder_edit;
         private System.Windows.Forms.TextBox game_parameters_edit;
         private System.Windows.Forms.TextBox game_exe_edit;
         private System.Windows.Forms.TextBox game_name_edit;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label Clantag;
+        private System.Windows.Forms.CheckBox checkBox_EnableHTTP;
         private System.Windows.Forms.Button getgamenameBUT;
         private System.Windows.Forms.CheckBox checkbox_offline;
         private System.Windows.Forms.CheckBox checkBox_DisableNetworking;
         private System.Windows.Forms.CheckBox checkBox_DisableLANOnly;
         private System.Windows.Forms.CheckBox checkBox_disableOverlay;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button browse_start_folder;
         private System.Windows.Forms.Button browse_game_exe;
         private System.Windows.Forms.CheckBox x64_checkbox;
@@ -912,8 +1018,19 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl game_setting_tab_ctrl;
-        private System.Windows.Forms.CheckBox checkBox_EnableHTTP;
-        private System.Windows.Forms.TextBox clan_tag_add;
-        private System.Windows.Forms.Label Clantag;
+        private System.Windows.Forms.CheckBox checkBox_DisableAchNotif;
+        private System.Windows.Forms.CheckBox checkBox_DisableSQuery;
+        private System.Windows.Forms.CheckBox checkBox_DisableAvatar;
+        private System.Windows.Forms.TextBox depots_add;
+        private System.Windows.Forms.Label depots_desc;
+        private System.Windows.Forms.TextBox sg_add;
+        private System.Windows.Forms.Label sg_desc;
+        private System.Windows.Forms.TabPage ServerBrowser;
+        private System.Windows.Forms.TextBox HisServ_add;
+        private System.Windows.Forms.Label History_label;
+        private System.Windows.Forms.TextBox FavServ_add;
+        private System.Windows.Forms.Label serfav_label;
+        private System.Windows.Forms.Label serbrow_label;
+        private System.Windows.Forms.TextBox Server_add;
     }
 }

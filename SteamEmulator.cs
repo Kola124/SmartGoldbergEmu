@@ -383,19 +383,59 @@ namespace SmartGoldbergEmu
                     {
                         
                     }
-                }
-                if (app.EnableHTTP && app.DisableLANOnly)
-                {
-                    File.WriteAllText(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt"), "Dinamo Zagreb iznad svih");
-                }
-                if (app.EnableHTTP == false && app.DisableLANOnly)
-                {
-                    File.WriteAllText(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt"), String.Empty);
-                }
+                }      
                 if (app.DisableLANOnly == false)
                 {
                     if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt")))
                         File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_lan_only.txt"));
+                }
+                if (app.EnableHTTP)
+                {
+                    using(StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "http_online.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+
+                    }
+                }
+                if (app.EnableHTTP == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "http_online.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "http_online.txt"));
+                }
+                if (app.DisableAvatar)
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_account_avatar.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+
+                    }
+                }
+                if (app.DisableAvatar == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_account_avatar.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_account_avatar.txt"));
+                }
+                if (app.DisableSQuery)
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_source_query.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+
+                    }
+                }
+                if (app.DisableSQuery == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_source_query.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_source_query.txt"));
+                }
+                if (app.DisableAchNotif)
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_achievement_notification.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+
+                    }
+                }
+                if (app.DisableAchNotif == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_achievement_notification.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_achievement_notification.txt"));
                 }
 
                 File.Copy(emu_path, Path.Combine(game_emu_folder, OSFuncs.GetSteamAPIName(app.UseX64)), true);
