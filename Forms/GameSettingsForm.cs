@@ -1042,7 +1042,6 @@ namespace SmartGoldbergEmu
                 HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
                 if (webResponse.StatusCode == HttpStatusCode.NotFound)
                 {
-                    DialogResult = MessageBox.Show("Game has no Stats", "Game has no Stats", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 webResponse.Dispose();
             }
