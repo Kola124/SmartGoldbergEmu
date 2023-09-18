@@ -76,9 +76,6 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox_env_var_value = new CueTextBox();
-            this.textBox_env_var_key = new CueTextBox();
-            this.ip_textBox = new CueTextBox();
             this.listBox_env_var = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clear_broadcast_button = new System.Windows.Forms.Button();
@@ -123,6 +120,11 @@ namespace SmartGoldbergEmu
             this.serfav_label = new System.Windows.Forms.Label();
             this.serbrow_label = new System.Windows.Forms.Label();
             this.Server_add = new System.Windows.Forms.TextBox();
+            this.DLCinfo_gameinfo = new System.Windows.Forms.Button();
+            this.textBox_env_var_value = new CueTextBox();
+            this.textBox_env_var_key = new CueTextBox();
+            this.ip_textBox = new CueTextBox();
+            this.GetStats = new System.Windows.Forms.Button();
             this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
@@ -331,6 +333,7 @@ namespace SmartGoldbergEmu
             // 
             // Stats_tab
             // 
+            this.Stats_tab.Controls.Add(this.GetStats);
             this.Stats_tab.Controls.Add(this.stat_desc);
             this.Stats_tab.Controls.Add(this.stat_add);
             this.Stats_tab.Location = new System.Drawing.Point(4, 22);
@@ -446,31 +449,6 @@ namespace SmartGoldbergEmu
             this.label9.TabIndex = 32;
             this.label9.Text = "Custom Env var value";
             // 
-            // textBox_env_var_value
-            // 
-            this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
-            this.textBox_env_var_value.Name = "textBox_env_var_value";
-            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
-            this.textBox_env_var_value.TabIndex = 31;
-            // 
-            // textBox_env_var_key
-            // 
-            this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
-            this.textBox_env_var_key.Name = "textBox_env_var_key";
-            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
-            this.textBox_env_var_key.TabIndex = 30;
-            // 
-            // ip_textBox
-            // 
-            this.ip_textBox.Cue = "127.0.0.1";
-            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
-            this.ip_textBox.Name = "ip_textBox";
-            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
-            this.ip_textBox.TabIndex = 1;
-            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
-            // 
             // listBox_env_var
             // 
             this.listBox_env_var.FormattingEnabled = true;
@@ -538,6 +516,7 @@ namespace SmartGoldbergEmu
             // 
             // DLC_tab
             // 
+            this.DLC_tab.Controls.Add(this.DLCinfo_gameinfo);
             this.DLC_tab.Controls.Add(this.button1);
             this.DLC_tab.Controls.Add(this.DLC_desc);
             this.DLC_tab.Controls.Add(this.DLC_add);
@@ -551,11 +530,11 @@ namespace SmartGoldbergEmu
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(432, 13);
+            this.button1.Location = new System.Drawing.Point(287, 18);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 23);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Get DLC info";
+            this.button1.Text = "Get DLC info from Steam";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
@@ -921,6 +900,51 @@ namespace SmartGoldbergEmu
             this.Server_add.Size = new System.Drawing.Size(541, 95);
             this.Server_add.TabIndex = 15;
             // 
+            // DLCinfo_gameinfo
+            // 
+            this.DLCinfo_gameinfo.Location = new System.Drawing.Point(432, 18);
+            this.DLCinfo_gameinfo.Name = "DLCinfo_gameinfo";
+            this.DLCinfo_gameinfo.Size = new System.Drawing.Size(139, 23);
+            this.DLCinfo_gameinfo.TabIndex = 6;
+            this.DLCinfo_gameinfo.Text = "Get DLC info from GitHub";
+            this.DLCinfo_gameinfo.UseVisualStyleBackColor = true;
+            this.DLCinfo_gameinfo.Click += new System.EventHandler(this.DLCinfo_gameinfo_Click);
+            // 
+            // textBox_env_var_value
+            // 
+            this.textBox_env_var_value.Cue = null;
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
+            this.textBox_env_var_value.Name = "textBox_env_var_value";
+            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
+            this.textBox_env_var_value.TabIndex = 31;
+            // 
+            // textBox_env_var_key
+            // 
+            this.textBox_env_var_key.Cue = null;
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
+            this.textBox_env_var_key.Name = "textBox_env_var_key";
+            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
+            this.textBox_env_var_key.TabIndex = 30;
+            // 
+            // ip_textBox
+            // 
+            this.ip_textBox.Cue = "127.0.0.1";
+            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
+            this.ip_textBox.Name = "ip_textBox";
+            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
+            this.ip_textBox.TabIndex = 1;
+            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
+            // 
+            // GetStats
+            // 
+            this.GetStats.Location = new System.Drawing.Point(432, 18);
+            this.GetStats.Name = "GetStats";
+            this.GetStats.Size = new System.Drawing.Size(139, 23);
+            this.GetStats.TabIndex = 11;
+            this.GetStats.Text = "Get Stats";
+            this.GetStats.UseVisualStyleBackColor = true;
+            this.GetStats.Click += new System.EventHandler(this.GetStats_Click);
+            // 
             // GameSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1032,5 +1056,7 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Label serfav_label;
         private System.Windows.Forms.Label serbrow_label;
         private System.Windows.Forms.TextBox Server_add;
+        private System.Windows.Forms.Button DLCinfo_gameinfo;
+        private System.Windows.Forms.Button GetStats;
     }
 }

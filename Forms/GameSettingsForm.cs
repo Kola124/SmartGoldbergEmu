@@ -25,9 +25,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Globalization;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System.Diagnostics.Eventing.Reader;
+using static SmartGoldbergEmu.GameSettingsForm;
+using System.Security.Policy;
+using System.Threading;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace SmartGoldbergEmu
 {
@@ -997,6 +1003,102 @@ namespace SmartGoldbergEmu
             }
         }
 
+        private void GetStats_Click(object sender, EventArgs e)
+        {
+            WebClient web = new WebClient();
+            string manipulirano, webadresa;
+            webadresa = "https://raw.githubusercontent.com/Nemirtingas/games-infos-datas/main/steam/" + game_appid_edit.Text + "/stats_db.json";
+            //Primjer "https://raw.githubusercontent.com/Nemirtingas/games-infos-datas/main/steam/244450/stats_db.json"
+            System.IO.Stream stream = web.OpenRead(webadresa);
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
+                {
+                    manipulirano = reader.ReadToEnd();
+                    stat_add.Text = "";
+                    List<Stats> rjecnik = JsonConvert.DeserializeObject<List<Stats>>(manipulirano);
+                    if (rjecnik.Count > 0)
+                    {
+                        for (int brojac = 0; brojac < rjecnik.Count; brojac++)
+                        {
+                            Stats name = rjecnik[brojac];
+                            stat_add.AppendText(name.Name + "=" + name.Type + "=" + name.Defaultvalue + System.Environment.NewLine);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DLCinfo_gameinfo_Click(object sender, EventArgs e)
+        {
+            WebClient web = new WebClient();
+            string manipulirano, webadresa;
+            webadresa = "https://raw.githubusercontent.com/Nemirtingas/games-infos-datas/main/steam/" + game_appid_edit.Text + "/" + game_appid_edit.Text + ".json";
+            //Stranica "https://raw.githubusercontent.com/Nemirtingas/games-infos-datas/main/steam/244450/244450.json"
+            System.IO.Stream stream = web.OpenRead(webadresa);
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
+            {
+                manipulirano = reader.ReadToEnd();
+                var rjecnik = JsonConvert.DeserializeObject<Prvi>(manipulirano);
+
+                /*if (rjecnik[game_appid_edit.Text].Dlcs != null)
+                {
+                    if (rjecnik[game_appid_edit.Text].Dlcs != null)
+                    {
+                        DLC_add.Text = string.Join(" = 0" + System.Environment.NewLine, rjecnik[game_appid_edit.Text].Dlcs) + " = 0";
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("Appid has no DLC", "No DLC", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    DialogResult res = MessageBox.Show("Appid is not valid?", "Not valid Appid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }*/
+            }
+        }
+
+        public partial class Prvi
+        {
+            [JsonProperty("Dlcs")]
+            public Dictionary<string, Dlcs> Dlcs { get; set; }
+
+            [JsonProperty("Name")]
+            public string Name { get; set; }
+
+            [JsonProperty("AppId")]
+            public long AppId { get; set; }
+
+            [JsonProperty("ImageUrl")]
+            public Uri ImageUrl { get; set; }
+
+            [JsonProperty("Languages")]
+            public string[] Languages { get; set; }
+
+            [JsonProperty("Type")]
+            public string Type { get; set; }
+        }
+
+        public partial class Dlcs
+        {
+            [JsonProperty("Name")]
+            public string Name { get; set; }
+
+            [JsonProperty("AppId")]
+            public long AppId { get; set; }
+
+            [JsonProperty("ImageUrl")]
+            public Uri ImageUrl { get; set; }
+
+            [JsonProperty("MainAppId")]
+            public long MainAppId { get; set; }
+
+            [JsonProperty("Type")]
+            public string Type { get; set; }
+
+            [JsonProperty("Languages", NullValueHandling = NullValueHandling.Ignore)]
+            public string[] Languages { get; set; }
+        }
+
         public class Drugi
         {
             [JsonProperty("success")]
@@ -1017,73 +1119,23 @@ namespace SmartGoldbergEmu
             [JsonProperty("steam_appid")]
             public int SteamAppid { get; set; }
 
-            [JsonProperty("required_age")]
-            public int RequiredAge { get; set; }
-
             [JsonProperty("is_free")]
             public bool IsFree { get; set; }
 
             [JsonProperty("dlc")]
             public List<int> Dlc { get; set; }
-
-            [JsonProperty("detailed_description")]
-            public string DetailedDescription { get; set; }
-
-            [JsonProperty("about_the_game")]
-            public string AboutTheGame { get; set; }
-
-            [JsonProperty("short_description")]
-            public string ShortDescription { get; set; }
-
-            [JsonProperty("supported_languages")]
-            public string SupportedLanguages { get; set; }
-
-            [JsonProperty("reviews")]
-            public string Reviews { get; set; }
-
-            [JsonProperty("header_image")]
-            public string HeaderImage { get; set; }
-
-            [JsonProperty("website")]
-            public string Website { get; set; }
-
-            //[JsonProperty("pc_requirements")]
-            //public PcRequirements PcRequirements { get; set; }
-
-            //[JsonProperty("mac_requirements")]
-            //public MacRequirements MacRequirements { get; set; }
-
-            //JsonProperty("linux_requirements")]
-            //public LinuxRequirements LinuxRequirements { get; set; }
-
-            [JsonProperty("legal_notice")]
-            public string LegalNotice { get; set; }
         }
 
-        public class PcRequirements
+        public partial class Stats
         {
-            [JsonProperty("minimum")]
-            public string Minimum { get; set; }
+            [JsonProperty("name")]
+            public string Name { get; set; }
 
-            [JsonProperty("recommended")]
-            public string Recommended { get; set; }
-        }
-        public class LinuxRequirements
-        {
-            [JsonProperty("minimum")]
-            public string Minimum { get; set; }
+            [JsonProperty("type")]
+            public string Type { get; set; }
 
-            [JsonProperty("recommended")]
-            public string Recommended { get; set; }
-        }
-
-        public class MacRequirements
-        {
-            [JsonProperty("minimum")]
-            public string Minimum { get; set; }
-
-            [JsonProperty("recommended")]
-            public string Recommended { get; set; }
+            [JsonProperty("defaultvalue")]
+            public long Defaultvalue { get; set; }
         }
     }
 }
