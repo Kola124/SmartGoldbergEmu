@@ -34,6 +34,7 @@ using static SmartGoldbergEmu.GameSettingsForm;
 using System.Security.Policy;
 using System.Threading;
 using System.Runtime.InteropServices.ComTypes;
+using System.Linq;
 
 namespace SmartGoldbergEmu
 {
@@ -980,6 +981,8 @@ namespace SmartGoldbergEmu
                     DialogResult res = MessageBox.Show("Appid is not valid?", "Not valid Appid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            stream.Dispose();
+            web.Dispose();
         }
 
         private void GetgamenameBUT_Click(object sender, EventArgs e)
@@ -1001,6 +1004,8 @@ namespace SmartGoldbergEmu
                     DialogResult res = MessageBox.Show("Appid is not valid?", "Not valid Appid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            stream.Dispose();
+            web.Dispose();
         }
 
         private void GetStats_Click(object sender, EventArgs e)
@@ -1009,7 +1014,11 @@ namespace SmartGoldbergEmu
             string manipulirano, webadresa;
             webadresa = "https://raw.githubusercontent.com/Nemirtingas/games-infos-datas/main/steam/" + game_appid_edit.Text + "/stats_db.json";
             //Primjer "https://raw.githubusercontent.com/Nemirtingas/games-infos-datas/main/steam/244450/stats_db.json"
-            System.IO.Stream stream = web.OpenRead(webadresa);
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(webadresa);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                System.IO.Stream stream = web.OpenRead(webadresa);
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
                 {
                     manipulirano = reader.ReadToEnd();
@@ -1023,8 +1032,21 @@ namespace SmartGoldbergEmu
                             stat_add.AppendText(name.Name + "=" + name.Type + "=" + name.Defaultvalue + System.Environment.NewLine);
                         }
                     }
+                    reader.Dispose();
                 }
+                stream.Dispose();
+                response.Dispose();
             }
+            catch (WebException ex)
+            {
+                HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
+                if (webResponse.StatusCode == HttpStatusCode.NotFound)
+                {
+                    DialogResult = MessageBox.Show("Game has no Stats", "Game has no Stats", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                webResponse.Dispose();
+            }
+            web.Dispose();
         }
 
         private void DLCinfo_gameinfo_Click(object sender, EventArgs e)
@@ -1038,23 +1060,13 @@ namespace SmartGoldbergEmu
             {
                 manipulirano = reader.ReadToEnd();
                 var rjecnik = JsonConvert.DeserializeObject<Prvi>(manipulirano);
-
-                /*if (rjecnik[game_appid_edit.Text].Dlcs != null)
-                {
-                    if (rjecnik[game_appid_edit.Text].Dlcs != null)
-                    {
-                        DLC_add.Text = string.Join(" = 0" + System.Environment.NewLine, rjecnik[game_appid_edit.Text].Dlcs) + " = 0";
-                    }
-                    else
-                    {
-                        DialogResult res = MessageBox.Show("Appid has no DLC", "No DLC", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                DLC_add.Text = "";
+                foreach (var Dlcs in rjecnik.Dlcs.Values) {
+                    DLC_add.AppendText(Dlcs.AppId+"="+Dlcs.Name + System.Environment.NewLine);
                 }
-                else
-                {
-                    DialogResult res = MessageBox.Show("Appid is not valid?", "Not valid Appid", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
             }
+            stream.Dispose();
+            web.Dispose();
         }
 
         public partial class Prvi
