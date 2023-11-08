@@ -45,6 +45,7 @@ namespace SmartGoldbergEmu
         public string description = "";
         public string icon = "";
         public string icongray = "";
+        public string icon_gray = "";
     }
 
     public class CSteamMetaResponse
