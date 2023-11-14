@@ -393,7 +393,7 @@ namespace SmartGoldbergEmu
                         if (R > 255) R = 255;
                         if (G > 255) G = 255;
                         if (B > 255) B = 255;
-                        if (A > 0) A = 0;
+                        if (A > 100) A = 100;
 
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
@@ -421,7 +421,7 @@ namespace SmartGoldbergEmu
                         if (R > 255) R = 255;
                         if (G > 255) G = 255;
                         if (B > 255) B = 255;
-                        if (A > 0) A = 0;
+                        if (A > 100) A = 100;
 
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
@@ -448,7 +448,7 @@ namespace SmartGoldbergEmu
                         if (R > 255) R = 255;
                         if (G > 255) G = 255;
                         if (B > 255) B = 255;
-                        if (A > 0) A = 0;
+                        if (A > 100) A = 100;
 
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
@@ -475,7 +475,7 @@ namespace SmartGoldbergEmu
                         if (R > 255) R = 255;
                         if (G > 255) G = 255;
                         if (B > 255) B = 255;
-                        if (A > 0) A = 0;
+                        if (A > 100) A = 100;
 
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
