@@ -28,7 +28,6 @@ namespace SmartGoldbergEmu
         public ushort port;//listen_port.txt
         public string steamid;//user_steam_id.txt
         public string webapi_key;
-        public bool darkmod;
 
         public EmuConfig()
         {
@@ -37,12 +36,10 @@ namespace SmartGoldbergEmu
             port = 0;
             steamid = "";
             webapi_key = "";
-            darkmod = false;
         }
     }
     public class SavedConf
     {
-        public string darkmod;
         public string webapi_key = "";
         public List<GameConfig> apps = new List<GameConfig>();
     }
