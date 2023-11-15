@@ -552,5 +552,71 @@ namespace SmartGoldbergEmu
             }
             Ucitavanje();
         }
+
+        private void addfriendsoundbutton_Click(object sender, EventArgs e)
+        {
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            OpenFileDialog dijalog = new OpenFileDialog
+            {
+                Filter = "WAV|*.wav|All files|*.*",
+                FilterIndex = 2
+            };
+            if (dijalog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.Copy(dijalog.FileName, Path.Combine(save_folder, "overlay_friend_notification.wav"), true);
+                }
+                catch (IOException)
+                {
+                    // File in use and can't be deleted; no permission etc.
+                }
+            }
+        }
+        private void addachsoundbutton_Click(object sender, EventArgs e)
+        {
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            OpenFileDialog dijalog = new OpenFileDialog
+            {
+                Filter = "WAV|*.wav|All files|*.*",
+                FilterIndex = 2
+            };
+            if (dijalog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.Copy(dijalog.FileName, Path.Combine(save_folder, "overlay_achievement_notification.wav"), true);
+                }
+                catch (IOException)
+                {
+                    // File in use and can't be deleted; no permission etc.
+                }
+            }
+        }
+        private void delfriendsoundbutton_Click(object sender, EventArgs e)
+        {
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            if (File.Exists(Path.Combine(save_folder, "overlay_friend_notification.wav")))
+            {
+                File.Delete(Path.Combine(save_folder, "overlay_friend_notification.wav"));
+                MessageBox.Show("File was successfully deleted", "File Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("File doesn't exist", "File doesn't exist", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void delachsoundbutton_Click(object sender, EventArgs e)
+        {
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            if (File.Exists(Path.Combine(save_folder, "overlay_achievement_notification.wav"))) {
+                File.Delete(Path.Combine(save_folder, "overlay_achievement_notification.wav"));
+                MessageBox.Show("File was successfully deleted", "File Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("File doesn't exist", "File doesn't exist", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

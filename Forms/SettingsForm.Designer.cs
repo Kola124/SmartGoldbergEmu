@@ -81,10 +81,18 @@ namespace SmartGoldbergEmu
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.NotifColourText = new System.Windows.Forms.TextBox();
+            this.soundtab = new System.Windows.Forms.TabPage();
+            this.delachsoundbutton = new System.Windows.Forms.Button();
+            this.delfriendsoundbutton = new System.Windows.Forms.Button();
+            this.addachsoundbutton = new System.Windows.Forms.Button();
+            this.addfriendsoundbutton = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.generaltab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatar)).BeginInit();
             this.appearancetab.SuspendLayout();
+            this.soundtab.SuspendLayout();
             this.SuspendLayout();
             // 
             // save_button
@@ -111,6 +119,7 @@ namespace SmartGoldbergEmu
             // 
             this.tabControl1.Controls.Add(this.generaltab);
             this.tabControl1.Controls.Add(this.appearancetab);
+            this.tabControl1.Controls.Add(this.soundtab);
             this.tabControl1.Location = new System.Drawing.Point(13, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -152,9 +161,9 @@ namespace SmartGoldbergEmu
             // 
             // avatarchng
             // 
-            this.avatarchng.Location = new System.Drawing.Point(6, 114);
+            this.avatarchng.Location = new System.Drawing.Point(6, 110);
             this.avatarchng.Name = "avatarchng";
-            this.avatarchng.Size = new System.Drawing.Size(94, 20);
+            this.avatarchng.Size = new System.Drawing.Size(94, 24);
             this.avatarchng.TabIndex = 25;
             this.avatarchng.Text = "Change Avatar";
             this.avatarchng.UseVisualStyleBackColor = true;
@@ -429,6 +438,79 @@ namespace SmartGoldbergEmu
             this.NotifColourText.Size = new System.Drawing.Size(117, 20);
             this.NotifColourText.TabIndex = 0;
             // 
+            // soundtab
+            // 
+            this.soundtab.BackColor = System.Drawing.SystemColors.Control;
+            this.soundtab.Controls.Add(this.delachsoundbutton);
+            this.soundtab.Controls.Add(this.delfriendsoundbutton);
+            this.soundtab.Controls.Add(this.addachsoundbutton);
+            this.soundtab.Controls.Add(this.addfriendsoundbutton);
+            this.soundtab.Controls.Add(this.label11);
+            this.soundtab.Controls.Add(this.label10);
+            this.soundtab.Location = new System.Drawing.Point(4, 22);
+            this.soundtab.Name = "soundtab";
+            this.soundtab.Size = new System.Drawing.Size(439, 141);
+            this.soundtab.TabIndex = 2;
+            this.soundtab.Text = "Sound";
+            // 
+            // delachsoundbutton
+            // 
+            this.delachsoundbutton.Location = new System.Drawing.Point(119, 90);
+            this.delachsoundbutton.Name = "delachsoundbutton";
+            this.delachsoundbutton.Size = new System.Drawing.Size(94, 29);
+            this.delachsoundbutton.TabIndex = 29;
+            this.delachsoundbutton.Text = "Delete Sound";
+            this.delachsoundbutton.UseVisualStyleBackColor = true;
+            this.delachsoundbutton.Click += new System.EventHandler(this.delachsoundbutton_Click);
+            // 
+            // delfriendsoundbutton
+            // 
+            this.delfriendsoundbutton.Location = new System.Drawing.Point(119, 29);
+            this.delfriendsoundbutton.Name = "delfriendsoundbutton";
+            this.delfriendsoundbutton.Size = new System.Drawing.Size(94, 31);
+            this.delfriendsoundbutton.TabIndex = 28;
+            this.delfriendsoundbutton.Text = "Delete Sound";
+            this.delfriendsoundbutton.UseVisualStyleBackColor = true;
+            this.delfriendsoundbutton.Click += new System.EventHandler(this.delfriendsoundbutton_Click);
+            // 
+            // addachsoundbutton
+            // 
+            this.addachsoundbutton.Location = new System.Drawing.Point(19, 90);
+            this.addachsoundbutton.Name = "addachsoundbutton";
+            this.addachsoundbutton.Size = new System.Drawing.Size(94, 29);
+            this.addachsoundbutton.TabIndex = 27;
+            this.addachsoundbutton.Text = "Change Sound";
+            this.addachsoundbutton.UseVisualStyleBackColor = true;
+            this.addachsoundbutton.Click += new System.EventHandler(this.addachsoundbutton_Click);
+            // 
+            // addfriendsoundbutton
+            // 
+            this.addfriendsoundbutton.Location = new System.Drawing.Point(19, 29);
+            this.addfriendsoundbutton.Name = "addfriendsoundbutton";
+            this.addfriendsoundbutton.Size = new System.Drawing.Size(94, 31);
+            this.addfriendsoundbutton.TabIndex = 26;
+            this.addfriendsoundbutton.Text = "Change Sound";
+            this.addfriendsoundbutton.UseVisualStyleBackColor = true;
+            this.addfriendsoundbutton.Click += new System.EventHandler(this.addfriendsoundbutton_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 74);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(125, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Achievement Notification";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 13);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(92, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Friend Notification";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,6 +532,8 @@ namespace SmartGoldbergEmu
             ((System.ComponentModel.ISupportInitialize)(this.avatar)).EndInit();
             this.appearancetab.ResumeLayout(false);
             this.appearancetab.PerformLayout();
+            this.soundtab.ResumeLayout(false);
+            this.soundtab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -491,5 +575,12 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox FontsizeText;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabPage soundtab;
+        private System.Windows.Forms.Button delachsoundbutton;
+        private System.Windows.Forms.Button delfriendsoundbutton;
+        private System.Windows.Forms.Button addachsoundbutton;
+        private System.Windows.Forms.Button addfriendsoundbutton;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
