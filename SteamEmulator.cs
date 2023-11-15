@@ -328,6 +328,8 @@ namespace SmartGoldbergEmu
                 {
                     if (File.Exists(Path.Combine(game_emu_folder, "local_save.txt")))
                         File.Delete(Path.Combine(game_emu_folder, "local_save.txt"));
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_warning.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_warning.txt"));
                 }
                 else
                 {
@@ -335,6 +337,8 @@ namespace SmartGoldbergEmu
                     {
                         streamWriter.Write(app.LocalSave);
                     }
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_warning.txt"), FileMode.Create), Encoding.ASCII))
+                    { }
                 }
 
                 if (app.CustomBroadcasts.Count > 0)
