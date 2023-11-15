@@ -190,7 +190,6 @@ namespace SmartGoldbergEmu
                         {
                             prosliline = prosliline.Replace("Notification_A ", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
-                            result = result * 100;
                             NotifColourText.Text = NotifColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
@@ -224,7 +223,6 @@ namespace SmartGoldbergEmu
                         {
                             prosliline = prosliline.Replace("Background_A ", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
-                            result = result * 100;
                             BackColourText.Text = BackColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
@@ -258,7 +256,6 @@ namespace SmartGoldbergEmu
                         {
                             prosliline = prosliline.Replace("Element_A ", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
-                            result = result * 100;
                             ElementColourText.Text = ElementColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
@@ -291,7 +288,6 @@ namespace SmartGoldbergEmu
                         {
                             prosliline = prosliline.Replace("ElementHovered_A ", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
-                            result = result * 100;
                             ElementHovColourText.Text = ElementHovColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
@@ -324,7 +320,6 @@ namespace SmartGoldbergEmu
                         {
                             prosliline = prosliline.Replace("ElementActive_A ", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
-                            result = result * 100;
                             EleActColourText.Text = EleActColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
                             
@@ -370,7 +365,6 @@ namespace SmartGoldbergEmu
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
                         B = Math.Round(B / 255, 2);
-                        A = A / 100;
 
                         string R1 = R.ToString().Replace(",", ".");
                         string G1 = G.ToString().Replace(",", ".");
@@ -398,7 +392,6 @@ namespace SmartGoldbergEmu
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
                         B = Math.Round(B / 255, 2);
-                        A = A / 100;
 
                         string R1 = R.ToString().Replace(",", ".");
                         string G1 = G.ToString().Replace(",", ".");
@@ -426,7 +419,6 @@ namespace SmartGoldbergEmu
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
                         B = Math.Round(B / 255, 2);
-                        A = A / 100;
 
                         string R1 = R.ToString().Replace(",", ".");
                         string G1 = G.ToString().Replace(",", ".");
@@ -453,7 +445,6 @@ namespace SmartGoldbergEmu
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
                         B = Math.Round(B / 255, 2);
-                        A = A / 100;
 
                         string R1 = R.ToString().Replace(",", ".");
                         string G1 = G.ToString().Replace(",", ".");
@@ -480,7 +471,6 @@ namespace SmartGoldbergEmu
                         R = Math.Round(R / 255, 2);
                         G = Math.Round(G / 255, 2);
                         B = Math.Round(B / 255, 2);
-                        A = A / 100;
 
                         string R1 = R.ToString().Replace(",", ".");
                         string G1 = G.ToString().Replace(",", ".");
