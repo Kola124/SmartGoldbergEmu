@@ -336,24 +336,29 @@ namespace SmartGoldbergEmu
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "local_save.txt"), FileMode.Create), Encoding.ASCII))
                     {
                         streamWriter.Write(app.LocalSave);
+                        streamWriter.Close();
                     }
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_warning.txt"), FileMode.Create), Encoding.ASCII))
-                    { }
+                    {
+                        streamWriter.Close();
+                    }
                 }
 
                 if (app.CustomBroadcasts.Count > 0)
                 {
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "custom_broadcasts.txt"), FileMode.Create), Encoding.ASCII))
                     {
-                        foreach (string ip in app.CustomBroadcasts)
-                            streamWriter.WriteLine(ip);
+                        foreach (string ip in app.CustomBroadcasts) streamWriter.WriteLine(ip);
+                        streamWriter.Close();
                     }
                 }
 
                 if (app.DisableOverlay)
                 {   
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay.txt"), FileMode.Create), Encoding.ASCII))
-                    { }
+                    {
+                        streamWriter.Close();
+                    }
                 }
                 if (app.DisableOverlay == false)
                 {
@@ -364,7 +369,9 @@ namespace SmartGoldbergEmu
                 {
  
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_networking.txt"), FileMode.Create), Encoding.ASCII))
-                    { }
+                    {
+                        streamWriter.Close();
+                    }
                 }
                 if(app.DisableNetworking == false)
                 {
@@ -374,7 +381,9 @@ namespace SmartGoldbergEmu
                 if (app.Offline)
                 {
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "offline.txt"), FileMode.Create), Encoding.ASCII))
-                    { }
+                    {
+                        streamWriter.Close();
+                    }
                 }
                 if(app.Offline == false)
                 {
@@ -385,7 +394,7 @@ namespace SmartGoldbergEmu
                 {
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder,"steam_settings", "disable_lan_only.txt"), FileMode.Create), Encoding.ASCII))
                     {
-                        
+                        streamWriter.Close();
                     }
                 }      
                 if (app.DisableLANOnly == false)
@@ -397,7 +406,7 @@ namespace SmartGoldbergEmu
                 {
                     using(StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "http_online.txt"), FileMode.Create), Encoding.ASCII))
                     {
-
+                        streamWriter.Close();
                     }
                 }
                 if (app.EnableHTTP == false)
@@ -409,7 +418,7 @@ namespace SmartGoldbergEmu
                 {
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_account_avatar.txt"), FileMode.Create), Encoding.ASCII))
                     {
-
+                        streamWriter.Close();
                     }
                 }
                 if (app.DisableAvatar == false)
@@ -421,7 +430,7 @@ namespace SmartGoldbergEmu
                 {
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_source_query.txt"), FileMode.Create), Encoding.ASCII))
                     {
-
+                        streamWriter.Close();
                     }
                 }
                 if (app.DisableSQuery == false)
@@ -433,13 +442,50 @@ namespace SmartGoldbergEmu
                 {
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_achievement_notification.txt"), FileMode.Create), Encoding.ASCII))
                     {
-
+                        streamWriter.Close();
                     }
                 }
                 if (app.DisableAchNotif == false)
                 {
                     if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_achievement_notification.txt")))
                         File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_achievement_notification.txt"));
+                }
+                if (app.DisableFriendNotif)
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_friend_notification.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+                        streamWriter.Close();
+                    }
+                }
+                if (app.DisableFriendNotif == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_friend_notification.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_friend_notification.txt"));
+                }
+                if (app.SteamDeck)
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "steam_deck.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+                        streamWriter.Close();
+                    }
+                }
+                if (app.SteamDeck == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "steam_deck.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "steam_deck.txt"));
+                }
+                if (app.AchBypass)
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "achievements_bypass.txt"), FileMode.Create), Encoding.ASCII))
+                    {
+                        streamWriter.Close();
+                    }
+                    
+                }
+                if (app.AchBypass == false)
+                {
+                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "achievements_bypass.txt")))
+                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "achievements_bypass.txt"));
                 }
 
                 File.Copy(emu_path, Path.Combine(game_emu_folder, OSFuncs.GetSteamAPIName(app.UseX64)), true);

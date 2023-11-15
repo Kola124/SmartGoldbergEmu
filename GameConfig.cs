@@ -38,8 +38,11 @@ namespace SmartGoldbergEmu
         public bool DisableAvatar { get; set; }
         public bool DisableSQuery { get; set; }
         public bool DisableAchNotif { get; set; }
-
+        public bool DisableFriendNotif { get; set; }
+        public bool SteamDeck { get; set; }
+        public bool AchBypass { get; set; }
         public bool Offline { get; set; }
+
         public string LocalSave { get; set; }
         public List<string> CustomBroadcasts { get; set; }
         public List<string> EnvVars { get; set; }
@@ -60,6 +63,10 @@ namespace SmartGoldbergEmu
             DisableAvatar = false;
             DisableSQuery = false;
             DisableAchNotif = false;
+            DisableFriendNotif = false;
+            SteamDeck = false;
+            AchBypass = false;
+
             CustomBroadcasts = new List<string>();
             EnvVars = new List<string>();
         }
@@ -105,6 +112,10 @@ namespace SmartGoldbergEmu
                 DisableAvatar = DisableAvatar,
                 DisableSQuery = DisableSQuery,
                 DisableAchNotif = DisableAchNotif,
+                DisableFriendNotif = DisableFriendNotif,
+                SteamDeck = SteamDeck,
+                AchBypass = AchBypass,
+
                 CustomBroadcasts = new List<string>(CustomBroadcasts),
                 EnvVars = new List<string>(EnvVars),
                 GameGuid = GameGuid

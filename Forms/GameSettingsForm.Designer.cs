@@ -67,6 +67,7 @@ namespace SmartGoldbergEmu
             this.Apppt_desc = new System.Windows.Forms.Label();
             this.Apppt_add = new System.Windows.Forms.TextBox();
             this.Stats_tab = new System.Windows.Forms.TabPage();
+            this.GetStats = new System.Windows.Forms.Button();
             this.stat_desc = new System.Windows.Forms.Label();
             this.stat_add = new System.Windows.Forms.TextBox();
             this.broadcast_tab = new System.Windows.Forms.TabPage();
@@ -76,6 +77,9 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.textBox_env_var_value = new CueTextBox();
+            this.textBox_env_var_key = new CueTextBox();
+            this.ip_textBox = new CueTextBox();
             this.listBox_env_var = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clear_broadcast_button = new System.Windows.Forms.Button();
@@ -84,6 +88,7 @@ namespace SmartGoldbergEmu
             this.ip_listBox = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.DLC_tab = new System.Windows.Forms.TabPage();
+            this.DLCinfo_gameinfo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_add = new System.Windows.Forms.TextBox();
@@ -120,11 +125,9 @@ namespace SmartGoldbergEmu
             this.serfav_label = new System.Windows.Forms.Label();
             this.serbrow_label = new System.Windows.Forms.Label();
             this.Server_add = new System.Windows.Forms.TextBox();
-            this.DLCinfo_gameinfo = new System.Windows.Forms.Button();
-            this.textBox_env_var_value = new CueTextBox();
-            this.textBox_env_var_key = new CueTextBox();
-            this.ip_textBox = new CueTextBox();
-            this.GetStats = new System.Windows.Forms.Button();
+            this.checkBox_DisableFriendNotif = new System.Windows.Forms.CheckBox();
+            this.checkBox_SteamDeck = new System.Windows.Forms.CheckBox();
+            this.checkBox_AchBypass = new System.Windows.Forms.CheckBox();
             this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
@@ -157,6 +160,7 @@ namespace SmartGoldbergEmu
             // 
             // Force_tab
             // 
+            this.Force_tab.Controls.Add(this.checkBox_SteamDeck);
             this.Force_tab.Controls.Add(this.force_steamidpoigri_add);
             this.Force_tab.Controls.Add(this.force_listen_port_add);
             this.Force_tab.Controls.Add(this.force_langugae_add);
@@ -344,6 +348,16 @@ namespace SmartGoldbergEmu
             this.Stats_tab.Text = "Stats";
             this.Stats_tab.UseVisualStyleBackColor = true;
             // 
+            // GetStats
+            // 
+            this.GetStats.Location = new System.Drawing.Point(432, 18);
+            this.GetStats.Name = "GetStats";
+            this.GetStats.Size = new System.Drawing.Size(139, 23);
+            this.GetStats.TabIndex = 11;
+            this.GetStats.Text = "Get Stats";
+            this.GetStats.UseVisualStyleBackColor = true;
+            this.GetStats.Click += new System.EventHandler(this.GetStats_Click);
+            // 
             // stat_desc
             // 
             this.stat_desc.AutoSize = true;
@@ -449,6 +463,31 @@ namespace SmartGoldbergEmu
             this.label9.TabIndex = 32;
             this.label9.Text = "Custom Env var value";
             // 
+            // textBox_env_var_value
+            // 
+            this.textBox_env_var_value.Cue = null;
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
+            this.textBox_env_var_value.Name = "textBox_env_var_value";
+            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
+            this.textBox_env_var_value.TabIndex = 31;
+            // 
+            // textBox_env_var_key
+            // 
+            this.textBox_env_var_key.Cue = null;
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
+            this.textBox_env_var_key.Name = "textBox_env_var_key";
+            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
+            this.textBox_env_var_key.TabIndex = 30;
+            // 
+            // ip_textBox
+            // 
+            this.ip_textBox.Cue = "127.0.0.1";
+            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
+            this.ip_textBox.Name = "ip_textBox";
+            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
+            this.ip_textBox.TabIndex = 1;
+            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
+            // 
             // listBox_env_var
             // 
             this.listBox_env_var.FormattingEnabled = true;
@@ -528,6 +567,16 @@ namespace SmartGoldbergEmu
             this.DLC_tab.Text = "DLC";
             this.DLC_tab.UseVisualStyleBackColor = true;
             // 
+            // DLCinfo_gameinfo
+            // 
+            this.DLCinfo_gameinfo.Location = new System.Drawing.Point(432, 18);
+            this.DLCinfo_gameinfo.Name = "DLCinfo_gameinfo";
+            this.DLCinfo_gameinfo.Size = new System.Drawing.Size(139, 23);
+            this.DLCinfo_gameinfo.TabIndex = 6;
+            this.DLCinfo_gameinfo.Text = "Get DLC info from GitHub";
+            this.DLCinfo_gameinfo.UseVisualStyleBackColor = true;
+            this.DLCinfo_gameinfo.Click += new System.EventHandler(this.DLCinfo_gameinfo_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(287, 18);
@@ -560,6 +609,8 @@ namespace SmartGoldbergEmu
             // 
             // game_setting_tab
             // 
+            this.game_setting_tab.Controls.Add(this.checkBox_AchBypass);
+            this.game_setting_tab.Controls.Add(this.checkBox_DisableFriendNotif);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableAchNotif);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableSQuery);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableAvatar);
@@ -900,50 +951,35 @@ namespace SmartGoldbergEmu
             this.Server_add.Size = new System.Drawing.Size(541, 95);
             this.Server_add.TabIndex = 15;
             // 
-            // DLCinfo_gameinfo
+            // checkBox_DisableFriendNotif
             // 
-            this.DLCinfo_gameinfo.Location = new System.Drawing.Point(432, 18);
-            this.DLCinfo_gameinfo.Name = "DLCinfo_gameinfo";
-            this.DLCinfo_gameinfo.Size = new System.Drawing.Size(139, 23);
-            this.DLCinfo_gameinfo.TabIndex = 6;
-            this.DLCinfo_gameinfo.Text = "Get DLC info from GitHub";
-            this.DLCinfo_gameinfo.UseVisualStyleBackColor = true;
-            this.DLCinfo_gameinfo.Click += new System.EventHandler(this.DLCinfo_gameinfo_Click);
+            this.checkBox_DisableFriendNotif.AutoSize = true;
+            this.checkBox_DisableFriendNotif.Location = new System.Drawing.Point(359, 218);
+            this.checkBox_DisableFriendNotif.Name = "checkBox_DisableFriendNotif";
+            this.checkBox_DisableFriendNotif.Size = new System.Drawing.Size(149, 17);
+            this.checkBox_DisableFriendNotif.TabIndex = 42;
+            this.checkBox_DisableFriendNotif.Text = "Disable Friend Notification";
+            this.checkBox_DisableFriendNotif.UseVisualStyleBackColor = true;
             // 
-            // textBox_env_var_value
+            // checkBox_SteamDeck
             // 
-            this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
-            this.textBox_env_var_value.Name = "textBox_env_var_value";
-            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
-            this.textBox_env_var_value.TabIndex = 31;
+            this.checkBox_SteamDeck.AutoSize = true;
+            this.checkBox_SteamDeck.Location = new System.Drawing.Point(170, 159);
+            this.checkBox_SteamDeck.Name = "checkBox_SteamDeck";
+            this.checkBox_SteamDeck.Size = new System.Drawing.Size(115, 17);
+            this.checkBox_SteamDeck.TabIndex = 46;
+            this.checkBox_SteamDeck.Text = "Force Steam Deck";
+            this.checkBox_SteamDeck.UseVisualStyleBackColor = true;
             // 
-            // textBox_env_var_key
+            // checkBox_AchBypass
             // 
-            this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
-            this.textBox_env_var_key.Name = "textBox_env_var_key";
-            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
-            this.textBox_env_var_key.TabIndex = 30;
-            // 
-            // ip_textBox
-            // 
-            this.ip_textBox.Cue = "127.0.0.1";
-            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
-            this.ip_textBox.Name = "ip_textBox";
-            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
-            this.ip_textBox.TabIndex = 1;
-            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
-            // 
-            // GetStats
-            // 
-            this.GetStats.Location = new System.Drawing.Point(432, 18);
-            this.GetStats.Name = "GetStats";
-            this.GetStats.Size = new System.Drawing.Size(139, 23);
-            this.GetStats.TabIndex = 11;
-            this.GetStats.Text = "Get Stats";
-            this.GetStats.UseVisualStyleBackColor = true;
-            this.GetStats.Click += new System.EventHandler(this.GetStats_Click);
+            this.checkBox_AchBypass.AutoSize = true;
+            this.checkBox_AchBypass.Location = new System.Drawing.Point(170, 241);
+            this.checkBox_AchBypass.Name = "checkBox_AchBypass";
+            this.checkBox_AchBypass.Size = new System.Drawing.Size(130, 17);
+            this.checkBox_AchBypass.TabIndex = 43;
+            this.checkBox_AchBypass.Text = "Achievements Bypass";
+            this.checkBox_AchBypass.UseVisualStyleBackColor = true;
             // 
             // GameSettingsForm
             // 
@@ -1058,5 +1094,8 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.TextBox Server_add;
         private System.Windows.Forms.Button DLCinfo_gameinfo;
         private System.Windows.Forms.Button GetStats;
+        private System.Windows.Forms.CheckBox checkBox_DisableFriendNotif;
+        private System.Windows.Forms.CheckBox checkBox_SteamDeck;
+        private System.Windows.Forms.CheckBox checkBox_AchBypass;
     }
 }

@@ -296,6 +296,9 @@ namespace SmartGoldbergEmu
             checkBox_EnableHTTP.Checked = app.EnableHTTP;
             checkBox_DisableAvatar.Checked = app.DisableAvatar;
             checkBox_DisableAchNotif.Checked = app.DisableAchNotif;
+            checkBox_DisableFriendNotif.Checked = app.DisableFriendNotif;
+            checkBox_SteamDeck.Checked = app.SteamDeck;
+            checkBox_AchBypass.Checked = app.AchBypass;
             checkBox_DisableSQuery.Checked = app.DisableSQuery;
 
             Modified_app = app.Clone();
@@ -511,6 +514,9 @@ namespace SmartGoldbergEmu
             Modified_app.EnableHTTP = checkBox_EnableHTTP.Checked;
             Modified_app.DisableSQuery = checkBox_DisableSQuery.Checked;
             Modified_app.DisableAchNotif = checkBox_DisableAchNotif.Checked;
+            Modified_app.DisableFriendNotif = checkBox_DisableFriendNotif.Checked;
+            Modified_app.SteamDeck = checkBox_SteamDeck.Checked;
+            Modified_app.AchBypass = checkBox_AchBypass.Checked;
             Modified_app.DisableAvatar = checkBox_DisableAvatar.Checked;
             Modified_app.Offline = checkbox_offline.Checked;
             Modified_app.AppName = game_name_edit.Text;
