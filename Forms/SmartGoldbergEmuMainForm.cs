@@ -78,13 +78,22 @@ namespace SmartGoldbergEmu
             SteamEmulator.StartGame(app);
         }
 
-        private void LoadImage(GameConfig app)
+        public void LoadImage(GameConfig app)
         {
             try
             {
-                Image result = Icon.ExtractAssociatedIcon(app.Path).ToBitmap();
-                _image_list.Images.Add(app.Path, result);
-            }
+                if (app.CustomIcon == "")
+                {
+                    Image result = Icon.ExtractAssociatedIcon(app.Path).ToBitmap();
+                    _image_list.Images.Add(app.Path, result);
+                }
+                else
+                {
+                    Bitmap bmp = new Bitmap(app.CustomIcon);
+                    //Image result = Icon.ExtractAssociatedIcon(app.Path).ToBitmap();
+                    _image_list.Images.Add(app.Path, bmp);
+                }
+            }    
             catch (Exception)
             {
             }
@@ -100,9 +109,9 @@ namespace SmartGoldbergEmu
                 ImageKey = app.Path
             };
 
-            if (app_list_view.InvokeRequired)
+            /*if (app_list_view.InvokeRequired)
                 app_list_view.Invoke(new AddAppToListDelegate(AddAppToList), new object[] { app });
-            else
+            else*/
                 app_list_view.Items.Add(item);
         }
 

@@ -254,6 +254,7 @@ namespace SmartGoldbergEmu
             game_parameters_edit.Text = app.Parameters;
             x64_checkbox.Checked = app.UseX64;
             local_save_edit.Text = app.LocalSave;
+            CustomIcon.Text = app.CustomIcon;
             foreach (string ip in app.CustomBroadcasts)
             {
                 try
@@ -482,6 +483,21 @@ namespace SmartGoldbergEmu
             }
         }
 
+        private void browse_custom_icon_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg; *.jpeg; *.png; *.ico|All Files|*.*",
+                FilterIndex = 1,
+                Multiselect = false,
+                CheckFileExists = true
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                CustomIcon.Text = openFileDialog.FileName;
+            }
+        }
+
         private bool Is_app_valid()
         {
             if (game_folder_edit.Text.Length == 0 || !Directory.Exists(game_folder_edit.Text))
@@ -523,6 +539,7 @@ namespace SmartGoldbergEmu
             Modified_app.Path = game_exe_edit.Text;
             Modified_app.StartFolder = game_folder_edit.Text;
             Modified_app.LocalSave = local_save_edit.Text;
+            Modified_app.CustomIcon = CustomIcon.Text;
             Modified_app.Parameters = game_parameters_edit.Text;
             Modified_app.CustomBroadcasts = new List<string>();
             Modified_app.EnvVars = new List<string>();

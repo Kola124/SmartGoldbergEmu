@@ -49,6 +49,7 @@ namespace SmartGoldbergEmu
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.Force_tab = new System.Windows.Forms.TabPage();
+            this.checkBox_SteamDeck = new System.Windows.Forms.CheckBox();
             this.force_steamidpoigri_add = new System.Windows.Forms.TextBox();
             this.force_listen_port_add = new System.Windows.Forms.TextBox();
             this.force_langugae_add = new System.Windows.Forms.TextBox();
@@ -77,9 +78,6 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox_env_var_value = new CueTextBox();
-            this.textBox_env_var_key = new CueTextBox();
-            this.ip_textBox = new CueTextBox();
             this.listBox_env_var = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clear_broadcast_button = new System.Windows.Forms.Button();
@@ -93,6 +91,8 @@ namespace SmartGoldbergEmu
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_add = new System.Windows.Forms.TextBox();
             this.game_setting_tab = new System.Windows.Forms.TabPage();
+            this.checkBox_AchBypass = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisableFriendNotif = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableAchNotif = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableSQuery = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableAvatar = new System.Windows.Forms.CheckBox();
@@ -125,9 +125,12 @@ namespace SmartGoldbergEmu
             this.serfav_label = new System.Windows.Forms.Label();
             this.serbrow_label = new System.Windows.Forms.Label();
             this.Server_add = new System.Windows.Forms.TextBox();
-            this.checkBox_DisableFriendNotif = new System.Windows.Forms.CheckBox();
-            this.checkBox_SteamDeck = new System.Windows.Forms.CheckBox();
-            this.checkBox_AchBypass = new System.Windows.Forms.CheckBox();
+            this.CustomIcon = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.browse_custom_icon_folder = new System.Windows.Forms.Button();
+            this.textBox_env_var_value = new CueTextBox();
+            this.textBox_env_var_key = new CueTextBox();
+            this.ip_textBox = new CueTextBox();
             this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
@@ -178,6 +181,16 @@ namespace SmartGoldbergEmu
             this.Force_tab.TabIndex = 7;
             this.Force_tab.Text = "Force";
             this.Force_tab.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_SteamDeck
+            // 
+            this.checkBox_SteamDeck.AutoSize = true;
+            this.checkBox_SteamDeck.Location = new System.Drawing.Point(170, 159);
+            this.checkBox_SteamDeck.Name = "checkBox_SteamDeck";
+            this.checkBox_SteamDeck.Size = new System.Drawing.Size(115, 17);
+            this.checkBox_SteamDeck.TabIndex = 46;
+            this.checkBox_SteamDeck.Text = "Force Steam Deck";
+            this.checkBox_SteamDeck.UseVisualStyleBackColor = true;
             // 
             // force_steamidpoigri_add
             // 
@@ -463,31 +476,6 @@ namespace SmartGoldbergEmu
             this.label9.TabIndex = 32;
             this.label9.Text = "Custom Env var value";
             // 
-            // textBox_env_var_value
-            // 
-            this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
-            this.textBox_env_var_value.Name = "textBox_env_var_value";
-            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
-            this.textBox_env_var_value.TabIndex = 31;
-            // 
-            // textBox_env_var_key
-            // 
-            this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
-            this.textBox_env_var_key.Name = "textBox_env_var_key";
-            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
-            this.textBox_env_var_key.TabIndex = 30;
-            // 
-            // ip_textBox
-            // 
-            this.ip_textBox.Cue = "127.0.0.1";
-            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
-            this.ip_textBox.Name = "ip_textBox";
-            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
-            this.ip_textBox.TabIndex = 1;
-            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
-            // 
             // listBox_env_var
             // 
             this.listBox_env_var.FormattingEnabled = true;
@@ -609,6 +597,9 @@ namespace SmartGoldbergEmu
             // 
             // game_setting_tab
             // 
+            this.game_setting_tab.Controls.Add(this.browse_custom_icon_folder);
+            this.game_setting_tab.Controls.Add(this.CustomIcon);
+            this.game_setting_tab.Controls.Add(this.label14);
             this.game_setting_tab.Controls.Add(this.checkBox_AchBypass);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableFriendNotif);
             this.game_setting_tab.Controls.Add(this.checkBox_DisableAchNotif);
@@ -642,6 +633,26 @@ namespace SmartGoldbergEmu
             this.game_setting_tab.TabIndex = 0;
             this.game_setting_tab.Text = "Game Settings";
             this.game_setting_tab.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AchBypass
+            // 
+            this.checkBox_AchBypass.AutoSize = true;
+            this.checkBox_AchBypass.Location = new System.Drawing.Point(170, 241);
+            this.checkBox_AchBypass.Name = "checkBox_AchBypass";
+            this.checkBox_AchBypass.Size = new System.Drawing.Size(130, 17);
+            this.checkBox_AchBypass.TabIndex = 43;
+            this.checkBox_AchBypass.Text = "Achievements Bypass";
+            this.checkBox_AchBypass.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_DisableFriendNotif
+            // 
+            this.checkBox_DisableFriendNotif.AutoSize = true;
+            this.checkBox_DisableFriendNotif.Location = new System.Drawing.Point(359, 218);
+            this.checkBox_DisableFriendNotif.Name = "checkBox_DisableFriendNotif";
+            this.checkBox_DisableFriendNotif.Size = new System.Drawing.Size(149, 17);
+            this.checkBox_DisableFriendNotif.TabIndex = 42;
+            this.checkBox_DisableFriendNotif.Text = "Disable Friend Notification";
+            this.checkBox_DisableFriendNotif.UseVisualStyleBackColor = true;
             // 
             // checkBox_DisableAchNotif
             // 
@@ -951,35 +962,56 @@ namespace SmartGoldbergEmu
             this.Server_add.Size = new System.Drawing.Size(541, 95);
             this.Server_add.TabIndex = 15;
             // 
-            // checkBox_DisableFriendNotif
+            // CustomIcon
             // 
-            this.checkBox_DisableFriendNotif.AutoSize = true;
-            this.checkBox_DisableFriendNotif.Location = new System.Drawing.Point(359, 218);
-            this.checkBox_DisableFriendNotif.Name = "checkBox_DisableFriendNotif";
-            this.checkBox_DisableFriendNotif.Size = new System.Drawing.Size(149, 17);
-            this.checkBox_DisableFriendNotif.TabIndex = 42;
-            this.checkBox_DisableFriendNotif.Text = "Disable Friend Notification";
-            this.checkBox_DisableFriendNotif.UseVisualStyleBackColor = true;
+            this.CustomIcon.Location = new System.Drawing.Point(170, 269);
+            this.CustomIcon.Name = "CustomIcon";
+            this.CustomIcon.Size = new System.Drawing.Size(357, 20);
+            this.CustomIcon.TabIndex = 45;
             // 
-            // checkBox_SteamDeck
+            // label14
             // 
-            this.checkBox_SteamDeck.AutoSize = true;
-            this.checkBox_SteamDeck.Location = new System.Drawing.Point(170, 159);
-            this.checkBox_SteamDeck.Name = "checkBox_SteamDeck";
-            this.checkBox_SteamDeck.Size = new System.Drawing.Size(115, 17);
-            this.checkBox_SteamDeck.TabIndex = 46;
-            this.checkBox_SteamDeck.Text = "Force Steam Deck";
-            this.checkBox_SteamDeck.UseVisualStyleBackColor = true;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(49, 272);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 13);
+            this.label14.TabIndex = 44;
+            this.label14.Text = "Custom Icon:";
             // 
-            // checkBox_AchBypass
+            // browse_custom_icon_folder
             // 
-            this.checkBox_AchBypass.AutoSize = true;
-            this.checkBox_AchBypass.Location = new System.Drawing.Point(170, 241);
-            this.checkBox_AchBypass.Name = "checkBox_AchBypass";
-            this.checkBox_AchBypass.Size = new System.Drawing.Size(130, 17);
-            this.checkBox_AchBypass.TabIndex = 43;
-            this.checkBox_AchBypass.Text = "Achievements Bypass";
-            this.checkBox_AchBypass.UseVisualStyleBackColor = true;
+            this.browse_custom_icon_folder.Location = new System.Drawing.Point(534, 269);
+            this.browse_custom_icon_folder.Name = "browse_custom_icon_folder";
+            this.browse_custom_icon_folder.Size = new System.Drawing.Size(44, 20);
+            this.browse_custom_icon_folder.TabIndex = 46;
+            this.browse_custom_icon_folder.Text = "...";
+            this.browse_custom_icon_folder.UseVisualStyleBackColor = true;
+            this.browse_custom_icon_folder.Click += new System.EventHandler(this.browse_custom_icon_Click);
+            // 
+            // textBox_env_var_value
+            // 
+            this.textBox_env_var_value.Cue = null;
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
+            this.textBox_env_var_value.Name = "textBox_env_var_value";
+            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
+            this.textBox_env_var_value.TabIndex = 31;
+            // 
+            // textBox_env_var_key
+            // 
+            this.textBox_env_var_key.Cue = null;
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
+            this.textBox_env_var_key.Name = "textBox_env_var_key";
+            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
+            this.textBox_env_var_key.TabIndex = 30;
+            // 
+            // ip_textBox
+            // 
+            this.ip_textBox.Cue = "127.0.0.1";
+            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
+            this.ip_textBox.Name = "ip_textBox";
+            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
+            this.ip_textBox.TabIndex = 1;
+            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
             // 
             // GameSettingsForm
             // 
@@ -1097,5 +1129,8 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.CheckBox checkBox_DisableFriendNotif;
         private System.Windows.Forms.CheckBox checkBox_SteamDeck;
         private System.Windows.Forms.CheckBox checkBox_AchBypass;
+        private System.Windows.Forms.TextBox CustomIcon;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button browse_custom_icon_folder;
     }
 }

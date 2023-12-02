@@ -44,6 +44,8 @@ namespace SmartGoldbergEmu
         public bool Offline { get; set; }
 
         public string LocalSave { get; set; }
+        public string CustomIcon { get; set; }
+
         public List<string> CustomBroadcasts { get; set; }
         public List<string> EnvVars { get; set; }
 
@@ -52,6 +54,7 @@ namespace SmartGoldbergEmu
         public GameConfig()
         {
             StartFolder = AppName = Parameters = path = LocalSave = string.Empty;
+            CustomIcon = string.Empty;
             GameGuid = Guid.NewGuid();
             AppId = 0;
             UseX64 = false;
