@@ -49,6 +49,8 @@ namespace SmartGoldbergEmu
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.Force_tab = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.beta_branch_add = new System.Windows.Forms.TextBox();
             this.checkBox_SteamDeck = new System.Windows.Forms.CheckBox();
             this.force_steamidpoigri_add = new System.Windows.Forms.TextBox();
             this.force_listen_port_add = new System.Windows.Forms.TextBox();
@@ -131,8 +133,8 @@ namespace SmartGoldbergEmu
             this.serfav_label = new System.Windows.Forms.Label();
             this.serbrow_label = new System.Windows.Forms.Label();
             this.Server_add = new System.Windows.Forms.TextBox();
-            this.beta_branch_add = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.installed_app_id_add = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
@@ -185,6 +187,22 @@ namespace SmartGoldbergEmu
             this.Force_tab.TabIndex = 7;
             this.Force_tab.Text = "Force";
             this.Force_tab.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(49, 185);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(69, 13);
+            this.label15.TabIndex = 48;
+            this.label15.Text = "Beta Branch:";
+            // 
+            // beta_branch_add
+            // 
+            this.beta_branch_add.Location = new System.Drawing.Point(170, 182);
+            this.beta_branch_add.Name = "beta_branch_add";
+            this.beta_branch_add.Size = new System.Drawing.Size(357, 20);
+            this.beta_branch_add.TabIndex = 47;
             // 
             // checkBox_SteamDeck
             // 
@@ -278,6 +296,8 @@ namespace SmartGoldbergEmu
             // 
             // Apppaths_tab
             // 
+            this.Apppaths_tab.Controls.Add(this.label16);
+            this.Apppaths_tab.Controls.Add(this.installed_app_id_add);
             this.Apppaths_tab.Controls.Add(this.depots_add);
             this.Apppaths_tab.Controls.Add(this.depots_desc);
             this.Apppaths_tab.Controls.Add(this.sg_add);
@@ -300,7 +320,7 @@ namespace SmartGoldbergEmu
             this.depots_add.Multiline = true;
             this.depots_add.Name = "depots_add";
             this.depots_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.depots_add.Size = new System.Drawing.Size(541, 95);
+            this.depots_add.Size = new System.Drawing.Size(260, 95);
             this.depots_add.TabIndex = 14;
             // 
             // depots_desc
@@ -1017,21 +1037,25 @@ namespace SmartGoldbergEmu
             this.Server_add.Size = new System.Drawing.Size(541, 95);
             this.Server_add.TabIndex = 15;
             // 
-            // beta_branch_add
+            // installed_app_id_add
             // 
-            this.beta_branch_add.Location = new System.Drawing.Point(170, 182);
-            this.beta_branch_add.Name = "beta_branch_add";
-            this.beta_branch_add.Size = new System.Drawing.Size(357, 20);
-            this.beta_branch_add.TabIndex = 47;
+            this.installed_app_id_add.AcceptsReturn = true;
+            this.installed_app_id_add.AcceptsTab = true;
+            this.installed_app_id_add.Location = new System.Drawing.Point(305, 262);
+            this.installed_app_id_add.Multiline = true;
+            this.installed_app_id_add.Name = "installed_app_id_add";
+            this.installed_app_id_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.installed_app_id_add.Size = new System.Drawing.Size(260, 95);
+            this.installed_app_id_add.TabIndex = 15;
             // 
-            // label15
+            // label16
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(49, 185);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(69, 13);
-            this.label15.TabIndex = 48;
-            this.label15.Text = "Beta Branch:";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(302, 246);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(88, 13);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "Instaled App IDs:";
             // 
             // GameSettingsForm
             // 
@@ -1154,5 +1178,7 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Button browse_custom_icon_folder;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox beta_branch_add;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox installed_app_id_add;
     }
 }

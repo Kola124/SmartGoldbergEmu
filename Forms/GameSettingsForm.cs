@@ -412,6 +412,13 @@ namespace SmartGoldbergEmu
                         beta_branch_add.Text = streamReader.ReadLine();
                     }
                 }
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "installed_app_ids.txt")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "installed_app_ids.txt"), FileMode.Open), Encoding.ASCII))
+                    {
+                        installed_app_id_add.Text = streamReader.ReadLine();
+                    }
+                }
             }
         }
 
@@ -449,6 +456,8 @@ namespace SmartGoldbergEmu
             Pisanje_HisServ();
 
             Pisanje_BetaBranch();
+
+            Pisanje_InstaliraniIDovi();
 
             if (Is_app_valid())
             {
@@ -991,6 +1000,22 @@ namespace SmartGoldbergEmu
                 {
                     streamWriter.Close();
                 }
+            }
+
+        }
+
+        void Pisanje_InstaliraniIDovi()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (string.IsNullOrEmpty(installed_app_id_add.Text))
+            {
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "installed_app_ids.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "installed_app_ids.txt"));
+            }
+            else
+            {
+                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "installed_app_ids.txt"), FileMode.Create), Encoding.ASCII);
+                tw.WriteLine(installed_app_id_add.Text);
+                tw.Close();
             }
 
         }
