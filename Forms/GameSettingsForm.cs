@@ -405,6 +405,13 @@ namespace SmartGoldbergEmu
                         HisServ_add.Text = streamReader.ReadLine();
                     }
                 }
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt"), FileMode.Open), Encoding.ASCII))
+                    {
+                        beta_branch_add.Text = streamReader.ReadLine();
+                    }
+                }
             }
         }
 
@@ -440,6 +447,8 @@ namespace SmartGoldbergEmu
             Pisanje_FavServ();
 
             Pisanje_HisServ();
+
+            Pisanje_BetaBranch();
 
             if (Is_app_valid())
             {
@@ -961,6 +970,27 @@ namespace SmartGoldbergEmu
                 TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser_history.txt"), FileMode.Create), Encoding.ASCII);
                 tw.WriteLine(HisServ_add.Text);
                 tw.Close();
+            }
+
+        }
+
+        void Pisanje_BetaBranch()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (string.IsNullOrEmpty(beta_branch_add.Text))
+            {
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt"));
+                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "is_beta_branch.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "is_beta_branch.txt"));
+            }
+            else
+            {
+                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt"), FileMode.Create), Encoding.ASCII);
+                tw.WriteLine(beta_branch_add.Text);
+                tw.Close();
+                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "is_beta_branch.txt"), FileMode.Create), Encoding.ASCII))
+                {
+                    streamWriter.Close();
+                }
             }
 
         }

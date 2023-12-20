@@ -78,6 +78,9 @@ namespace SmartGoldbergEmu
             this.button_remove_env_var = new System.Windows.Forms.Button();
             this.button_add_env_var = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.textBox_env_var_value = new CueTextBox();
+            this.textBox_env_var_key = new CueTextBox();
+            this.ip_textBox = new CueTextBox();
             this.listBox_env_var = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clear_broadcast_button = new System.Windows.Forms.Button();
@@ -91,6 +94,9 @@ namespace SmartGoldbergEmu
             this.DLC_desc = new System.Windows.Forms.Label();
             this.DLC_add = new System.Windows.Forms.TextBox();
             this.game_setting_tab = new System.Windows.Forms.TabPage();
+            this.browse_custom_icon_folder = new System.Windows.Forms.Button();
+            this.CustomIcon = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.checkBox_AchBypass = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableFriendNotif = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableAchNotif = new System.Windows.Forms.CheckBox();
@@ -125,12 +131,8 @@ namespace SmartGoldbergEmu
             this.serfav_label = new System.Windows.Forms.Label();
             this.serbrow_label = new System.Windows.Forms.Label();
             this.Server_add = new System.Windows.Forms.TextBox();
-            this.CustomIcon = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.browse_custom_icon_folder = new System.Windows.Forms.Button();
-            this.textBox_env_var_value = new CueTextBox();
-            this.textBox_env_var_key = new CueTextBox();
-            this.ip_textBox = new CueTextBox();
+            this.beta_branch_add = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
@@ -163,6 +165,8 @@ namespace SmartGoldbergEmu
             // 
             // Force_tab
             // 
+            this.Force_tab.Controls.Add(this.label15);
+            this.Force_tab.Controls.Add(this.beta_branch_add);
             this.Force_tab.Controls.Add(this.checkBox_SteamDeck);
             this.Force_tab.Controls.Add(this.force_steamidpoigri_add);
             this.Force_tab.Controls.Add(this.force_listen_port_add);
@@ -476,6 +480,31 @@ namespace SmartGoldbergEmu
             this.label9.TabIndex = 32;
             this.label9.Text = "Custom Env var value";
             // 
+            // textBox_env_var_value
+            // 
+            this.textBox_env_var_value.Cue = null;
+            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
+            this.textBox_env_var_value.Name = "textBox_env_var_value";
+            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
+            this.textBox_env_var_value.TabIndex = 31;
+            // 
+            // textBox_env_var_key
+            // 
+            this.textBox_env_var_key.Cue = null;
+            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
+            this.textBox_env_var_key.Name = "textBox_env_var_key";
+            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
+            this.textBox_env_var_key.TabIndex = 30;
+            // 
+            // ip_textBox
+            // 
+            this.ip_textBox.Cue = "127.0.0.1";
+            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
+            this.ip_textBox.Name = "ip_textBox";
+            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
+            this.ip_textBox.TabIndex = 1;
+            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
+            // 
             // listBox_env_var
             // 
             this.listBox_env_var.FormattingEnabled = true;
@@ -633,6 +662,32 @@ namespace SmartGoldbergEmu
             this.game_setting_tab.TabIndex = 0;
             this.game_setting_tab.Text = "Game Settings";
             this.game_setting_tab.UseVisualStyleBackColor = true;
+            // 
+            // browse_custom_icon_folder
+            // 
+            this.browse_custom_icon_folder.Location = new System.Drawing.Point(534, 269);
+            this.browse_custom_icon_folder.Name = "browse_custom_icon_folder";
+            this.browse_custom_icon_folder.Size = new System.Drawing.Size(44, 20);
+            this.browse_custom_icon_folder.TabIndex = 46;
+            this.browse_custom_icon_folder.Text = "...";
+            this.browse_custom_icon_folder.UseVisualStyleBackColor = true;
+            this.browse_custom_icon_folder.Click += new System.EventHandler(this.browse_custom_icon_Click);
+            // 
+            // CustomIcon
+            // 
+            this.CustomIcon.Location = new System.Drawing.Point(170, 269);
+            this.CustomIcon.Name = "CustomIcon";
+            this.CustomIcon.Size = new System.Drawing.Size(357, 20);
+            this.CustomIcon.TabIndex = 45;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(49, 272);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 13);
+            this.label14.TabIndex = 44;
+            this.label14.Text = "Custom Icon:";
             // 
             // checkBox_AchBypass
             // 
@@ -962,56 +1017,21 @@ namespace SmartGoldbergEmu
             this.Server_add.Size = new System.Drawing.Size(541, 95);
             this.Server_add.TabIndex = 15;
             // 
-            // CustomIcon
+            // beta_branch_add
             // 
-            this.CustomIcon.Location = new System.Drawing.Point(170, 269);
-            this.CustomIcon.Name = "CustomIcon";
-            this.CustomIcon.Size = new System.Drawing.Size(357, 20);
-            this.CustomIcon.TabIndex = 45;
+            this.beta_branch_add.Location = new System.Drawing.Point(170, 182);
+            this.beta_branch_add.Name = "beta_branch_add";
+            this.beta_branch_add.Size = new System.Drawing.Size(357, 20);
+            this.beta_branch_add.TabIndex = 47;
             // 
-            // label14
+            // label15
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(49, 272);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(69, 13);
-            this.label14.TabIndex = 44;
-            this.label14.Text = "Custom Icon:";
-            // 
-            // browse_custom_icon_folder
-            // 
-            this.browse_custom_icon_folder.Location = new System.Drawing.Point(534, 269);
-            this.browse_custom_icon_folder.Name = "browse_custom_icon_folder";
-            this.browse_custom_icon_folder.Size = new System.Drawing.Size(44, 20);
-            this.browse_custom_icon_folder.TabIndex = 46;
-            this.browse_custom_icon_folder.Text = "...";
-            this.browse_custom_icon_folder.UseVisualStyleBackColor = true;
-            this.browse_custom_icon_folder.Click += new System.EventHandler(this.browse_custom_icon_Click);
-            // 
-            // textBox_env_var_value
-            // 
-            this.textBox_env_var_value.Cue = null;
-            this.textBox_env_var_value.Location = new System.Drawing.Point(177, 157);
-            this.textBox_env_var_value.Name = "textBox_env_var_value";
-            this.textBox_env_var_value.Size = new System.Drawing.Size(316, 20);
-            this.textBox_env_var_value.TabIndex = 31;
-            // 
-            // textBox_env_var_key
-            // 
-            this.textBox_env_var_key.Cue = null;
-            this.textBox_env_var_key.Location = new System.Drawing.Point(30, 157);
-            this.textBox_env_var_key.Name = "textBox_env_var_key";
-            this.textBox_env_var_key.Size = new System.Drawing.Size(140, 20);
-            this.textBox_env_var_key.TabIndex = 30;
-            // 
-            // ip_textBox
-            // 
-            this.ip_textBox.Cue = "127.0.0.1";
-            this.ip_textBox.Location = new System.Drawing.Point(130, 15);
-            this.ip_textBox.Name = "ip_textBox";
-            this.ip_textBox.Size = new System.Drawing.Size(89, 20);
-            this.ip_textBox.TabIndex = 1;
-            this.ip_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Ip_textBox_KeyDown);
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(49, 185);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(69, 13);
+            this.label15.TabIndex = 48;
+            this.label15.Text = "Beta Branch:";
             // 
             // GameSettingsForm
             // 
@@ -1132,5 +1152,7 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.TextBox CustomIcon;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button browse_custom_icon_folder;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox beta_branch_add;
     }
 }
