@@ -63,6 +63,8 @@ namespace SmartGoldbergEmu
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Apppaths_tab = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.installed_app_id_add = new System.Windows.Forms.TextBox();
             this.depots_add = new System.Windows.Forms.TextBox();
             this.depots_desc = new System.Windows.Forms.Label();
             this.sg_add = new System.Windows.Forms.TextBox();
@@ -133,8 +135,7 @@ namespace SmartGoldbergEmu
             this.serfav_label = new System.Windows.Forms.Label();
             this.serbrow_label = new System.Windows.Forms.Label();
             this.Server_add = new System.Windows.Forms.TextBox();
-            this.installed_app_id_add = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.ModFolderButton = new System.Windows.Forms.Button();
             this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
@@ -312,6 +313,26 @@ namespace SmartGoldbergEmu
             this.Apppaths_tab.Text = "Paths, Groups,Depot";
             this.Apppaths_tab.UseVisualStyleBackColor = true;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(302, 246);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(88, 13);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "Instaled App IDs:";
+            // 
+            // installed_app_id_add
+            // 
+            this.installed_app_id_add.AcceptsReturn = true;
+            this.installed_app_id_add.AcceptsTab = true;
+            this.installed_app_id_add.Location = new System.Drawing.Point(305, 262);
+            this.installed_app_id_add.Multiline = true;
+            this.installed_app_id_add.Name = "installed_app_id_add";
+            this.installed_app_id_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.installed_app_id_add.Size = new System.Drawing.Size(260, 95);
+            this.installed_app_id_add.TabIndex = 15;
+            // 
             // depots_add
             // 
             this.depots_add.AcceptsReturn = true;
@@ -417,6 +438,7 @@ namespace SmartGoldbergEmu
             // 
             // broadcast_tab
             // 
+            this.broadcast_tab.Controls.Add(this.ModFolderButton);
             this.broadcast_tab.Controls.Add(this.DLLfold);
             this.broadcast_tab.Controls.Add(this.Mods);
             this.broadcast_tab.Controls.Add(this.button_clear_env_var);
@@ -1037,25 +1059,15 @@ namespace SmartGoldbergEmu
             this.Server_add.Size = new System.Drawing.Size(541, 95);
             this.Server_add.TabIndex = 15;
             // 
-            // installed_app_id_add
+            // ModFolderButton
             // 
-            this.installed_app_id_add.AcceptsReturn = true;
-            this.installed_app_id_add.AcceptsTab = true;
-            this.installed_app_id_add.Location = new System.Drawing.Point(305, 262);
-            this.installed_app_id_add.Multiline = true;
-            this.installed_app_id_add.Name = "installed_app_id_add";
-            this.installed_app_id_add.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.installed_app_id_add.Size = new System.Drawing.Size(260, 95);
-            this.installed_app_id_add.TabIndex = 15;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(302, 246);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 13);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "Instaled App IDs:";
+            this.ModFolderButton.Location = new System.Drawing.Point(457, 72);
+            this.ModFolderButton.Name = "ModFolderButton";
+            this.ModFolderButton.Size = new System.Drawing.Size(141, 23);
+            this.ModFolderButton.TabIndex = 38;
+            this.ModFolderButton.Text = "Get Mods From Folder";
+            this.ModFolderButton.UseVisualStyleBackColor = true;
+            this.ModFolderButton.Click += new System.EventHandler(this.ModFolderButton_Click);
             // 
             // GameSettingsForm
             // 
@@ -1180,5 +1192,6 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.TextBox beta_branch_add;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox installed_app_id_add;
+        private System.Windows.Forms.Button ModFolderButton;
     }
 }

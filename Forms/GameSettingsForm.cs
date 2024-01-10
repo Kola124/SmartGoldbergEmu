@@ -1158,6 +1158,47 @@ namespace SmartGoldbergEmu
             web.Dispose();
         }
 
+
+        //spent too much time for proper serialisation but im too retarded to do it so i will bruteforce it
+        private void ModFolderButton_Click(object sender, EventArgs e)
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            if (!Directory.Exists(Path.Combine(game_emu_folder, "steam_settings")))
+            {
+                Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings"));
+            }
+            if (game_appid_edit.Text != "0")
+            {
+                using (var modspath = new System.Windows.Forms.FolderBrowserDialog())
+                {
+                    if (modspath.ShowDialog() == DialogResult.OK)
+                    {
+                        TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "mods.json"), FileMode.Create), Encoding.ASCII);
+                        tw.WriteLine("{");
+                        string[] directories = System.IO.Directory.GetDirectories(modspath.SelectedPath);
+                        foreach (string directory in directories)
+                        {
+                            string promjenjeno = directory.Replace(@"\", @"\\");
+                            tw.WriteLine("\t" + "\"" + Path.GetFileName(directory) + "\": {");
+                            tw.WriteLine("\t\t" + "\"name\": " + "\"" + Path.GetFileName(directory) + "\",");
+                            tw.WriteLine("\t\t" + "\"path\": " + "\"" + promjenjeno + "\"");
+                            tw.WriteLine("\t" + "},");
+                        }
+                        tw.Close();
+                    }
+                    string read = ""; 
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "mods.json"), FileMode.Open), Encoding.ASCII))
+                    {
+                        read = streamReader.ReadToEnd();  
+                    }
+                    read = read.Remove(read.LastIndexOf("\t"));
+                    TextWriter delete = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "mods.json"), FileMode.Create), Encoding.ASCII);
+                    delete.WriteLine(read+ "\t"+"}");
+                    delete.WriteLine("}");
+                    delete.Close();
+                }
+            }
+        }
         public partial class Prvi
         {
             [JsonProperty("Dlcs")]
