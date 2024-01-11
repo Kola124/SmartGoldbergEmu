@@ -37,39 +37,6 @@ namespace SmartGoldbergEmu
 
             _image_list.ImageSize = new Size(32, 32);
 
-            darkmode.Text = crnilo.zatamljenje;
-
-            if (darkmode.Text == "Light Mode")
-            {
-                app_list_view.BackColor = SystemColors.Window;
-                app_list_view.ForeColor = SystemColors.WindowText;
-                menuStrip1.BackColor = SystemColors.Control;
-                menuStrip1.ForeColor = SystemColors.ControlText;
-                this.BackColor = SystemColors.Control;
-                this.ForeColor = SystemColors.ControlText;
-                darkmode.BackColor = SystemColors.Control;
-                darkmode.ForeColor = SystemColors.ControlText;
-                darkmode.Text = "Dark Mode";
-                crnilo.zatamljenje = darkmode.Text;
-                SteamEmulator.Save();
-
-
-            }
-            else
-            {
-                app_list_view.BackColor = Color.FromArgb(62, 62, 66);
-                app_list_view.ForeColor = Color.FromArgb(255, 241, 241);
-                menuStrip1.BackColor = Color.FromArgb(62, 62, 66);
-                menuStrip1.ForeColor = Color.FromArgb(255, 241, 241);
-                this.BackColor = Color.FromArgb(45, 45, 48);
-                this.ForeColor = Color.FromArgb(255, 241, 241);
-                darkmode.BackColor = Color.FromArgb(62, 62, 66);
-                darkmode.ForeColor = Color.FromArgb(255, 241, 241);
-                darkmode.Text = "Light Mode";
-                crnilo.zatamljenje = darkmode.Text;
-                SteamEmulator.Save();
-
-            }
 
             app_list_view.LargeImageList = _image_list;
             app_list_view.SmallImageList = _image_list;
@@ -409,38 +376,6 @@ namespace SmartGoldbergEmu
                 if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
                 this.Location = Properties.Settings.Default.F1Location;
                 this.Size = Properties.Settings.Default.F1Size;
-            }
-        }
-
-        private void darkmode_Click(object sender, EventArgs e)
-        {
-            if(darkmode.Text=="Dark Mode")
-            {
-                app_list_view.BackColor = Color.FromArgb(62, 62, 66);
-                app_list_view.ForeColor = Color.FromArgb(255, 241, 241);
-                menuStrip1.BackColor = Color.FromArgb(62, 62, 66);
-                menuStrip1.ForeColor = Color.FromArgb(255, 241, 241);
-                this.BackColor = Color.FromArgb(45, 45, 48);
-                this.ForeColor = Color.FromArgb(255, 241, 241);
-                darkmode.BackColor = Color.FromArgb(62, 62, 66);
-                darkmode.ForeColor = Color.FromArgb(255, 241, 241);
-                darkmode.Text = "Light Mode";
-                crnilo.zatamljenje = darkmode.Text;
-                SteamEmulator.Save();                
-            }
-            else
-            {
-                app_list_view.BackColor = SystemColors.Window;
-                app_list_view.ForeColor = SystemColors.WindowText;
-                menuStrip1.BackColor = SystemColors.Control;
-                menuStrip1.ForeColor = SystemColors.ControlText;
-                this.BackColor = SystemColors.Control;
-                this.ForeColor = SystemColors.ControlText;
-                darkmode.BackColor = SystemColors.Control;
-                darkmode.ForeColor = SystemColors.ControlText;
-                darkmode.Text = "Dark Mode";
-                crnilo.zatamljenje = darkmode.Text;
-                SteamEmulator.Save();
             }
         }
     }
