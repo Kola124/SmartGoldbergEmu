@@ -28,6 +28,7 @@ namespace SmartGoldbergEmu
         public ushort port;//listen_port.txt
         public string steamid;//user_steam_id.txt
         public string webapi_key;
+        public string zatamljenje;
 
         public EmuConfig()
         {
@@ -36,10 +37,12 @@ namespace SmartGoldbergEmu
             port = 0;
             steamid = "";
             webapi_key = "";
+            zatamljenje = "Light Mode";
         }
     }
     public class SavedConf
     {
+        public string zatamljenje = "Light Mode";
         public string webapi_key = "";
         public List<GameConfig> apps = new List<GameConfig>();
     }

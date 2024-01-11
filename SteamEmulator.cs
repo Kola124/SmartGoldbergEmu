@@ -141,6 +141,7 @@ namespace SmartGoldbergEmu
 
                     Apps = save.apps;
                     Config.webapi_key = save.webapi_key;
+                    Config.zatamljenje = save.zatamljenje;
                 }
             }
             catch (Exception)
@@ -165,6 +166,7 @@ namespace SmartGoldbergEmu
 
                 save.apps = Apps;
                 save.webapi_key = Config.webapi_key;
+                save.zatamljenje = Config.zatamljenje;
 
                 using (var writer = XmlWriter.Create(stringWriter, settings))
                 {
