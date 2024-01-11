@@ -69,7 +69,6 @@ namespace SmartGoldbergEmu
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.darkmode = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.capp_contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -232,24 +231,12 @@ namespace SmartGoldbergEmu
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItem_Click);
             // 
-            // darkmode
-            // 
-            this.darkmode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkmode.Location = new System.Drawing.Point(257, 1);
-            this.darkmode.Name = "darkmode";
-            this.darkmode.Size = new System.Drawing.Size(102, 23);
-            this.darkmode.TabIndex = 2;
-            this.darkmode.Text = "Dark Mode";
-            this.darkmode.UseVisualStyleBackColor = true;
-            this.darkmode.Click += new System.EventHandler(this.darkmode_Click);
-            // 
             // SmartGoldbergEmuMainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(371, 297);
-            this.Controls.Add(this.darkmode);
             this.Controls.Add(this.app_list_view);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -290,7 +277,6 @@ namespace SmartGoldbergEmu
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem createShortcutToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
-        private Button darkmode;
     }
 }
 
