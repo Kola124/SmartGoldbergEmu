@@ -301,19 +301,23 @@ namespace SmartGoldbergEmu
             checkBox_SteamDeck.Checked = app.SteamDeck;
             checkBox_AchBypass.Checked = app.AchBypass;
             checkBox_DisableSQuery.Checked = app.DisableSQuery;
+            checkBox_UnknownStats.Checked = app.UnknownStats;
+            checkBox_SaveHigheStats.Checked = app.SaveHigherStat;
+            checkBox_GameServerStat.Checked = app.GameserverStat;
+            checkBox_DisableStatShare.Checked = app.DisableStatShare;
+            checkBox_DisLobbyCreation.Checked = app.DisLobbyCreation;
+            checkBox_ShareLeaderboard.Checked = app.ShareLeaderboard;
+            checkBox_UnknownLeaderboard.Checked = app.UnknownLeaderboard;
+            checkBox_ActualType.Checked = app.ActualType;
+            checkBox_MatchmakeSource.Checked = app.MatchmakeSource;
+            checkBox_HttpSuccess.Checked = app.HttpSuccess;
+            checkBox_UnlockAllDLC.Checked = app.UnlockAllDLC;
 
             Modified_app = app.Clone();
 
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
             if (game_appid_edit.Text != "0")
             {
-                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt")))
-                {
-                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"), FileMode.Open), Encoding.ASCII))
-                    {
-                        DLC_add.Text = streamReader.ReadToEnd();
-                    }
-                }
                 if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt")))
                 {
                     using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"), FileMode.Open), Encoding.ASCII))
@@ -428,14 +432,16 @@ namespace SmartGoldbergEmu
 
             Directory.CreateDirectory(Path.Combine(game_emu_folder, "steam_settings"));
             Directory.CreateDirectory(Path.Combine(game_emu_folder, "remote"));
+            File.Create(Path.Combine(game_emu_folder, "steam_settings", "configs.app.ini")).Close();
+            File.Create(Path.Combine(game_emu_folder, "steam_settings", "configs.main.ini")).Close();
 
-            PisanjeDLC();
+            PisanjeAppConfig();
+
+            PisanjeMainConfig();
 
             Pisanjesg();
 
             Pisanjestat();
-
-            Pisanjeappt();
 
             Pisanjedepo();
 
@@ -454,8 +460,7 @@ namespace SmartGoldbergEmu
             Pisanje_FavServ();
 
             Pisanje_HisServ();
-
-            Pisanje_BetaBranch();
+ 
             Pisanje_InstaliraniIDovi();
 
             if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "gc_token.txt"))){
@@ -565,12 +570,27 @@ namespace SmartGoldbergEmu
             Modified_app.AchBypass = checkBox_AchBypass.Checked;
             Modified_app.DisableAvatar = checkBox_DisableAvatar.Checked;
             Modified_app.Offline = checkbox_offline.Checked;
+            Modified_app.UnlockAllDLC = checkBox_UnlockAllDLC.Checked;
+            //stats
+            Modified_app.UnknownStats = checkBox_UnknownStats.Checked;
+            Modified_app.SaveHigherStat = checkBox_SaveHigheStats.Checked;
+            Modified_app.GameserverStat = checkBox_GameServerStat.Checked;
+            Modified_app.DisableStatShare = checkBox_DisableStatShare.Checked;
+            //
             Modified_app.AppName = game_name_edit.Text;
             Modified_app.Path = game_exe_edit.Text;
             Modified_app.StartFolder = game_folder_edit.Text;
             Modified_app.LocalSave = local_save_edit.Text;
             Modified_app.CustomIcon = CustomIcon.Text;
             Modified_app.Parameters = game_parameters_edit.Text;
+            //Novo
+            Modified_app.DisLobbyCreation = checkBox_DisLobbyCreation.Checked;
+            Modified_app.ShareLeaderboard = checkBox_ShareLeaderboard.Checked;
+            Modified_app.UnknownLeaderboard = checkBox_UnknownLeaderboard.Checked;
+            Modified_app.ActualType = checkBox_ActualType.Checked;
+            Modified_app.MatchmakeSource = checkBox_MatchmakeSource.Checked;
+            Modified_app.HttpSuccess = checkBox_HttpSuccess.Checked;
+            //
             Modified_app.CustomBroadcasts = new List<string>();
             Modified_app.EnvVars = new List<string>();
 
@@ -800,19 +820,216 @@ namespace SmartGoldbergEmu
             }
         }
 
-        void PisanjeDLC()
+        void PisanjeAppConfig()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (string.IsNullOrEmpty(DLC_add.Text))
+            TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "configs.app.ini"), FileMode.Append), Encoding.UTF8);
+            tw.WriteLine("[app::general]");
+            if (string.IsNullOrEmpty(beta_branch_add.Text))
             {
-                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"));
+                tw.WriteLine("is_beta_branch=0");
+                tw.WriteLine("branch_name=public");
             }
             else
             {
-                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "DLC.txt"), FileMode.Create), Encoding.ASCII);
-                tw.WriteLine(DLC_add.Text);
-                tw.Close();
+                tw.WriteLine("is_beta_branch=1");
+                tw.WriteLine("branch_name=" + beta_branch_add.Text);
             }
+            tw.WriteLine("[app::dlcs]");
+            if (string.IsNullOrEmpty(DLC_add.Text))
+            {
+                if (checkBox_UnlockAllDLC.Checked)
+                {
+                    tw.WriteLine("unlock_all=1");
+                }
+                else
+                {
+                    tw.WriteLine("unlock_all=0");
+                }
+            }
+            else
+            {
+                if (checkBox_UnlockAllDLC.Checked)
+                {
+                    tw.WriteLine("unlock_all=1");
+                }
+                else
+                {
+                    tw.WriteLine("unlock_all=0");
+                }
+                tw.WriteLine(DLC_add.Text);
+            }
+            if (string.IsNullOrEmpty(Apppt_add.Text))
+            {
+            }
+            else
+            {
+                tw.WriteLine("[app::paths]");
+                tw.WriteLine(Apppt_add.Text);
+            }
+            tw.Close();
+        }
+
+        void PisanjeMainConfig()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "configs.main.ini"), FileMode.Append), Encoding.UTF8);
+            tw.WriteLine("[main::general]");
+            tw.WriteLine("new_app_ticket=1");
+            tw.WriteLine("gc_token=1");
+            if (checkBox_SteamDeck.Checked) {
+                tw.WriteLine("steam_deck=1");
+            }
+            else
+            {
+                tw.WriteLine("steam_deck=0");
+            }
+            if (checkBox_DisableAvatar.Checked)
+            {
+                tw.WriteLine("enable_account_avatar=0");
+            }
+            else
+            {
+                tw.WriteLine("enable_account_avatar=1");
+            }
+            if (checkBox_DisLobbyCreation.Checked)
+            {
+                tw.WriteLine("disable_leaderboards_create_unknown=00");
+            }
+            else
+            {
+                tw.WriteLine("disable_leaderboards_create_unknown=1");
+            }
+            if (checkBox_UnknownStats.Checked)
+            {
+                tw.WriteLine("allow_unknown_stats=1");
+            }
+            else
+            {
+                tw.WriteLine("allow_unknown_stats=0");
+            }
+            if (checkBox_SaveHigheStats.Checked)
+            {
+                tw.WriteLine("save_only_higher_stat_achievement_progress=1");
+            }
+            {
+                tw.WriteLine("save_only_higher_stat_achievement_progress=0");
+            }
+            if (checkBox_GameServerStat.Checked)
+            {
+                tw.WriteLine("immediate_gameserver_stats=1");
+            }
+            else
+            {
+                tw.WriteLine("immediate_gameserver_stats=0");
+            }
+            if (checkBox_ActualType.Checked)
+            {
+                tw.WriteLine("matchmaking_server_list_actual_type=1");
+            }
+            else
+            {
+                tw.WriteLine("matchmaking_server_list_actual_type=0");
+            }
+            if (checkBox_MatchmakeSource.Checked)
+            {
+                tw.WriteLine("matchmaking_server_details_via_source_query=1");
+            }
+            else
+            {
+                tw.WriteLine("matchmaking_server_details_via_source_query=0");
+            }
+            tw.WriteLine("[main::connectivity]");
+            if (checkBox_DisableLANOnly.Checked)
+            {
+                tw.WriteLine("disable_lan_only=1");
+            }
+            else
+            {
+                tw.WriteLine("disable_lan_only=0");
+            }
+            if (checkBox_DisableNetworking.Checked)
+            {
+                tw.WriteLine("disable_networking=1");
+            }
+            else
+            {
+                tw.WriteLine("disable_networking=0");
+            }
+            if (string.IsNullOrEmpty(force_listen_port_add.Text))
+            {
+
+            }
+            else
+            {
+                tw.WriteLine("listen_port=" + force_listen_port_add.Text);
+            }
+            if (checkbox_offline.Checked)
+            {
+                tw.WriteLine("offline=1");
+            }
+            else
+            {
+                tw.WriteLine("offline=0");
+            }
+            if (checkBox_DisableStatShare.Checked)
+            {
+                tw.WriteLine("disable_sharing_stats_with_gameserver=1");
+            }
+            else
+            {
+                tw.WriteLine("disable_sharing_stats_with_gameserver=0");
+            }
+            if (checkBox_DisableSQuery.Checked)
+            {
+                tw.WriteLine("disable_source_query=1");
+            }
+            else
+            {
+                tw.WriteLine("disable_source_query=0");
+            }
+            if (checkBox_ShareLeaderboard.Checked)
+            {
+                tw.WriteLine("share_leaderboards_over_network=1");
+            }
+            else
+            {
+                tw.WriteLine("share_leaderboards_over_network=0");
+            }
+            if (checkBox_DisLobbyCreation.Checked)
+            {
+                tw.WriteLine("disable_lobby_creation=1");
+            }
+            else
+            {
+                tw.WriteLine("disable_lobby_creation=0");
+            }
+            if (checkBox_EnableHTTP.Checked)
+            {
+                tw.WriteLine("download_steamhttp_requests=1");
+            }
+            else
+            {
+                tw.WriteLine("download_steamhttp_requests=0");
+            }
+            tw.WriteLine("[main::misc]");
+            if (checkBox_AchBypass.Checked)
+            {
+                tw.WriteLine("achievements_bypass=1");
+            }
+            else
+            {
+                tw.WriteLine("achievements_bypass=0");
+            }
+            if (checkBox_HttpSuccess.Checked)
+            {
+                tw.WriteLine("force_steamhttp_success=1");
+            }
+            else
+            {
+                tw.WriteLine("force_steamhttp_success=0");
+            }
+            tw.Close();
         }
 
         void Pisanjesg()
@@ -845,20 +1062,6 @@ namespace SmartGoldbergEmu
             }
         }
 
-        void Pisanjeappt()
-        {
-            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (string.IsNullOrEmpty(Apppt_add.Text))
-            {
-                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt"));
-            }
-            else
-            {
-                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "app_paths.txt"), FileMode.Create), Encoding.ASCII);
-                tw.WriteLine(Apppt_add.Text);
-                tw.Close();
-            }
-        }
 
         void Pisanjedepo()
         {
@@ -991,27 +1194,6 @@ namespace SmartGoldbergEmu
                 TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "remote", "serverbrowser_history.txt"), FileMode.Create), Encoding.ASCII);
                 tw.WriteLine(HisServ_add.Text);
                 tw.Close();
-            }
-
-        }
-
-        void Pisanje_BetaBranch()
-        {
-            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
-            if (string.IsNullOrEmpty(beta_branch_add.Text))
-            {
-                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt"));
-                if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "is_beta_branch.txt"))) File.Delete(Path.Combine(game_emu_folder, "steam_settings", "is_beta_branch.txt"));
-            }
-            else
-            {
-                TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "force_branch_name.txt"), FileMode.Create), Encoding.ASCII);
-                tw.WriteLine(beta_branch_add.Text);
-                tw.Close();
-                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "is_beta_branch.txt"), FileMode.Create), Encoding.ASCII))
-                {
-                    streamWriter.Close();
-                }
             }
 
         }
@@ -1181,6 +1363,11 @@ namespace SmartGoldbergEmu
                             string promjenjeno = directory.Replace(@"\", @"\\");
                             tw.WriteLine("\t" + "\"" + Path.GetFileName(directory) + "\": {");
                             tw.WriteLine("\t\t" + "\"name\": " + "\"" + Path.GetFileName(directory) + "\",");
+                            if (game_appid_edit.Text == "564310")
+                            {
+                                tw.WriteLine("\t\t" + "\"primary_filename\": " + "\"" +"zz"+ Path.GetFileName(directory) + ".gro\",");
+                                tw.WriteLine("\t\t" + "\"preview_filename\": " + "\"" + "zz" + Path.GetFileName(directory) + ".jpg\",");
+                            }  
                             tw.WriteLine("\t\t" + "\"path\": " + "\"" + promjenjeno + "\"");
                             tw.WriteLine("\t" + "},");
                         }

@@ -42,6 +42,19 @@ namespace SmartGoldbergEmu
         public bool SteamDeck { get; set; }
         public bool AchBypass { get; set; }
         public bool Offline { get; set; }
+        //Stats
+        public bool UnknownStats { get; set; }
+        public bool SaveHigherStat { get; set; }
+        public bool GameserverStat { get; set; }
+        public bool DisableStatShare { get; set; }
+        public bool UnlockAllDLC { get; set; }
+        //Newadded
+        public bool DisLobbyCreation { get; set; }
+        public bool ShareLeaderboard { get; set; }
+        public bool UnknownLeaderboard { get; set; }
+        public bool ActualType { get; set; }
+        public bool MatchmakeSource { get; set; }
+        public bool HttpSuccess { get; set; }
 
         public string LocalSave { get; set; }
         public string CustomIcon { get; set; }
@@ -69,8 +82,23 @@ namespace SmartGoldbergEmu
             DisableFriendNotif = false;
             SteamDeck = false;
             AchBypass = false;
+            UnlockAllDLC = false;
+            //stats
+            UnknownStats = false;
+            SaveHigherStat = true;
+            GameserverStat = false;
+            DisableStatShare = false;
+            //
+            //Newer stuff
+            DisLobbyCreation = false;
+            ShareLeaderboard = false;
+            UnknownLeaderboard = false;
+            ActualType = false;
+            MatchmakeSource = false;
+            HttpSuccess = false;
+            //
 
-            CustomBroadcasts = new List<string>();
+        CustomBroadcasts = new List<string>();
             EnvVars = new List<string>();
         }
 
@@ -118,7 +146,17 @@ namespace SmartGoldbergEmu
                 DisableFriendNotif = DisableFriendNotif,
                 SteamDeck = SteamDeck,
                 AchBypass = AchBypass,
-
+                UnlockAllDLC= UnlockAllDLC,
+                UnknownStats = UnknownStats,
+                SaveHigherStat = SaveHigherStat,
+                GameserverStat = GameserverStat,
+                DisableStatShare = DisableStatShare,
+                DisLobbyCreation=DisLobbyCreation,
+                ShareLeaderboard=ShareLeaderboard,
+                UnknownLeaderboard=UnknownLeaderboard,
+                ActualType = ActualType,
+                MatchmakeSource = MatchmakeSource,
+                HttpSuccess = HttpSuccess,
                 CustomBroadcasts = new List<string>(CustomBroadcasts),
                 EnvVars = new List<string>(EnvVars),
                 GameGuid = GameGuid
