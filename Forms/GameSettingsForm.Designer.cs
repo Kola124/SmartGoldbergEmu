@@ -49,6 +49,17 @@ namespace SmartGoldbergEmu
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.Force_tab = new System.Windows.Forms.TabPage();
+            this.checkBox_UnknownLeaderboard = new System.Windows.Forms.CheckBox();
+            this.checkBox_ActualType = new System.Windows.Forms.CheckBox();
+            this.checkBox_MatchmakeSource = new System.Windows.Forms.CheckBox();
+            this.checkBox_ShareLeaderboard = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisLobbyCreation = new System.Windows.Forms.CheckBox();
+            this.checkBox_HttpSuccess = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisableSQuery = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisableAvatar = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisableFriendNotif = new System.Windows.Forms.CheckBox();
+            this.checkBox_DisableAchNotif = new System.Windows.Forms.CheckBox();
+            this.checkBox_AchBypass = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.beta_branch_add = new System.Windows.Forms.TextBox();
             this.checkBox_SteamDeck = new System.Windows.Forms.CheckBox();
@@ -136,17 +147,8 @@ namespace SmartGoldbergEmu
             this.serfav_label = new System.Windows.Forms.Label();
             this.serbrow_label = new System.Windows.Forms.Label();
             this.Server_add = new System.Windows.Forms.TextBox();
-            this.checkBox_AchBypass = new System.Windows.Forms.CheckBox();
-            this.checkBox_DisableAchNotif = new System.Windows.Forms.CheckBox();
-            this.checkBox_DisableFriendNotif = new System.Windows.Forms.CheckBox();
-            this.checkBox_DisableAvatar = new System.Windows.Forms.CheckBox();
-            this.checkBox_DisableSQuery = new System.Windows.Forms.CheckBox();
-            this.checkBox_HttpSuccess = new System.Windows.Forms.CheckBox();
-            this.checkBox_DisLobbyCreation = new System.Windows.Forms.CheckBox();
-            this.checkBox_ShareLeaderboard = new System.Windows.Forms.CheckBox();
-            this.checkBox_MatchmakeSource = new System.Windows.Forms.CheckBox();
-            this.checkBox_ActualType = new System.Windows.Forms.CheckBox();
-            this.checkBox_UnknownLeaderboard = new System.Windows.Forms.CheckBox();
+            this.force_IPCountry_add = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.Force_tab.SuspendLayout();
             this.Apppaths_tab.SuspendLayout();
             this.Stats_tab.SuspendLayout();
@@ -179,6 +181,8 @@ namespace SmartGoldbergEmu
             // 
             // Force_tab
             // 
+            this.Force_tab.Controls.Add(this.label17);
+            this.Force_tab.Controls.Add(this.force_IPCountry_add);
             this.Force_tab.Controls.Add(this.checkBox_UnknownLeaderboard);
             this.Force_tab.Controls.Add(this.checkBox_ActualType);
             this.Force_tab.Controls.Add(this.checkBox_MatchmakeSource);
@@ -210,6 +214,116 @@ namespace SmartGoldbergEmu
             this.Force_tab.TabIndex = 7;
             this.Force_tab.Text = "Other Settings";
             this.Force_tab.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_UnknownLeaderboard
+            // 
+            this.checkBox_UnknownLeaderboard.AutoSize = true;
+            this.checkBox_UnknownLeaderboard.Location = new System.Drawing.Point(240, 266);
+            this.checkBox_UnknownLeaderboard.Name = "checkBox_UnknownLeaderboard";
+            this.checkBox_UnknownLeaderboard.Size = new System.Drawing.Size(173, 17);
+            this.checkBox_UnknownLeaderboard.TabIndex = 59;
+            this.checkBox_UnknownLeaderboard.Text = "Disable Unknown Leaderboard";
+            this.checkBox_UnknownLeaderboard.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_ActualType
+            // 
+            this.checkBox_ActualType.AutoSize = true;
+            this.checkBox_ActualType.Location = new System.Drawing.Point(437, 174);
+            this.checkBox_ActualType.Name = "checkBox_ActualType";
+            this.checkBox_ActualType.Size = new System.Drawing.Size(142, 17);
+            this.checkBox_ActualType.TabIndex = 58;
+            this.checkBox_ActualType.Text = "Matchmake Actual Type";
+            this.checkBox_ActualType.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_MatchmakeSource
+            // 
+            this.checkBox_MatchmakeSource.AutoSize = true;
+            this.checkBox_MatchmakeSource.Location = new System.Drawing.Point(437, 197);
+            this.checkBox_MatchmakeSource.Name = "checkBox_MatchmakeSource";
+            this.checkBox_MatchmakeSource.Size = new System.Drawing.Size(153, 17);
+            this.checkBox_MatchmakeSource.TabIndex = 57;
+            this.checkBox_MatchmakeSource.Text = "Matchmake Source Querry";
+            this.checkBox_MatchmakeSource.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_ShareLeaderboard
+            // 
+            this.checkBox_ShareLeaderboard.AutoSize = true;
+            this.checkBox_ShareLeaderboard.Location = new System.Drawing.Point(240, 243);
+            this.checkBox_ShareLeaderboard.Name = "checkBox_ShareLeaderboard";
+            this.checkBox_ShareLeaderboard.Size = new System.Drawing.Size(191, 17);
+            this.checkBox_ShareLeaderboard.TabIndex = 56;
+            this.checkBox_ShareLeaderboard.Text = "Share Leaderboards Over Network";
+            this.checkBox_ShareLeaderboard.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_DisLobbyCreation
+            // 
+            this.checkBox_DisLobbyCreation.AutoSize = true;
+            this.checkBox_DisLobbyCreation.Location = new System.Drawing.Point(240, 220);
+            this.checkBox_DisLobbyCreation.Name = "checkBox_DisLobbyCreation";
+            this.checkBox_DisLobbyCreation.Size = new System.Drawing.Size(135, 17);
+            this.checkBox_DisLobbyCreation.TabIndex = 55;
+            this.checkBox_DisLobbyCreation.Text = "Disable Lobby Creation";
+            this.checkBox_DisLobbyCreation.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_HttpSuccess
+            // 
+            this.checkBox_HttpSuccess.AutoSize = true;
+            this.checkBox_HttpSuccess.Location = new System.Drawing.Point(240, 174);
+            this.checkBox_HttpSuccess.Name = "checkBox_HttpSuccess";
+            this.checkBox_HttpSuccess.Size = new System.Drawing.Size(120, 17);
+            this.checkBox_HttpSuccess.TabIndex = 54;
+            this.checkBox_HttpSuccess.Text = "Force Http Success";
+            this.checkBox_HttpSuccess.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_DisableSQuery
+            // 
+            this.checkBox_DisableSQuery.AutoSize = true;
+            this.checkBox_DisableSQuery.Location = new System.Drawing.Point(240, 197);
+            this.checkBox_DisableSQuery.Name = "checkBox_DisableSQuery";
+            this.checkBox_DisableSQuery.Size = new System.Drawing.Size(129, 17);
+            this.checkBox_DisableSQuery.TabIndex = 53;
+            this.checkBox_DisableSQuery.Text = "Disable Source Query";
+            this.checkBox_DisableSQuery.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_DisableAvatar
+            // 
+            this.checkBox_DisableAvatar.AutoSize = true;
+            this.checkBox_DisableAvatar.Location = new System.Drawing.Point(52, 266);
+            this.checkBox_DisableAvatar.Name = "checkBox_DisableAvatar";
+            this.checkBox_DisableAvatar.Size = new System.Drawing.Size(95, 17);
+            this.checkBox_DisableAvatar.TabIndex = 52;
+            this.checkBox_DisableAvatar.Text = "Disable Avatar";
+            this.checkBox_DisableAvatar.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_DisableFriendNotif
+            // 
+            this.checkBox_DisableFriendNotif.AutoSize = true;
+            this.checkBox_DisableFriendNotif.Location = new System.Drawing.Point(52, 243);
+            this.checkBox_DisableFriendNotif.Name = "checkBox_DisableFriendNotif";
+            this.checkBox_DisableFriendNotif.Size = new System.Drawing.Size(149, 17);
+            this.checkBox_DisableFriendNotif.TabIndex = 51;
+            this.checkBox_DisableFriendNotif.Text = "Disable Friend Notification";
+            this.checkBox_DisableFriendNotif.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_DisableAchNotif
+            // 
+            this.checkBox_DisableAchNotif.AutoSize = true;
+            this.checkBox_DisableAchNotif.Location = new System.Drawing.Point(52, 220);
+            this.checkBox_DisableAchNotif.Name = "checkBox_DisableAchNotif";
+            this.checkBox_DisableAchNotif.Size = new System.Drawing.Size(182, 17);
+            this.checkBox_DisableAchNotif.TabIndex = 50;
+            this.checkBox_DisableAchNotif.Text = "Disable Achievement Notification";
+            this.checkBox_DisableAchNotif.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AchBypass
+            // 
+            this.checkBox_AchBypass.AutoSize = true;
+            this.checkBox_AchBypass.Location = new System.Drawing.Point(52, 197);
+            this.checkBox_AchBypass.Name = "checkBox_AchBypass";
+            this.checkBox_AchBypass.Size = new System.Drawing.Size(130, 17);
+            this.checkBox_AchBypass.TabIndex = 49;
+            this.checkBox_AchBypass.Text = "Achievements Bypass";
+            this.checkBox_AchBypass.UseVisualStyleBackColor = true;
             // 
             // label15
             // 
@@ -248,7 +362,7 @@ namespace SmartGoldbergEmu
             // 
             this.force_listen_port_add.Location = new System.Drawing.Point(170, 97);
             this.force_listen_port_add.Name = "force_listen_port_add";
-            this.force_listen_port_add.Size = new System.Drawing.Size(144, 20);
+            this.force_listen_port_add.Size = new System.Drawing.Size(106, 20);
             this.force_listen_port_add.TabIndex = 42;
             // 
             // force_langugae_add
@@ -1091,115 +1205,21 @@ namespace SmartGoldbergEmu
             this.Server_add.Size = new System.Drawing.Size(541, 95);
             this.Server_add.TabIndex = 15;
             // 
-            // checkBox_AchBypass
+            // force_IPCountry_add
             // 
-            this.checkBox_AchBypass.AutoSize = true;
-            this.checkBox_AchBypass.Location = new System.Drawing.Point(52, 197);
-            this.checkBox_AchBypass.Name = "checkBox_AchBypass";
-            this.checkBox_AchBypass.Size = new System.Drawing.Size(130, 17);
-            this.checkBox_AchBypass.TabIndex = 49;
-            this.checkBox_AchBypass.Text = "Achievements Bypass";
-            this.checkBox_AchBypass.UseVisualStyleBackColor = true;
+            this.force_IPCountry_add.Location = new System.Drawing.Point(396, 97);
+            this.force_IPCountry_add.Name = "force_IPCountry_add";
+            this.force_IPCountry_add.Size = new System.Drawing.Size(131, 20);
+            this.force_IPCountry_add.TabIndex = 60;
             // 
-            // checkBox_DisableAchNotif
+            // label17
             // 
-            this.checkBox_DisableAchNotif.AutoSize = true;
-            this.checkBox_DisableAchNotif.Location = new System.Drawing.Point(52, 220);
-            this.checkBox_DisableAchNotif.Name = "checkBox_DisableAchNotif";
-            this.checkBox_DisableAchNotif.Size = new System.Drawing.Size(182, 17);
-            this.checkBox_DisableAchNotif.TabIndex = 50;
-            this.checkBox_DisableAchNotif.Text = "Disable Achievement Notification";
-            this.checkBox_DisableAchNotif.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_DisableFriendNotif
-            // 
-            this.checkBox_DisableFriendNotif.AutoSize = true;
-            this.checkBox_DisableFriendNotif.Location = new System.Drawing.Point(52, 243);
-            this.checkBox_DisableFriendNotif.Name = "checkBox_DisableFriendNotif";
-            this.checkBox_DisableFriendNotif.Size = new System.Drawing.Size(149, 17);
-            this.checkBox_DisableFriendNotif.TabIndex = 51;
-            this.checkBox_DisableFriendNotif.Text = "Disable Friend Notification";
-            this.checkBox_DisableFriendNotif.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_DisableAvatar
-            // 
-            this.checkBox_DisableAvatar.AutoSize = true;
-            this.checkBox_DisableAvatar.Location = new System.Drawing.Point(52, 266);
-            this.checkBox_DisableAvatar.Name = "checkBox_DisableAvatar";
-            this.checkBox_DisableAvatar.Size = new System.Drawing.Size(95, 17);
-            this.checkBox_DisableAvatar.TabIndex = 52;
-            this.checkBox_DisableAvatar.Text = "Disable Avatar";
-            this.checkBox_DisableAvatar.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_DisableSQuery
-            // 
-            this.checkBox_DisableSQuery.AutoSize = true;
-            this.checkBox_DisableSQuery.Location = new System.Drawing.Point(240, 197);
-            this.checkBox_DisableSQuery.Name = "checkBox_DisableSQuery";
-            this.checkBox_DisableSQuery.Size = new System.Drawing.Size(129, 17);
-            this.checkBox_DisableSQuery.TabIndex = 53;
-            this.checkBox_DisableSQuery.Text = "Disable Source Query";
-            this.checkBox_DisableSQuery.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_HttpSuccess
-            // 
-            this.checkBox_HttpSuccess.AutoSize = true;
-            this.checkBox_HttpSuccess.Location = new System.Drawing.Point(240, 174);
-            this.checkBox_HttpSuccess.Name = "checkBox_HttpSuccess";
-            this.checkBox_HttpSuccess.Size = new System.Drawing.Size(120, 17);
-            this.checkBox_HttpSuccess.TabIndex = 54;
-            this.checkBox_HttpSuccess.Text = "Force Http Success";
-            this.checkBox_HttpSuccess.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_DisLobbyCreation
-            // 
-            this.checkBox_DisLobbyCreation.AutoSize = true;
-            this.checkBox_DisLobbyCreation.Location = new System.Drawing.Point(240, 220);
-            this.checkBox_DisLobbyCreation.Name = "checkBox_DisLobbyCreation";
-            this.checkBox_DisLobbyCreation.Size = new System.Drawing.Size(135, 17);
-            this.checkBox_DisLobbyCreation.TabIndex = 55;
-            this.checkBox_DisLobbyCreation.Text = "Disable Lobby Creation";
-            this.checkBox_DisLobbyCreation.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_ShareLeaderboard
-            // 
-            this.checkBox_ShareLeaderboard.AutoSize = true;
-            this.checkBox_ShareLeaderboard.Location = new System.Drawing.Point(240, 243);
-            this.checkBox_ShareLeaderboard.Name = "checkBox_ShareLeaderboard";
-            this.checkBox_ShareLeaderboard.Size = new System.Drawing.Size(191, 17);
-            this.checkBox_ShareLeaderboard.TabIndex = 56;
-            this.checkBox_ShareLeaderboard.Text = "Share Leaderboards Over Network";
-            this.checkBox_ShareLeaderboard.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_MatchmakeSource
-            // 
-            this.checkBox_MatchmakeSource.AutoSize = true;
-            this.checkBox_MatchmakeSource.Location = new System.Drawing.Point(437, 197);
-            this.checkBox_MatchmakeSource.Name = "checkBox_MatchmakeSource";
-            this.checkBox_MatchmakeSource.Size = new System.Drawing.Size(153, 17);
-            this.checkBox_MatchmakeSource.TabIndex = 57;
-            this.checkBox_MatchmakeSource.Text = "Matchmake Source Querry";
-            this.checkBox_MatchmakeSource.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_ActualType
-            // 
-            this.checkBox_ActualType.AutoSize = true;
-            this.checkBox_ActualType.Location = new System.Drawing.Point(437, 174);
-            this.checkBox_ActualType.Name = "checkBox_ActualType";
-            this.checkBox_ActualType.Size = new System.Drawing.Size(142, 17);
-            this.checkBox_ActualType.TabIndex = 58;
-            this.checkBox_ActualType.Text = "Matchmake Actual Type";
-            this.checkBox_ActualType.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_UnknownLeaderboard
-            // 
-            this.checkBox_UnknownLeaderboard.AutoSize = true;
-            this.checkBox_UnknownLeaderboard.Location = new System.Drawing.Point(240, 266);
-            this.checkBox_UnknownLeaderboard.Name = "checkBox_UnknownLeaderboard";
-            this.checkBox_UnknownLeaderboard.Size = new System.Drawing.Size(173, 17);
-            this.checkBox_UnknownLeaderboard.TabIndex = 59;
-            this.checkBox_UnknownLeaderboard.Text = "Disable Unknown Leaderboard";
-            this.checkBox_UnknownLeaderboard.UseVisualStyleBackColor = true;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(301, 100);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(89, 13);
+            this.label17.TabIndex = 61;
+            this.label17.Text = "Force IP Country:";
             // 
             // GameSettingsForm
             // 
@@ -1336,5 +1356,7 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.CheckBox checkBox_UnknownLeaderboard;
         private System.Windows.Forms.CheckBox checkBox_ActualType;
         private System.Windows.Forms.CheckBox checkBox_MatchmakeSource;
+        private System.Windows.Forms.TextBox force_IPCountry_add;
+        private System.Windows.Forms.Label label17;
     }
 }
