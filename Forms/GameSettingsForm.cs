@@ -471,6 +471,8 @@ namespace SmartGoldbergEmu
 
             PisanjeUserConfig();
 
+            PisanjeOverlayConfig();
+
             Pisanjesg();
 
             Pisanjestat();
@@ -1073,6 +1075,40 @@ namespace SmartGoldbergEmu
             tw.Close();
         }
 
+        void PisanjeOverlayConfig()
+        {
+            string game_emu_folder = Path.Combine("games", game_appid_edit.Text);
+            TextWriter tw = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "configs.overlay.ini"), FileMode.Create), Encoding.UTF8);
+            tw.WriteLine("[overlay::general]");
+            if (checkBox_disableOverlay.Checked)
+            {
+                tw.WriteLine("enable_experimental_overlay=0");
+            }
+            else
+            {
+                tw.WriteLine("enable_experimental_overlay=1");
+            }
+            if (checkBox_DisableFriendNotif.Checked)
+            {
+            tw.WriteLine("disable_friend_notification=1");
+            }
+            else
+            {
+            tw.WriteLine("disable_friend_notification=0");
+            }
+            if (checkBox_DisableAchNotif.Checked)
+            {
+            tw.WriteLine("disable_achievement_progress=1");
+            }
+            else
+            {
+            tw.WriteLine("disable_achievement_progress=0");
+            }
+            tw.WriteLine("disable_warning_any=0");
+            tw.WriteLine("disable_warning_bad_appid=0");
+            tw.WriteLine("disable_warning_local_save=0");
+            tw.Close();
+            }
         void Pisanjesg()
         {
             string game_emu_folder = Path.Combine("games", game_appid_edit.Text);

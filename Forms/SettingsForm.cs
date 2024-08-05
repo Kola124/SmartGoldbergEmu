@@ -115,7 +115,7 @@ namespace SmartGoldbergEmu
         public void Ucitavanje()
         {
             Image img=null;
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             if (File.Exists(Path.Combine(save_folder, "account_avatar.png")))
             {
                 using (var bmpTemp = new Bitmap(Path.Combine(save_folder, "account_avatar.png")))
@@ -132,9 +132,9 @@ namespace SmartGoldbergEmu
             };
             avatar.Image = img;
 
-            if (File.Exists(Path.Combine(save_folder, "overlay_appearance.txt")))
+            if (File.Exists(Path.Combine(save_folder, "configs.overlay.ini")))
             {
-                using (StreamReader streamReader = new StreamReader(Path.Combine(save_folder, "overlay_appearance.txt")))
+                using (StreamReader streamReader = new StreamReader(Path.Combine(save_folder, "configs.overlay.ini")))
                 {
                     string line;
                     string prosliline = "a";
@@ -144,185 +144,246 @@ namespace SmartGoldbergEmu
                     while ((line = streamReader.ReadLine()) != null)
                     {
                         prosliline = line;
-                        if (prosliline.Contains("Font_Size"))
+                        if (prosliline.Contains("Font_Size="))
                         {
                             //FontsizeText.Text = prosliline;
-                            prosliline = prosliline.Replace("Font_Size ", "");
+                            prosliline = prosliline.Replace("Font_Size=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             FontsizeText.Text = result.ToString().Replace(",", ".");
                         }
 
 
-                        if (prosliline.Contains("Icon_Size"))
+                        if (prosliline.Contains("Icon_Size="))
                         {
-                            prosliline = prosliline.Replace("Icon_Size ", "");
+                            prosliline = prosliline.Replace("Icon_Size=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             ImgSizeText.Text = result.ToString().Replace(",", ".");
-                            //ImgSizeText.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Font_Glyph_Extra_Spacing_x="))
+                        {
+                            prosliline = prosliline.Replace("Font_Glyph_Extra_Spacing_x=", "");
+                            fontspacingXText.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Font_Glyph_Extra_Spacing_y="))
+                        {
+                            prosliline = prosliline.Replace("Font_Glyph_Extra_Spacing_y=", "");
+                            fontspacingYText.Text = prosliline;
                         }
 
-
-                        if (prosliline.Contains("Notification_R"))
+                        if (prosliline.Contains("Notification_R="))
                         {
-                            prosliline = prosliline.Replace("Notification_R ", "");
+                            prosliline = prosliline.Replace("Notification_R=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             NotifColourText.Text = result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Notification_G"))
+                        if (prosliline.Contains("Notification_G="))
                         {
-                            prosliline = prosliline.Replace("Notification_G ", "");
+                            prosliline = prosliline.Replace("Notification_G=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             NotifColourText.Text = NotifColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Notification_B"))
+                        if (prosliline.Contains("Notification_B="))
                         {
-                            prosliline = prosliline.Replace("Notification_B ", "");
+                            prosliline = prosliline.Replace("Notification_B=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             NotifColourText.Text = NotifColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Notification_A"))
+                        if (prosliline.Contains("Notification_A="))
                         {
-                            prosliline = prosliline.Replace("Notification_A ", "");
+                            prosliline = prosliline.Replace("Notification_A=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             NotifColourText.Text = NotifColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
-
-
-                        if (prosliline.Contains("Background_R"))
+                        if (prosliline.Contains("Notification_Rounding="))
                         {
-                            prosliline = prosliline.Replace("Background_R ", "");
+                            prosliline = prosliline.Replace("Notification_Rounding=", "");
+                            notifround_text.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Notification_Margin_x="))
+                        {
+                            prosliline = prosliline.Replace("Notification_Margin_x=", "");
+                            notifmarginx_text.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Notification_Margin_y="))
+                        {
+                            prosliline = prosliline.Replace("Notification_Margin_y=", "");
+                            notifmarginy_text.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Notification_Animation="))
+                        {
+                            prosliline = prosliline.Replace("Notification_Animation=", "");
+                            notifanim_text.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Notification_Duration_Progress="))
+                        {
+                            prosliline = prosliline.Replace("Notification_Duration_Progress=", "");
+                            progressduration_text.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Notification_Duration_Achievement="))
+                        {
+                            prosliline = prosliline.Replace("Notification_Duration_Achievement=", "");
+                            achduration_text.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Notification_Duration_Invitation="))
+                        {
+                            prosliline = prosliline.Replace("Notification_Duration_Invitation=", "");
+                            inviteduration_text.Text = prosliline;
+                        }
+                        if (prosliline.Contains("Notification_Duration_Chat="))
+                        {
+                            prosliline = prosliline.Replace("Notification_Duration_Chat=", "");
+                            chatduration_text.Text = prosliline;
+                        }
+
+                        if (prosliline.Contains("Background_R="))
+                        {
+                            prosliline = prosliline.Replace("Background_R=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             BackColourText.Text = result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Background_G"))
+                        if (prosliline.Contains("Background_G="))
                         {
-                            prosliline = prosliline.Replace("Background_G ", "");
+                            prosliline = prosliline.Replace("Background_G=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             BackColourText.Text = BackColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Background_B"))
+                        if (prosliline.Contains("Background_B="))
                         {
-                            prosliline = prosliline.Replace("Background_B ", "");
+                            prosliline = prosliline.Replace("Background_B=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             BackColourText.Text = BackColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Background_A"))
+                        if (prosliline.Contains("Background_A="))
                         {
-                            prosliline = prosliline.Replace("Background_A ", "");
+                            prosliline = prosliline.Replace("Background_A=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             BackColourText.Text = BackColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
 
 
-                        if (prosliline.Contains("Element_R"))
+                        if (prosliline.Contains("Element_R="))
                         {
-                            prosliline = prosliline.Replace("Element_R ", "");
+                            prosliline = prosliline.Replace("Element_R=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             ElementColourText.Text = result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Element_G"))
+                        if (prosliline.Contains("Element_G="))
                         {
-                            prosliline = prosliline.Replace("Element_G ", "");
+                            prosliline = prosliline.Replace("Element_G=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             ElementColourText.Text = ElementColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Element_B"))
+                        if (prosliline.Contains("Element_B="))
                         {
-                            prosliline = prosliline.Replace("Element_B ", "");
+                            prosliline = prosliline.Replace("Element_B=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             ElementColourText.Text = ElementColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("Element_A"))
+                        if (prosliline.Contains("Element_A="))
                         {
-                            prosliline = prosliline.Replace("Element_A ", "");
+                            prosliline = prosliline.Replace("Element_A=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             ElementColourText.Text = ElementColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
 
-                        if (prosliline.Contains("ElementHovered_R"))
+                        if (prosliline.Contains("ElementHovered_R="))
                         {
-                            prosliline = prosliline.Replace("ElementHovered_R ", "");
+                            prosliline = prosliline.Replace("ElementHovered_R=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             ElementHovColourText.Text = result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("ElementHovered_G"))
+                        if (prosliline.Contains("ElementHovered_G="))
                         {
-                            prosliline = prosliline.Replace("ElementHovered_G ", "");
+                            prosliline = prosliline.Replace("ElementHovered_G=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             ElementHovColourText.Text = ElementHovColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("ElementHovered_B"))
+                        if (prosliline.Contains("ElementHovered_B="))
                         {
-                            prosliline = prosliline.Replace("ElementHovered_B ", "");
+                            prosliline = prosliline.Replace("ElementHovered_B=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             ElementHovColourText.Text = ElementHovColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("ElementHovered_A"))
+                        if (prosliline.Contains("ElementHovered_A="))
                         {
-                            prosliline = prosliline.Replace("ElementHovered_A ", "");
+                            prosliline = prosliline.Replace("ElementHovered_A=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             ElementHovColourText.Text = ElementHovColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
 
 
-                        if (prosliline.Contains("ElementActive_R"))
+                        if (prosliline.Contains("ElementActive_R="))
                         {
-                            prosliline = prosliline.Replace("ElementActive_R ", "");
+                            prosliline = prosliline.Replace("ElementActive_R=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             EleActColourText.Text = result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("ElementActive_G"))
+                        if (prosliline.Contains("ElementActive_G="))
                         {
-                            prosliline = prosliline.Replace("ElementActive_G ", "");
+                            prosliline = prosliline.Replace("ElementActive_G=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             EleActColourText.Text = EleActColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("ElementActive_B"))
+                        if (prosliline.Contains("ElementActive_B="))
                         {
-                            prosliline = prosliline.Replace("ElementActive_B ", "");
+                            prosliline = prosliline.Replace("ElementActive_B=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             result = result * 255;
                             result = Math.Round(result);
                             EleActColourText.Text = EleActColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                        if (prosliline.Contains("ElementActive_A"))
+                        if (prosliline.Contains("ElementActive_A="))
                         {
-                            prosliline = prosliline.Replace("ElementActive_A ", "");
+                            prosliline = prosliline.Replace("ElementActive_A=", "");
                             double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
                             EleActColourText.Text = EleActColourText.Text + ", " + result.ToString().Replace(",", ".");
                         }
-                            
+                        if (prosliline.Contains("PosAchievement="))
+                        {
+                            prosliline = prosliline.Replace("PosAchievement=", "");
+                            PosAch_Dropdown.Text = prosliline;
+                        }
+                        if (prosliline.Contains("PosInvitation="))
+                        {
+                            prosliline = prosliline.Replace("PosInvitation=", "");
+                            PosInv_Dropdown.Text = prosliline;
+                        }
+                        if (prosliline.Contains("PosChatMsg="))
+                        {
+                            prosliline = prosliline.Replace("PosChatMsg=", "");
+                            PosMsg_Dropdown.Text = prosliline;
+                        }
                     }
                     streamReader.Close();
                 }
@@ -332,18 +393,33 @@ namespace SmartGoldbergEmu
         public void Spremanje()
         {
             double R,G,B,A = 0;
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             if (!string.IsNullOrWhiteSpace(NotifColourText.Text) | !string.IsNullOrWhiteSpace(BackColourText.Text) | !string.IsNullOrWhiteSpace(ElementColourText.Text) | !string.IsNullOrWhiteSpace(ElementHovColourText.Text) | !string.IsNullOrWhiteSpace(EleActColourText.Text) | !string.IsNullOrWhiteSpace(FontsizeText.Text) | !string.IsNullOrWhiteSpace(ImgSizeText.Text))
             {
-                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(save_folder, "overlay_appearance.txt"), FileMode.Create), Encoding.ASCII))
+                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(save_folder, "configs.overlay.ini"), FileMode.Create), Encoding.ASCII))
                 {
+                    streamWriter.WriteLine("[overlay::general]");
+                    streamWriter.WriteLine("[enable_experimental_overlay=0");
+                    streamWriter.WriteLine("[overlay::appearance]");
+                    if(File.Exists(Path.Combine(save_folder, "fonts", "dinamo.ttf")))
+                    {
+                        streamWriter.WriteLine("Font_Override=dinamo.ttf");
+                    }
                     if (!string.IsNullOrWhiteSpace(FontsizeText.Text))
                     {
-                        streamWriter.Write("Font_Size "+FontsizeText.Text+".0"+"\n");
+                        streamWriter.Write("Font_Size="+FontsizeText.Text+".0"+"\n");
                     }
                     if (!string.IsNullOrWhiteSpace(ImgSizeText.Text))
                     {
-                        streamWriter.Write("Icon_Size "+ImgSizeText.Text + ".0"+"\n");
+                        streamWriter.Write("Icon_Size="+ImgSizeText.Text + ".0"+"\n");
+                    }
+                    if (!string.IsNullOrWhiteSpace(fontspacingXText.Text))
+                    {
+                        streamWriter.WriteLine("Font_Glyph_Extra_Spacing_x=" + fontspacingXText.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(fontspacingYText.Text))
+                    {
+                        streamWriter.WriteLine("Font_Glyph_Extra_Spacing_y=" + fontspacingYText.Text);
                     }
                     if (!string.IsNullOrWhiteSpace(NotifColourText.Text))
                     {
@@ -371,9 +447,42 @@ namespace SmartGoldbergEmu
                         string B1 = B.ToString().Replace(",", ".");
                         string A1 = A.ToString().Replace(",", ".");
 
-                        streamWriter.Write("Notification_R " + R1 + "\n" + "Notification_G " + G1 + "\n" + "Notification_B " + B1 + "\n" + "Notification_A " + A1 + "\n");
+                        streamWriter.Write("Notification_R=" + R1 + "\n" + "Notification_G=" + G1 + "\n" + "Notification_B=" + B1 + "\n" + "Notification_A=" + A1 + "\n");
 
                     }
+                    if (!string.IsNullOrWhiteSpace(notifround_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Rounding=" + notifround_text.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(notifmarginx_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Margin_x=" + notifmarginx_text.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(notifmarginy_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Margin_y=" + notifmarginy_text.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(notifanim_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Animation=" + notifanim_text.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(progressduration_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Duration_Progress=" + progressduration_text.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(achduration_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Duration_Achievement=" + achduration_text.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(inviteduration_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Duration_Invitation=" + inviteduration_text.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(chatduration_text.Text))
+                    {
+                        streamWriter.WriteLine("Notification_Duration_Chat=" + chatduration_text.Text);
+                    }
+
                     if (!string.IsNullOrWhiteSpace(BackColourText.Text))
                     {
                         string lajna = BackColourText.Text.Replace(" ", "");
@@ -398,7 +507,7 @@ namespace SmartGoldbergEmu
                         string B1 = B.ToString().Replace(",", ".");
                         string A1 = A.ToString().Replace(",", ".");
 
-                        streamWriter.Write("Background_R " + R1 + "\n" + "Background_G " + G1 + "\n" + "Background_B " + B1 + "\n" + "Background_A " + A1 + "\n");
+                        streamWriter.Write("Background_R=" + R1 + "\n" + "Background_G=" + G1 + "\n" + "Background_B=" + B1 + "\n" + "Background_A=" + A1 + "\n");
 
                     }
                     if (!string.IsNullOrWhiteSpace(ElementColourText.Text))
@@ -425,7 +534,7 @@ namespace SmartGoldbergEmu
                         string B1 = B.ToString().Replace(",", ".");
                         string A1 = A.ToString().Replace(",", ".");
 
-                        streamWriter.Write("Element_R " + R1 + "\n" + "Element_G " + G1 + "\n" + "Element_B " + B1 + "\n" + "Element_A " + A1 + "\n");
+                        streamWriter.Write("Element_R=" + R1 + "\n" + "Element_G=" + G1 + "\n" + "Element_B=" + B1 + "\n" + "Element_A=" + A1 + "\n");
                     }
                     if (!string.IsNullOrWhiteSpace(ElementHovColourText.Text))
                     {
@@ -451,7 +560,7 @@ namespace SmartGoldbergEmu
                         string B1 = B.ToString().Replace(",", ".");
                         string A1 = A.ToString().Replace(",", ".");
 
-                        streamWriter.Write("ElementHovered_R " + R1 + "\n" + "ElementHovered_G " + G1 + "\n" + "ElementHovered_B " + B1 + "\n" + "ElementHovered_A " + A1 + "\n");
+                        streamWriter.Write("ElementHovered_R=" + R1 + "\n" + "ElementHovered_G=" + G1 + "\n" + "ElementHovered_B=" + B1 + "\n" + "ElementHovered_A=" + A1 + "\n");
                     }
                     if (!string.IsNullOrWhiteSpace(EleActColourText.Text))
                     {
@@ -477,8 +586,20 @@ namespace SmartGoldbergEmu
                         string B1 = B.ToString().Replace(",", ".");
                         string A1 = A.ToString().Replace(",", ".");
 
-                        streamWriter.Write("ElementActive_R " + R1 + "\n" + "ElementActive_G " + G1 + "\n" + "ElementActive_B " + B1 + "\n" + "ElementActive_A " + A1 + "\n");
+                        streamWriter.Write("ElementActive_R=" + R1 + "\n" + "ElementActive_G=" + G1 + "\n" + "ElementActive_B=" + B1 + "\n" + "ElementActive_A=" + A1 + "\n");
 
+                    }
+                    if (!string.IsNullOrWhiteSpace(PosAch_Dropdown.Text))
+                    {
+                        streamWriter.WriteLine("PosAchievement=" + PosAch_Dropdown.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(PosInv_Dropdown.Text))
+                    {
+                        streamWriter.WriteLine("PosInvitation=" + PosInv_Dropdown.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(PosMsg_Dropdown.Text))
+                    {
+                        streamWriter.WriteLine("PosChatMsg=" + PosMsg_Dropdown.Text);
                     }
                     streamWriter.Close();
                 }
@@ -533,7 +654,7 @@ namespace SmartGoldbergEmu
 
         private void Avatarchng_Click(object sender, EventArgs e)
         {
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             OpenFileDialog dijalog = new OpenFileDialog
             {
                 Filter = "PNG|*.png|JPG|*.jpg|All files|*.*",
@@ -555,7 +676,7 @@ namespace SmartGoldbergEmu
 
         private void addfriendsoundbutton_Click(object sender, EventArgs e)
         {
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             OpenFileDialog dijalog = new OpenFileDialog
             {
                 Filter = "WAV|*.wav|All files|*.*",
@@ -575,7 +696,7 @@ namespace SmartGoldbergEmu
         }
         private void addachsoundbutton_Click(object sender, EventArgs e)
         {
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             OpenFileDialog dijalog = new OpenFileDialog
             {
                 Filter = "WAV|*.wav|All files|*.*",
@@ -595,7 +716,7 @@ namespace SmartGoldbergEmu
         }
         private void delfriendsoundbutton_Click(object sender, EventArgs e)
         {
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             if (File.Exists(Path.Combine(save_folder, "overlay_friend_notification.wav")))
             {
                 File.Delete(Path.Combine(save_folder, "overlay_friend_notification.wav"));
@@ -608,9 +729,49 @@ namespace SmartGoldbergEmu
         }
         private void delachsoundbutton_Click(object sender, EventArgs e)
         {
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             if (File.Exists(Path.Combine(save_folder, "overlay_achievement_notification.wav"))) {
                 File.Delete(Path.Combine(save_folder, "overlay_achievement_notification.wav"));
+                MessageBox.Show("File was successfully deleted", "File Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("File doesn't exist", "File doesn't exist", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void addFontbutton_Click(object sender, EventArgs e)
+        {
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
+            OpenFileDialog dijalog = new OpenFileDialog
+            {
+                Filter = "TTF|*.ttf|All files|*.*",
+                FilterIndex = 2
+            };
+            if (dijalog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if (!Directory.Exists(Path.Combine(save_folder, "fonts")))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(Path.Combine(save_folder, "fonts"));
+                    }
+                    File.Copy(dijalog.FileName, Path.Combine(save_folder,"fonts", "dinamo.ttf"), true);
+                }
+                catch (IOException)
+                {
+                    // File in use and can't be deleted; no permission etc.
+                }
+            }
+        }
+
+        private void delfontbutton_Click(object sender, EventArgs e)
+        {
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
+            if (File.Exists(Path.Combine(save_folder, "fonts", "dinamo.ttf")))
+            {
+                File.Delete(Path.Combine(save_folder, "fonts", "dinamo.ttf"));
+                Directory.Delete(Path.Combine(save_folder, "fonts"));
                 MessageBox.Show("File was successfully deleted", "File Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else

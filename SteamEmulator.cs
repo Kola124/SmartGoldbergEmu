@@ -30,7 +30,7 @@ namespace SmartGoldbergEmu
         {
             LoadSave();
 
-            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Goldberg SteamEmu Saves", "settings");
+            string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             try
             {
                 using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(save_folder, "account_name.txt"), FileMode.Open), Encoding.ASCII))
@@ -63,6 +63,47 @@ namespace SmartGoldbergEmu
                 }
             }
             catch { }
+                //string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
+                if (File.Exists(Path.Combine(save_folder, "configs.user.ini")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(save_folder, "configs.user.ini"), FileMode.Open), Encoding.UTF8))
+                    {
+                        while (!streamReader.EndOfStream)
+                        {
+                            var line = streamReader.ReadLine();
+                            if (line.StartsWith("account_name="))
+                            {
+                                var popravni = line.Replace("account_name=", "");
+                                Config.username = popravni;
+                            }
+                            if (line.StartsWith("account_steamid="))
+                            {
+                                var popravni = line.Replace("account_steamid=", "");
+                                Config.steamid = popravni;
+                            }
+                            if (line.StartsWith("language="))
+                            {
+                                var popravni = line.Replace("language=", "");
+                                Config.language = popravni;
+                            }
+                        }
+                    }
+                }
+                if (File.Exists(Path.Combine(save_folder, "configs.main.ini")))
+                {
+                    using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(save_folder, "configs.main.ini"), FileMode.Open), Encoding.UTF8))
+                    {
+                        while (!streamReader.EndOfStream)
+                        {
+                            var line = streamReader.ReadLine();
+                            if (line.StartsWith("listen_port="))
+                            {
+                                var popravni = line.Replace("listen_port=", "");
+                                Config.port = ushort.Parse(popravni);
+                            }
+                        }
+                    }
+                }
         }
         
         private static RegistryKey CreateOrOpenKey(string keyPath)

@@ -82,17 +82,48 @@ namespace SmartGoldbergEmu
             this.label6 = new System.Windows.Forms.Label();
             this.NotifColourText = new System.Windows.Forms.TextBox();
             this.soundtab = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.fontspacingYText = new System.Windows.Forms.TextBox();
+            this.fontspacingXText = new System.Windows.Forms.TextBox();
+            this.delfontbutton = new System.Windows.Forms.Button();
+            this.addFontbutton = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.delachsoundbutton = new System.Windows.Forms.Button();
             this.delfriendsoundbutton = new System.Windows.Forms.Button();
             this.addachsoundbutton = new System.Windows.Forms.Button();
             this.addfriendsoundbutton = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.notificationTab = new System.Windows.Forms.TabPage();
+            this.chatduration_text = new System.Windows.Forms.TextBox();
+            this.progressduration_text = new System.Windows.Forms.TextBox();
+            this.achduration_text = new System.Windows.Forms.TextBox();
+            this.notifmarginy_text = new System.Windows.Forms.TextBox();
+            this.notifmarginx_text = new System.Windows.Forms.TextBox();
+            this.notifanim_text = new System.Windows.Forms.TextBox();
+            this.notifround_text = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.inviteduration_text = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.PosMsg_Dropdown = new System.Windows.Forms.ComboBox();
+            this.PosInv_Dropdown = new System.Windows.Forms.ComboBox();
+            this.PosAch_Dropdown = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.generaltab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatar)).BeginInit();
             this.appearancetab.SuspendLayout();
             this.soundtab.SuspendLayout();
+            this.notificationTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // save_button
@@ -120,6 +151,7 @@ namespace SmartGoldbergEmu
             this.tabControl1.Controls.Add(this.generaltab);
             this.tabControl1.Controls.Add(this.appearancetab);
             this.tabControl1.Controls.Add(this.soundtab);
+            this.tabControl1.Controls.Add(this.notificationTab);
             this.tabControl1.Location = new System.Drawing.Point(13, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -256,6 +288,12 @@ namespace SmartGoldbergEmu
             // appearancetab
             // 
             this.appearancetab.BackColor = System.Drawing.SystemColors.Control;
+            this.appearancetab.Controls.Add(this.label33);
+            this.appearancetab.Controls.Add(this.label32);
+            this.appearancetab.Controls.Add(this.label31);
+            this.appearancetab.Controls.Add(this.PosAch_Dropdown);
+            this.appearancetab.Controls.Add(this.PosInv_Dropdown);
+            this.appearancetab.Controls.Add(this.PosMsg_Dropdown);
             this.appearancetab.Controls.Add(this.ImgSizeText);
             this.appearancetab.Controls.Add(this.label9);
             this.appearancetab.Controls.Add(this.FontsizeText);
@@ -442,6 +480,13 @@ namespace SmartGoldbergEmu
             // soundtab
             // 
             this.soundtab.BackColor = System.Drawing.SystemColors.Control;
+            this.soundtab.Controls.Add(this.label16);
+            this.soundtab.Controls.Add(this.label13);
+            this.soundtab.Controls.Add(this.fontspacingYText);
+            this.soundtab.Controls.Add(this.fontspacingXText);
+            this.soundtab.Controls.Add(this.delfontbutton);
+            this.soundtab.Controls.Add(this.addFontbutton);
+            this.soundtab.Controls.Add(this.label12);
             this.soundtab.Controls.Add(this.delachsoundbutton);
             this.soundtab.Controls.Add(this.delfriendsoundbutton);
             this.soundtab.Controls.Add(this.addachsoundbutton);
@@ -452,7 +497,68 @@ namespace SmartGoldbergEmu
             this.soundtab.Name = "soundtab";
             this.soundtab.Size = new System.Drawing.Size(439, 141);
             this.soundtab.TabIndex = 2;
-            this.soundtab.Text = "Sound";
+            this.soundtab.Text = "Sound and Font";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(235, 106);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(83, 13);
+            this.label16.TabIndex = 36;
+            this.label16.Text = "Font Spacing Y:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(235, 79);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(83, 13);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "Font Spacing X:";
+            // 
+            // fontspacingYText
+            // 
+            this.fontspacingYText.Location = new System.Drawing.Point(329, 102);
+            this.fontspacingYText.Name = "fontspacingYText";
+            this.fontspacingYText.Size = new System.Drawing.Size(86, 20);
+            this.fontspacingYText.TabIndex = 34;
+            // 
+            // fontspacingXText
+            // 
+            this.fontspacingXText.Location = new System.Drawing.Point(329, 76);
+            this.fontspacingXText.Name = "fontspacingXText";
+            this.fontspacingXText.Size = new System.Drawing.Size(86, 20);
+            this.fontspacingXText.TabIndex = 33;
+            // 
+            // delfontbutton
+            // 
+            this.delfontbutton.Location = new System.Drawing.Point(322, 29);
+            this.delfontbutton.Name = "delfontbutton";
+            this.delfontbutton.Size = new System.Drawing.Size(94, 31);
+            this.delfontbutton.TabIndex = 32;
+            this.delfontbutton.Text = "Delete Font";
+            this.delfontbutton.UseVisualStyleBackColor = true;
+            this.delfontbutton.Click += new System.EventHandler(this.delfontbutton_Click);
+            // 
+            // addFontbutton
+            // 
+            this.addFontbutton.Location = new System.Drawing.Point(222, 29);
+            this.addFontbutton.Name = "addFontbutton";
+            this.addFontbutton.Size = new System.Drawing.Size(94, 31);
+            this.addFontbutton.TabIndex = 31;
+            this.addFontbutton.Text = "Change Font";
+            this.addFontbutton.UseVisualStyleBackColor = true;
+            this.addFontbutton.Click += new System.EventHandler(this.addFontbutton_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(219, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(28, 13);
+            this.label12.TabIndex = 30;
+            this.label12.Text = "Font";
             // 
             // delachsoundbutton
             // 
@@ -512,6 +618,231 @@ namespace SmartGoldbergEmu
             this.label10.TabIndex = 5;
             this.label10.Text = "Friend Notification";
             // 
+            // notificationTab
+            // 
+            this.notificationTab.BackColor = System.Drawing.SystemColors.Control;
+            this.notificationTab.Controls.Add(this.label28);
+            this.notificationTab.Controls.Add(this.inviteduration_text);
+            this.notificationTab.Controls.Add(this.chatduration_text);
+            this.notificationTab.Controls.Add(this.progressduration_text);
+            this.notificationTab.Controls.Add(this.achduration_text);
+            this.notificationTab.Controls.Add(this.notifmarginy_text);
+            this.notificationTab.Controls.Add(this.notifmarginx_text);
+            this.notificationTab.Controls.Add(this.notifanim_text);
+            this.notificationTab.Controls.Add(this.notifround_text);
+            this.notificationTab.Controls.Add(this.label27);
+            this.notificationTab.Controls.Add(this.label26);
+            this.notificationTab.Controls.Add(this.label23);
+            this.notificationTab.Controls.Add(this.label22);
+            this.notificationTab.Controls.Add(this.label21);
+            this.notificationTab.Controls.Add(this.label18);
+            this.notificationTab.Controls.Add(this.label17);
+            this.notificationTab.Location = new System.Drawing.Point(4, 22);
+            this.notificationTab.Name = "notificationTab";
+            this.notificationTab.Size = new System.Drawing.Size(439, 141);
+            this.notificationTab.TabIndex = 3;
+            this.notificationTab.Text = "Notifications";
+            // 
+            // chatduration_text
+            // 
+            this.chatduration_text.Location = new System.Drawing.Point(313, 88);
+            this.chatduration_text.Name = "chatduration_text";
+            this.chatduration_text.Size = new System.Drawing.Size(38, 20);
+            this.chatduration_text.TabIndex = 50;
+            // 
+            // progressduration_text
+            // 
+            this.progressduration_text.Location = new System.Drawing.Point(313, 36);
+            this.progressduration_text.Name = "progressduration_text";
+            this.progressduration_text.Size = new System.Drawing.Size(38, 20);
+            this.progressduration_text.TabIndex = 49;
+            // 
+            // achduration_text
+            // 
+            this.achduration_text.Location = new System.Drawing.Point(313, 10);
+            this.achduration_text.Name = "achduration_text";
+            this.achduration_text.Size = new System.Drawing.Size(38, 20);
+            this.achduration_text.TabIndex = 48;
+            // 
+            // notifmarginy_text
+            // 
+            this.notifmarginy_text.Location = new System.Drawing.Point(131, 88);
+            this.notifmarginy_text.Name = "notifmarginy_text";
+            this.notifmarginy_text.Size = new System.Drawing.Size(38, 20);
+            this.notifmarginy_text.TabIndex = 47;
+            // 
+            // notifmarginx_text
+            // 
+            this.notifmarginx_text.Location = new System.Drawing.Point(131, 62);
+            this.notifmarginx_text.Name = "notifmarginx_text";
+            this.notifmarginx_text.Size = new System.Drawing.Size(38, 20);
+            this.notifmarginx_text.TabIndex = 46;
+            // 
+            // notifanim_text
+            // 
+            this.notifanim_text.Location = new System.Drawing.Point(131, 36);
+            this.notifanim_text.Name = "notifanim_text";
+            this.notifanim_text.Size = new System.Drawing.Size(38, 20);
+            this.notifanim_text.TabIndex = 45;
+            // 
+            // notifround_text
+            // 
+            this.notifround_text.Location = new System.Drawing.Point(131, 10);
+            this.notifround_text.Name = "notifround_text";
+            this.notifround_text.Size = new System.Drawing.Size(38, 20);
+            this.notifround_text.TabIndex = 44;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(195, 13);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(112, 13);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "Achievement Duration";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(195, 91);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(72, 13);
+            this.label26.TabIndex = 10;
+            this.label26.Text = "Chat Duration";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(195, 39);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(91, 13);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "Progress Duration";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(16, 39);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(109, 13);
+            this.label22.TabIndex = 8;
+            this.label22.Text = "Notification Animation";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(16, 91);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(105, 13);
+            this.label21.TabIndex = 7;
+            this.label21.Text = "Notification Margin Y";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(16, 65);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(105, 13);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Notification Margin X";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(16, 13);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(109, 13);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "Notification Rounding";
+            // 
+            // inviteduration_text
+            // 
+            this.inviteduration_text.Location = new System.Drawing.Point(313, 62);
+            this.inviteduration_text.Name = "inviteduration_text";
+            this.inviteduration_text.Size = new System.Drawing.Size(38, 20);
+            this.inviteduration_text.TabIndex = 51;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(195, 65);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(76, 13);
+            this.label28.TabIndex = 52;
+            this.label28.Text = "Invite Duration";
+            // 
+            // PosMsg_Dropdown
+            // 
+            this.PosMsg_Dropdown.FormattingEnabled = true;
+            this.PosMsg_Dropdown.Items.AddRange(new object[] {
+            "top_left",
+            "top_center",
+            "top_right",
+            "bot_left",
+            "bot_center",
+            "bot_right"});
+            this.PosMsg_Dropdown.Location = new System.Drawing.Point(368, 113);
+            this.PosMsg_Dropdown.Name = "PosMsg_Dropdown";
+            this.PosMsg_Dropdown.Size = new System.Drawing.Size(65, 21);
+            this.PosMsg_Dropdown.TabIndex = 56;
+            // 
+            // PosInv_Dropdown
+            // 
+            this.PosInv_Dropdown.FormattingEnabled = true;
+            this.PosInv_Dropdown.Items.AddRange(new object[] {
+            "top_left",
+            "top_center",
+            "top_right",
+            "bot_left",
+            "bot_center",
+            "bot_right"});
+            this.PosInv_Dropdown.Location = new System.Drawing.Point(368, 87);
+            this.PosInv_Dropdown.Name = "PosInv_Dropdown";
+            this.PosInv_Dropdown.Size = new System.Drawing.Size(65, 21);
+            this.PosInv_Dropdown.TabIndex = 57;
+            // 
+            // PosAch_Dropdown
+            // 
+            this.PosAch_Dropdown.FormattingEnabled = true;
+            this.PosAch_Dropdown.Items.AddRange(new object[] {
+            "top_left",
+            "top_center",
+            "top_right",
+            "bot_left",
+            "bot_center",
+            "bot_right"});
+            this.PosAch_Dropdown.Location = new System.Drawing.Point(368, 62);
+            this.PosAch_Dropdown.Name = "PosAch_Dropdown";
+            this.PosAch_Dropdown.Size = new System.Drawing.Size(65, 21);
+            this.PosAch_Dropdown.TabIndex = 58;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(296, 65);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(66, 13);
+            this.label31.TabIndex = 59;
+            this.label31.Text = "Ach Position";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(296, 91);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(62, 13);
+            this.label32.TabIndex = 60;
+            this.label32.Text = "Inv Position";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(296, 117);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(69, 13);
+            this.label33.TabIndex = 61;
+            this.label33.Text = "Chat Position";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -535,6 +866,8 @@ namespace SmartGoldbergEmu
             this.appearancetab.PerformLayout();
             this.soundtab.ResumeLayout(false);
             this.soundtab.PerformLayout();
+            this.notificationTab.ResumeLayout(false);
+            this.notificationTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -583,5 +916,35 @@ namespace SmartGoldbergEmu
         private System.Windows.Forms.Button addfriendsoundbutton;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button delfontbutton;
+        private System.Windows.Forms.Button addFontbutton;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox fontspacingYText;
+        private System.Windows.Forms.TextBox fontspacingXText;
+        private System.Windows.Forms.TabPage notificationTab;
+        private System.Windows.Forms.TextBox notifanim_text;
+        private System.Windows.Forms.TextBox notifround_text;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox notifmarginx_text;
+        private System.Windows.Forms.TextBox chatduration_text;
+        private System.Windows.Forms.TextBox progressduration_text;
+        private System.Windows.Forms.TextBox achduration_text;
+        private System.Windows.Forms.TextBox notifmarginy_text;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox inviteduration_text;
+        private System.Windows.Forms.ComboBox PosAch_Dropdown;
+        private System.Windows.Forms.ComboBox PosInv_Dropdown;
+        private System.Windows.Forms.ComboBox PosMsg_Dropdown;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
     }
 }
