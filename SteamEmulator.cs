@@ -31,38 +31,6 @@ namespace SmartGoldbergEmu
             LoadSave();
 
             string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
-            try
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(save_folder, "account_name.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    Config.username = streamReader.ReadLine();
-                }
-            }
-            catch { }
-            try
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(save_folder, "language.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    Config.language = streamReader.ReadLine();
-                }
-            }
-            catch { }
-            try
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(save_folder, "listen_port.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    Config.port = ushort.Parse(streamReader.ReadLine());
-                }
-            }
-            catch { }
-            try
-            {
-                using (StreamReader streamReader = new StreamReader(new FileStream(Path.Combine(save_folder, "user_steam_id.txt"), FileMode.Open), Encoding.ASCII))
-                {
-                    Config.steamid = streamReader.ReadLine();
-                }
-            }
-            catch { }
                 //string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
                 if (File.Exists(Path.Combine(save_folder, "configs.user.ini")))
                 {
@@ -123,6 +91,7 @@ namespace SmartGoldbergEmu
         {
             string game_emu_folder = app.GetGameEmuFolder();
             string save_folder;
+            string badblueboys;
 
             if (!app.LocalSave.Equals(""))
             {
@@ -369,18 +338,12 @@ namespace SmartGoldbergEmu
                 {
                     if (File.Exists(Path.Combine(game_emu_folder, "local_save.txt")))
                         File.Delete(Path.Combine(game_emu_folder, "local_save.txt"));
-                    if (File.Exists(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_warning.txt")))
-                        File.Delete(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_warning.txt"));
                 }
                 else
                 {
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "local_save.txt"), FileMode.Create), Encoding.ASCII))
                     {
                         streamWriter.Write(app.LocalSave);
-                        streamWriter.Close();
-                    }
-                    using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "disable_overlay_warning.txt"), FileMode.Create), Encoding.ASCII))
-                    {
                         streamWriter.Close();
                     }
                 }
