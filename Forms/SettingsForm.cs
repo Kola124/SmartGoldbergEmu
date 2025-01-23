@@ -15,6 +15,7 @@
    License along with the SmartGoldbergEmu Launcher; if not, see
    <http://www.gnu.org/licenses/>.
  */
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -131,6 +132,62 @@ namespace SmartGoldbergEmu
                 }
             };
             avatar.Image = img;
+            if (File.Exists(Path.Combine(save_folder, "configs.user.ini")))
+            {
+                using (StreamReader streamReader = new StreamReader(Path.Combine(save_folder, "configs.user.ini")))
+                {
+                    string line;
+                    string prosliline = "a";
+                    double result = 0;
+                    while ((line = streamReader.ReadLine()) != null)
+                    {
+                        prosliline = line;
+                        if (prosliline.Contains("account_name="))
+                        {
+                            //FontsizeText.Text = prosliline;
+                            prosliline = prosliline.Replace("account_name=", "");
+                            double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
+                            username_edit.Text = result.ToString().Replace(",", ".");
+                        }
+                        if (prosliline.Contains("account_steamid="))
+                        {
+                            //FontsizeText.Text = prosliline;
+                            prosliline = prosliline.Replace("account_steamid=", "");
+                            double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
+                            steam_id_edit.Text = result.ToString().Replace(",", ".");
+                        }
+                        if (prosliline.Contains("language="))
+                        {
+                            //FontsizeText.Text = prosliline;
+                            prosliline = prosliline.Replace("language=", "");
+                            double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
+                            language_combo.Text = result.ToString().Replace(",", ".");
+                        }
+                    }
+                    streamReader.Close();
+                }
+            }
+            if (File.Exists(Path.Combine(save_folder, "configs.main.ini")))
+            {
+                using (StreamReader streamReader = new StreamReader(Path.Combine(save_folder, "configs.main.ini")))
+                {
+                    string line;
+                    string prosliline = "a";
+                    double result = 0;
+                    while ((line = streamReader.ReadLine()) != null)
+                    {
+                        prosliline = line;
+                        if (prosliline.Contains("listen_port="))
+                        {
+                            //FontsizeText.Text = prosliline;
+                            prosliline = prosliline.Replace("listen_port=", "");
+                            double.TryParse(prosliline, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, out result);
+                            port_edit.Text = result.ToString().Replace(",", ".");
+                        }
+                    }
+                    streamReader.Close();
+                }
+            }
 
             if (File.Exists(Path.Combine(save_folder, "configs.overlay.ini")))
             {
@@ -392,7 +449,7 @@ namespace SmartGoldbergEmu
 
         public void Spremanje()
         {
-            double R,G,B,A = 0;
+            double R,G,B,A;
             string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
             if (!string.IsNullOrWhiteSpace(NotifColourText.Text) | !string.IsNullOrWhiteSpace(BackColourText.Text) | !string.IsNullOrWhiteSpace(ElementColourText.Text) | !string.IsNullOrWhiteSpace(ElementHovColourText.Text) | !string.IsNullOrWhiteSpace(EleActColourText.Text) | !string.IsNullOrWhiteSpace(FontsizeText.Text) | !string.IsNullOrWhiteSpace(ImgSizeText.Text))
             {
@@ -600,6 +657,42 @@ namespace SmartGoldbergEmu
                     if (!string.IsNullOrWhiteSpace(PosMsg_Dropdown.Text))
                     {
                         streamWriter.WriteLine("PosChatMsg=" + PosMsg_Dropdown.Text);
+                    }
+                    streamWriter.Close();
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(username_edit.Text) | !string.IsNullOrWhiteSpace(steam_id_edit.Text) | !string.IsNullOrWhiteSpace(language_combo.Text))
+            {
+                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(save_folder, "configs.user.ini"), FileMode.Create), Encoding.ASCII))
+                {
+                    streamWriter.WriteLine("[user::general]");
+                    if (!string.IsNullOrWhiteSpace(username_edit.Text))
+                    {
+                        streamWriter.WriteLine("account_name=" + username_edit.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(username_edit.Text))
+                    {
+                        streamWriter.WriteLine("account_steamid=" + steam_id_edit.Text);
+                    }
+                    if (!string.IsNullOrWhiteSpace(username_edit.Text))
+                    {
+                        streamWriter.WriteLine("language=" + language_combo.Text);
+                    }
+                    streamWriter.Close();
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(port_edit.Text))
+            {
+                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(save_folder, "configs.main.ini"), FileMode.Create), Encoding.ASCII))
+                {
+                    streamWriter.WriteLine("[main::general]\nenable_account_avatar=1\n[main::connectivity]");
+                    if (!string.IsNullOrWhiteSpace(port_edit.Text))
+                    {
+                        streamWriter.WriteLine("listen_port=" + port_edit.Text);
+                    }
+                    else
+                    {
+                        streamWriter.WriteLine("listen_port=47584");
                     }
                     streamWriter.Close();
                 }

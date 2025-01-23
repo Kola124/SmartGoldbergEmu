@@ -91,7 +91,6 @@ namespace SmartGoldbergEmu
         {
             string game_emu_folder = app.GetGameEmuFolder();
             string save_folder;
-            string badblueboys;
 
             if (!app.LocalSave.Equals(""))
             {
