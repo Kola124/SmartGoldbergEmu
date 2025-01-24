@@ -489,19 +489,6 @@ namespace SmartGoldbergEmu
  
             Pisanje_InstaliraniIDovi();
 
-            if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "gc_token.txt"))){
-                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "gc_token.txt"), FileMode.Create), Encoding.ASCII))
-                {
-                    streamWriter.Close();
-                }
-            }
-            if (!File.Exists(Path.Combine(game_emu_folder, "steam_settings", "new_app_ticket.txt"))) {
-                using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(game_emu_folder, "steam_settings", "new_app_ticket.txt"), FileMode.Create), Encoding.ASCII))
-                {
-                    streamWriter.Close();
-                }
-            }
-
             if (Is_app_valid())
             {
                 DialogResult = DialogResult.OK;
@@ -955,6 +942,7 @@ namespace SmartGoldbergEmu
             {
                 tw.WriteLine("save_only_higher_stat_achievement_progress=1");
             }
+            else
             {
                 tw.WriteLine("save_only_higher_stat_achievement_progress=0");
             }

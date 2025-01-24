@@ -451,12 +451,21 @@ namespace SmartGoldbergEmu
         {
             double R,G,B,A;
             string save_folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GSE Saves", "settings");
-            if (!string.IsNullOrWhiteSpace(NotifColourText.Text) | !string.IsNullOrWhiteSpace(BackColourText.Text) | !string.IsNullOrWhiteSpace(ElementColourText.Text) | !string.IsNullOrWhiteSpace(ElementHovColourText.Text) | !string.IsNullOrWhiteSpace(EleActColourText.Text) | !string.IsNullOrWhiteSpace(FontsizeText.Text) | !string.IsNullOrWhiteSpace(ImgSizeText.Text))
+            if (!string.IsNullOrWhiteSpace(ImgSizeText.Text) | !string.IsNullOrWhiteSpace(FontsizeText.Text) 
+                | !string.IsNullOrWhiteSpace(PosAch_Dropdown.Text) | !string.IsNullOrWhiteSpace(PosInv_Dropdown.Text) | !string.IsNullOrWhiteSpace(PosMsg_Dropdown.Text)
+                | !string.IsNullOrWhiteSpace(fontspacingXText.Text) | !string.IsNullOrWhiteSpace(fontspacingYText.Text)
+                | !string.IsNullOrWhiteSpace(NotifColourText.Text) | !string.IsNullOrWhiteSpace(BackColourText.Text) 
+                | !string.IsNullOrWhiteSpace(ElementColourText.Text) | !string.IsNullOrWhiteSpace(ElementHovColourText.Text) 
+                | !string.IsNullOrWhiteSpace(EleActColourText.Text) 
+                | !string.IsNullOrWhiteSpace(notifround_text.Text) | !string.IsNullOrWhiteSpace(notifanim_text.Text) | !string.IsNullOrWhiteSpace(notifmarginx_text.Text) | !string.IsNullOrWhiteSpace(notifmarginy_text.Text) 
+                | !string.IsNullOrWhiteSpace(achduration_text.Text) | !string.IsNullOrWhiteSpace(progressduration_text.Text)
+                | !string.IsNullOrWhiteSpace(inviteduration_text.Text) | !string.IsNullOrWhiteSpace(chatduration_text.Text)
+                | File.Exists(Path.Combine(save_folder, "fonts", "dinamo.ttf")))
             {
                 using (StreamWriter streamWriter = new StreamWriter(new FileStream(Path.Combine(save_folder, "configs.overlay.ini"), FileMode.Create), Encoding.ASCII))
                 {
                     streamWriter.WriteLine("[overlay::general]");
-                    streamWriter.WriteLine("[enable_experimental_overlay=0");
+                    streamWriter.WriteLine("enable_experimental_overlay=0");
                     streamWriter.WriteLine("[overlay::appearance]");
                     if(File.Exists(Path.Combine(save_folder, "fonts", "dinamo.ttf")))
                     {
